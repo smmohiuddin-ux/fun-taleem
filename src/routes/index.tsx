@@ -29,7 +29,7 @@ export const Route = createFileRoute("/")({
   component: LandingPage,
 });
 
-const WHATSAPP_NUMBER = "923000000000";
+const WHATSAPP_NUMBER = "923042175897";
 const WA_MESSAGE = encodeURIComponent(
   "Hi! I want to order the Reusable Magic Tracing Book.\n\nMy Name:\nCity:\nQuantity:\n\nPlease guide me."
 );
