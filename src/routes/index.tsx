@@ -6,7 +6,13 @@ import {
   Phone, Mail, Instagram, Facebook, Music2, Check, X, ChevronDown, MapPin,
   Eye, Hand, Trophy, Lightbulb, Target,
 } from "lucide-react";
-import heroAsset from "@/assets/hero-product.png.asset.json";
+import preschoolImg from "@/assets/preschool.jpeg.asset.json";
+import whatsInsideImg from "@/assets/whats-inside.jpeg.asset.json";
+import wipeCleanImg from "@/assets/wipe-clean.jpeg.asset.json";
+import activitiesImg from "@/assets/activities.jpeg.asset.json";
+import productFlatImg from "@/assets/product-flat.jpeg.asset.json";
+import perfectSizeImg from "@/assets/perfect-size.jpeg.asset.json";
+import earlySkillsImg from "@/assets/early-skills.jpeg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -16,26 +22,21 @@ export const Route = createFileRoute("/")({
       { name: "keywords", content: "Reusable Magic Book Pakistan, Kids Learning Book Pakistan, Tracing Book Pakistan, Montessori Toys Pakistan, Educational Toys Pakistan, Screen Free Learning, Kids Activity Book, Handwriting Practice Book, Preschool Learning Toys" },
       { property: "og:title", content: "Magic Tracing Book Pakistan | Screen-Free Learning for Kids" },
       { property: "og:description", content: "Help your child learn through fun, not screens. Reusable workbook + markers. Cash on Delivery in Pakistan." },
-      { property: "og:image", content: heroAsset.url },
-      { name: "twitter:image", content: heroAsset.url },
+      { property: "og:image", content: preschoolImg.url },
+      { name: "twitter:image", content: preschoolImg.url },
     ],
   }),
   component: LandingPage,
 });
 
-// ---- Config ----
-const WHATSAPP_NUMBER = "923000000000"; // TODO: replace with real number
+const WHATSAPP_NUMBER = "923000000000";
 const WA_MESSAGE = encodeURIComponent(
   "Hi! I want to order the Reusable Magic Tracing Book.\n\nMy Name:\nCity:\nQuantity:\n\nPlease guide me."
 );
 const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${WA_MESSAGE}`;
 
-// ---- Reusable bits ----
 function WhatsAppButton({
-  size = "md",
-  label = "Order on WhatsApp",
-  pulse = true,
-  className = "",
+  size = "md", label = "Order on WhatsApp", pulse = true, className = "",
 }: { size?: "sm" | "md" | "lg"; label?: string; pulse?: boolean; className?: string }) {
   const sizeCls =
     size === "lg" ? "px-8 py-5 text-lg" :
@@ -43,9 +44,7 @@ function WhatsAppButton({
     "px-6 py-3.5 text-base";
   return (
     <a
-      href={waLink}
-      target="_blank"
-      rel="noopener noreferrer"
+      href={waLink} target="_blank" rel="noopener noreferrer"
       className={`inline-flex items-center justify-center gap-2 rounded-full bg-brand-green text-white font-semibold shadow-lg shadow-brand-green/30 transition hover:scale-[1.03] hover:bg-brand-green-dark ${sizeCls} ${pulse ? "btn-pulse" : ""} ${className}`}
     >
       <MessageCircle className="size-5" strokeWidth={2.5} />
@@ -64,13 +63,9 @@ function SectionTitle({
           {eyebrow}
         </span>
       )}
-      <h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-bold text-foreground">
-        {title}
-      </h2>
+      <h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-bold text-foreground">{title}</h2>
       {subtitle && (
-        <p className={`mt-4 text-base sm:text-lg text-muted-foreground ${center ? "mx-auto max-w-2xl" : "max-w-2xl"}`}>
-          {subtitle}
-        </p>
+        <p className={`mt-4 text-base sm:text-lg text-muted-foreground ${center ? "mx-auto max-w-2xl" : "max-w-2xl"}`}>{subtitle}</p>
       )}
     </div>
   );
@@ -80,21 +75,59 @@ function Doodle({ children, className = "" }: { children: React.ReactNode; class
   return <div className={`pointer-events-none absolute select-none ${className}`}>{children}</div>;
 }
 
-// Placeholder colored block representing an image
-function ImgPlaceholder({
-  label, gradient, emoji, className = "", aspect = "aspect-square",
-}: { label: string; gradient: string; emoji: string; className?: string; aspect?: string }) {
+/**
+ * Brand-tinted image frame.
+ * Wraps a product image in a colored gradient frame with a soft
+ * brand-color overlay (multiply blend) so the photo's blue palette
+ * harmonises with the site's green/yellow/coral/purple theme.
+ */
+function TintedImage({
+  src, alt, tint = "green", className = "", aspect = "aspect-[4/3]", overlayOpacity = 0.18,
+}: {
+  src: string; alt: string;
+  tint?: "green" | "sky" | "yellow" | "orange" | "coral" | "purple" | "rainbow";
+  className?: string; aspect?: string; overlayOpacity?: number;
+}) {
+  const frame: Record<string, string> = {
+    green:   "from-brand-green/30 via-brand-sky/20 to-brand-yellow/30",
+    sky:     "from-brand-sky/30 via-brand-purple/20 to-brand-coral/25",
+    yellow:  "from-brand-yellow/35 via-brand-orange/25 to-brand-coral/25",
+    orange:  "from-brand-orange/30 via-brand-coral/25 to-brand-yellow/25",
+    coral:   "from-brand-coral/30 via-brand-purple/20 to-brand-orange/25",
+    purple:  "from-brand-purple/30 via-brand-sky/20 to-brand-green/25",
+    rainbow: "from-brand-green/25 via-brand-yellow/25 to-brand-coral/30",
+  };
+  const overlay: Record<string, string> = {
+    green:   "from-brand-green/60 to-brand-yellow/40",
+    sky:     "from-brand-purple/55 to-brand-coral/35",
+    yellow:  "from-brand-yellow/60 to-brand-orange/45",
+    orange:  "from-brand-orange/55 to-brand-coral/40",
+    coral:   "from-brand-coral/55 to-brand-purple/40",
+    purple:  "from-brand-purple/55 to-brand-green/40",
+    rainbow: "from-brand-green/45 via-brand-yellow/35 to-brand-coral/45",
+  };
   return (
-    <div className={`relative ${aspect} w-full overflow-hidden rounded-3xl ${gradient} flex items-center justify-center ${className}`}>
-      <div className="text-7xl drop-shadow-sm" aria-hidden>{emoji}</div>
-      <div className="absolute bottom-3 left-3 rounded-full bg-white/80 backdrop-blur px-3 py-1 text-xs font-semibold text-foreground/80">
-        {label}
+    <div className={`relative ${aspect} w-full overflow-hidden rounded-3xl bg-gradient-to-br ${frame[tint]} p-3 sm:p-4 shadow-lg ring-1 ring-white/60 ${className}`}>
+      <div className="relative h-full w-full overflow-hidden rounded-2xl bg-white">
+        <img
+          src={src} alt={alt} loading="lazy"
+          className="h-full w-full object-contain"
+        />
+        <div
+          aria-hidden
+          className={`pointer-events-none absolute inset-0 bg-gradient-to-tr ${overlay[tint]} mix-blend-multiply`}
+          style={{ opacity: overlayOpacity }}
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 mix-blend-soft-light"
+          style={{ background: "radial-gradient(120% 80% at 20% 0%, rgba(255,255,255,0.6), transparent 60%)" }}
+        />
       </div>
     </div>
   );
 }
 
-// ---- Page ----
 function LandingPage() {
   return (
     <main className="relative overflow-hidden bg-background text-foreground">
@@ -102,9 +135,11 @@ function LandingPage() {
       <Hero />
       <TrustBar />
       <WhyParentsLove />
+      <PerfectSize />
       <ProductShowcase />
       <WhatsIncluded />
       <LearningCategories />
+      <WipeCleanSection />
       <ComparisonSection />
       <EducationalBenefits />
       <HowItWorks />
@@ -124,7 +159,6 @@ function LandingPage() {
   );
 }
 
-// ---- Urgency Bar ----
 function UrgencyBar() {
   return (
     <div className="relative z-10 bg-gradient-to-r from-brand-coral via-brand-orange to-brand-yellow py-2.5 text-center text-sm font-semibold text-white">
@@ -133,7 +167,6 @@ function UrgencyBar() {
   );
 }
 
-// ---- Hero ----
 function Hero() {
   return (
     <section className="relative isolate px-4 pt-10 pb-16 sm:pt-16 sm:pb-24">
@@ -195,15 +228,15 @@ function Hero() {
         </div>
 
         <div className="relative">
-          <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-brand-green/30 via-brand-sky/30 to-brand-yellow/30 blur-2xl" />
-          <div className="relative overflow-hidden rounded-[2.5rem] bg-white shadow-2xl ring-1 ring-border">
-            <img
-              src={heroAsset.url}
-              alt="Child using the Reusable Magic Tracing Book"
-              className="h-full w-full object-cover"
-              loading="eager"
-            />
-          </div>
+          <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-brand-green/30 via-brand-yellow/30 to-brand-coral/30 blur-2xl" />
+          <TintedImage
+            src={preschoolImg.url}
+            alt="Child happily using the Reusable Magic Tracing Book"
+            tint="rainbow"
+            aspect="aspect-square"
+            overlayOpacity={0.14}
+            className="relative shadow-2xl"
+          />
           <Doodle className="-top-6 -left-6 text-5xl float-med">🔤</Doodle>
           <Doodle className="-bottom-6 -right-6 text-5xl float-slow">🔢</Doodle>
           <Doodle className="top-10 -right-10 text-4xl spin-slow">✏️</Doodle>
@@ -213,7 +246,6 @@ function Hero() {
   );
 }
 
-// ---- Trust Bar ----
 function TrustBar() {
   const items = [
     { icon: Truck, label: "Cash on Delivery" },
@@ -241,7 +273,6 @@ function TrustBar() {
   );
 }
 
-// ---- Why Parents Love It ----
 function WhyParentsLove() {
   const cards = [
     { emoji: "📵", title: "Screen-Free Learning", color: "bg-brand-green/10 text-brand-green" },
@@ -277,28 +308,59 @@ function WhyParentsLove() {
   );
 }
 
-// ---- Product Showcase ----
+function PerfectSize() {
+  return (
+    <section className="relative px-4 py-20 bg-brand-cream">
+      <div className="mx-auto grid max-w-7xl items-center gap-10 md:grid-cols-2">
+        <div className="order-2 md:order-1">
+          <TintedImage src={perfectSizeImg.url} alt="Perfect size dimensions for little hands" tint="green" aspect="aspect-square" />
+        </div>
+        <div className="order-1 md:order-2">
+          <span className="inline-block rounded-full bg-brand-green/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-green-dark">Perfect Fit</span>
+          <h2 className="mt-3 font-display text-4xl sm:text-5xl font-bold">Just the right size for <span className="text-brand-green">little hands</span></h2>
+          <p className="mt-4 text-muted-foreground text-lg">Light, sturdy and travel-friendly — fits in any school bag, backpack or car seat pocket.</p>
+          <ul className="mt-6 space-y-3">
+            {[
+              { k: "Book", v: "9.1 × 7.0 in (23 × 17.8 cm)" },
+              { k: "Pages", v: "5.1 × 6.7 in dry-erase boards" },
+              { k: "Marker", v: "4.5 in — perfect kid grip" },
+              { k: "Eraser", v: "2.8 in bone-shaped wipe pad" },
+            ].map((s) => (
+              <li key={s.k} className="flex items-center gap-3 rounded-2xl bg-white p-3 ring-1 ring-border">
+                <div className="grid size-9 place-items-center rounded-full bg-brand-yellow/30 text-brand-orange"><Check className="size-4" strokeWidth={3}/></div>
+                <div><span className="font-bold">{s.k}: </span><span className="text-muted-foreground">{s.v}</span></div>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-7"><WhatsAppButton /></div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ProductShowcase() {
   const gallery = [
-    { label: "Inside the Box", emoji: "📦", gradient: "bg-gradient-to-br from-brand-green/30 to-brand-sky/30" },
-    { label: "Workbook Pages", emoji: "📖", gradient: "bg-gradient-to-br from-brand-yellow/30 to-brand-orange/30" },
-    { label: "Markers Included", emoji: "🖍️", gradient: "bg-gradient-to-br from-brand-coral/30 to-brand-purple/30" },
-    { label: "Close-up Pages", emoji: "🔍", gradient: "bg-gradient-to-br from-brand-sky/30 to-brand-green/30" },
-    { label: "Child Using It", emoji: "🧒", gradient: "bg-gradient-to-br from-brand-purple/30 to-brand-coral/30" },
-    { label: "Premium Packaging", emoji: "🎁", gradient: "bg-gradient-to-br from-brand-orange/30 to-brand-yellow/30" },
+    { src: productFlatImg.url, label: "Box & Contents", tint: "sky" as const },
+    { src: whatsInsideImg.url, label: "What's Inside",  tint: "green" as const },
+    { src: activitiesImg.url,  label: "64 Activities",  tint: "yellow" as const },
+    { src: wipeCleanImg.url,   label: "Wipe & Reuse",   tint: "coral" as const },
+    { src: preschoolImg.url,   label: "Child Using It", tint: "purple" as const },
+    { src: earlySkillsImg.url, label: "Early Skills",   tint: "orange" as const },
   ];
   return (
-    <section id="showcase" className="relative px-4 py-20 bg-brand-cream">
+    <section id="showcase" className="relative px-4 py-20">
       <div className="mx-auto max-w-7xl">
         <SectionTitle
           eyebrow="Product showcase"
           title="See it in your child's hands"
           subtitle="Premium quality, vibrant colors, and pages that wipe clean — over and over again."
         />
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {gallery.map((g) => (
             <div key={g.label} className="card-lift">
-              <ImgPlaceholder {...g} aspect="aspect-[4/3]" />
+              <TintedImage src={g.src} alt={g.label} tint={g.tint} aspect="aspect-square" />
+              <p className="mt-3 text-center text-sm font-bold text-foreground/80">{g.label}</p>
             </div>
           ))}
         </div>
@@ -310,38 +372,38 @@ function ProductShowcase() {
   );
 }
 
-// ---- What's Included ----
 function WhatsIncluded() {
   const items = [
-    { name: "Reusable Book", emoji: "📘", color: "bg-brand-green/15" },
-    { name: "Markers", emoji: "🖊️", color: "bg-brand-coral/15" },
-    { name: "Magic Pen", emoji: "✨", color: "bg-brand-purple/15" },
-    { name: "Cleaning Sponge", emoji: "🧽", color: "bg-brand-yellow/20" },
-    { name: "Practice Pages", emoji: "📄", color: "bg-brand-sky/15" },
+    { name: "64 Reusable Activity Pages", emoji: "📘", color: "bg-brand-green/15" },
+    { name: "3 Dry-Erase Markers", emoji: "🖊️", color: "bg-brand-coral/15" },
+    { name: "3 Binder Rings", emoji: "⭕", color: "bg-brand-sky/15" },
+    { name: "1 Wipe-Clean Eraser", emoji: "🧽", color: "bg-brand-yellow/20" },
   ];
   return (
-    <section className="relative px-4 py-20">
-      <div className="mx-auto max-w-7xl">
-        <SectionTitle
-          eyebrow="What's inside"
-          title="Everything your child needs in one box"
-        />
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
-          {items.map((i) => (
-            <div key={i.name} className="card-lift rounded-3xl bg-white p-6 text-center shadow-sm ring-1 ring-border">
-              <div className={`mx-auto grid size-20 place-items-center rounded-3xl ${i.color} text-4xl`}>
-                {i.emoji}
+    <section className="relative px-4 py-20 bg-brand-cream">
+      <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2">
+        <div>
+          <TintedImage src={whatsInsideImg.url} alt="What's inside the set" tint="sky" aspect="aspect-square" />
+        </div>
+        <div>
+          <span className="inline-block rounded-full bg-brand-purple/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-purple">What's inside</span>
+          <h2 className="mt-3 font-display text-4xl sm:text-5xl font-bold">Everything in one <span className="text-brand-purple">premium box</span></h2>
+          <p className="mt-4 text-muted-foreground text-lg">Open the box and your child can start learning immediately — no batteries, no setup, no screens.</p>
+          <div className="mt-6 grid grid-cols-2 gap-3">
+            {items.map((i) => (
+              <div key={i.name} className="card-lift rounded-2xl bg-white p-4 text-center shadow-sm ring-1 ring-border">
+                <div className={`mx-auto grid size-14 place-items-center rounded-2xl ${i.color} text-2xl`}>{i.emoji}</div>
+                <h3 className="mt-3 text-sm font-bold">{i.name}</h3>
               </div>
-              <h3 className="mt-4 font-bold">{i.name}</h3>
-            </div>
-          ))}
+            ))}
+          </div>
+          <div className="mt-7"><WhatsAppButton /></div>
         </div>
       </div>
     </section>
   );
 }
 
-// ---- Learning Categories ----
 function LearningCategories() {
   const cats = [
     { name: "Alphabet", emoji: "🔤", bg: "bg-brand-coral/15" },
@@ -349,28 +411,57 @@ function LearningCategories() {
     { name: "Shapes", emoji: "🔷", bg: "bg-brand-purple/15" },
     { name: "Animals", emoji: "🐘", bg: "bg-brand-orange/15" },
     { name: "Drawing", emoji: "🎨", bg: "bg-brand-yellow/20" },
-    { name: "Tracing", emoji: "✏️", bg: "bg-brand-green/15" },
+    { name: "Line Tracing", emoji: "✏️", bg: "bg-brand-green/15" },
     { name: "Matching", emoji: "🧩", bg: "bg-brand-coral/15" },
     { name: "Patterns", emoji: "🌀", bg: "bg-brand-sky/15" },
   ];
   return (
-    <section className="relative px-4 py-20 bg-brand-cream">
+    <section className="relative px-4 py-20">
       <div className="mx-auto max-w-7xl">
-        <SectionTitle eyebrow="Learning categories" title="8 ways to learn, play & grow" />
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-          {cats.map((c) => (
-            <div key={c.name} className={`card-lift rounded-3xl ${c.bg} p-8 text-center`}>
-              <div className="text-6xl">{c.emoji}</div>
-              <h3 className="mt-3 font-bold text-lg">{c.name}</h3>
-            </div>
-          ))}
+        <SectionTitle
+          eyebrow="Learning categories"
+          title="64 Fun Learning Activities"
+          subtitle="Letters, numbers, shapes, line tracing, matching, mazes and more — designed for ages 2+."
+        />
+        <div className="grid items-center gap-10 lg:grid-cols-5">
+          <div className="lg:col-span-3">
+            <TintedImage src={activitiesImg.url} alt="64 fun learning activities" tint="yellow" aspect="aspect-square" />
+          </div>
+          <div className="lg:col-span-2 grid grid-cols-2 gap-3">
+            {cats.map((c) => (
+              <div key={c.name} className={`card-lift rounded-2xl ${c.bg} p-5 text-center`}>
+                <div className="text-4xl">{c.emoji}</div>
+                <h3 className="mt-2 font-bold text-sm">{c.name}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="mt-10 text-center">
+          <WhatsAppButton size="lg" label="Order Now on WhatsApp" />
         </div>
       </div>
     </section>
   );
 }
 
-// ---- Comparison ----
+function WipeCleanSection() {
+  return (
+    <section className="relative px-4 py-20 bg-gradient-to-b from-brand-sky/10 to-brand-green/10">
+      <div className="mx-auto max-w-7xl">
+        <SectionTitle
+          eyebrow="Wipe • Clean • Reuse"
+          title="Practice again and again — forever"
+          subtitle="The dry-erase pages let your child write, wipe and reuse infinitely. One book, endless learning."
+        />
+        <TintedImage src={wipeCleanImg.url} alt="Wipe clean and reusable" tint="green" aspect="aspect-[16/10]" />
+        <div className="mt-10 text-center">
+          <WhatsAppButton size="lg" label="Get Yours on WhatsApp" />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ComparisonSection() {
   const mobile = ["Too much screen time", "Eye strain & headaches", "Addictive habits", "Passive learning"];
   const magic = ["Hands-on learning", "Better focus & calm", "Boosts creativity", "Real writing skills", "Reusable & eco-friendly", "Family interaction time"];
@@ -421,29 +512,40 @@ function ComparisonSection() {
   );
 }
 
-// ---- Educational Benefits ----
 function EducationalBenefits() {
   const benefits = [
     { icon: Hand, label: "Fine Motor Skills", color: "bg-brand-green/15 text-brand-green" },
-    { icon: PencilLine, label: "Handwriting", color: "bg-brand-coral/15 text-brand-coral" },
+    { icon: PencilLine, label: "Pencil Control", color: "bg-brand-coral/15 text-brand-coral" },
     { icon: Target, label: "Concentration", color: "bg-brand-orange/15 text-brand-orange" },
-    { icon: Brain, label: "Memory", color: "bg-brand-purple/15 text-brand-purple" },
+    { icon: Brain, label: "Letter & Number Recognition", color: "bg-brand-purple/15 text-brand-purple" },
     { icon: Lightbulb, label: "Problem Solving", color: "bg-brand-yellow/20 text-brand-orange" },
     { icon: Palette, label: "Creativity", color: "bg-brand-sky/15 text-brand-sky" },
     { icon: Trophy, label: "Confidence", color: "bg-brand-green/15 text-brand-green" },
-    { icon: Eye, label: "Recognition Skills", color: "bg-brand-coral/15 text-brand-coral" },
+    { icon: Eye, label: "Hand-Eye Coordination", color: "bg-brand-coral/15 text-brand-coral" },
   ];
   return (
     <section className="relative px-4 py-20 bg-brand-cream">
       <div className="mx-auto max-w-7xl">
-        <SectionTitle eyebrow="Educational benefits" title="8 skills your child will build" />
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-          {benefits.map(({ icon: Icon, label, color }) => (
-            <div key={label} className="card-lift rounded-3xl bg-white p-6 text-center shadow-sm ring-1 ring-border">
-              <div className={`mx-auto grid size-14 place-items-center rounded-2xl ${color}`}>
-                <Icon className="size-7" />
+        <SectionTitle eyebrow="Educational benefits" title="Builds Early Learning Skills" subtitle="A playful way to support preschool development." />
+        <div className="grid items-center gap-10 lg:grid-cols-5">
+          <div className="lg:col-span-2 grid grid-cols-2 gap-3">
+            {benefits.slice(0,4).map(({ icon: Icon, label, color }) => (
+              <div key={label} className="card-lift rounded-2xl bg-white p-4 text-center shadow-sm ring-1 ring-border">
+                <div className={`mx-auto grid size-12 place-items-center rounded-2xl ${color}`}><Icon className="size-6"/></div>
+                <p className="mt-2 text-xs font-bold sm:text-sm">{label}</p>
               </div>
-              <p className="mt-3 text-sm font-bold sm:text-base">{label}</p>
+            ))}
+          </div>
+          <div className="lg:col-span-3 order-first lg:order-none">
+            <TintedImage src={earlySkillsImg.url} alt="Builds early learning skills" tint="purple" aspect="aspect-square" />
+          </div>
+          <div className="lg:col-span-2 lg:col-start-1 lg:row-start-1 hidden" />
+        </div>
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {benefits.slice(4).map(({ icon: Icon, label, color }) => (
+            <div key={label} className="card-lift rounded-2xl bg-white p-4 text-center shadow-sm ring-1 ring-border">
+              <div className={`mx-auto grid size-12 place-items-center rounded-2xl ${color}`}><Icon className="size-6"/></div>
+              <p className="mt-2 text-xs font-bold sm:text-sm">{label}</p>
             </div>
           ))}
         </div>
@@ -452,18 +554,17 @@ function EducationalBenefits() {
   );
 }
 
-// ---- How It Works ----
 function HowItWorks() {
   const steps = [
-    { n: 1, title: "Open Book", emoji: "📖", color: "bg-brand-green" },
-    { n: 2, title: "Trace", emoji: "✏️", color: "bg-brand-sky" },
-    { n: 3, title: "Erase", emoji: "🧽", color: "bg-brand-coral" },
-    { n: 4, title: "Repeat", emoji: "🔁", color: "bg-brand-purple" },
+    { n: 1, title: "Write", emoji: "✍️", color: "bg-brand-green", desc: "Open a page and trace with the magic marker." },
+    { n: 2, title: "Wipe", emoji: "🧽", color: "bg-brand-sky", desc: "Wipe instantly with the included eraser." },
+    { n: 3, title: "Reuse", emoji: "🔁", color: "bg-brand-coral", desc: "Practice again — pages last forever." },
+    { n: 4, title: "Repeat", emoji: "🌟", color: "bg-brand-purple", desc: "Build skills every single day." },
   ];
   return (
     <section className="relative px-4 py-20">
       <div className="mx-auto max-w-7xl">
-        <SectionTitle eyebrow="How it works" title="Learning in 4 simple steps" />
+        <SectionTitle eyebrow="How it works" title="Write. Wipe. Reuse." subtitle="Learning in 4 simple steps — over and over again." />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s) => (
             <div key={s.n} className="card-lift relative rounded-3xl bg-white p-8 text-center shadow-sm ring-1 ring-border">
@@ -472,6 +573,7 @@ function HowItWorks() {
               </div>
               <div className="pt-4 text-6xl">{s.emoji}</div>
               <h3 className="mt-4 text-xl font-bold">{s.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
             </div>
           ))}
         </div>
@@ -480,7 +582,6 @@ function HowItWorks() {
   );
 }
 
-// ---- Generic CTA Banner ----
 function CTASection({ title, subtitle }: { title: string; subtitle: string }) {
   return (
     <section className="relative px-4 py-12">
@@ -500,7 +601,6 @@ function CTASection({ title, subtitle }: { title: string; subtitle: string }) {
   );
 }
 
-// ---- Order Process ----
 function OrderProcess() {
   const steps = [
     { n: 1, title: "Click WhatsApp", desc: "Tap the green button below", emoji: "💬" },
@@ -530,7 +630,6 @@ function OrderProcess() {
   );
 }
 
-// ---- Why Buy From Us ----
 function WhyBuyFromUs() {
   const items = [
     { emoji: "🇵🇰", title: "Made for Pakistan" },
@@ -559,7 +658,6 @@ function WhyBuyFromUs() {
   );
 }
 
-// ---- Testimonials ----
 function Testimonials() {
   const reviews = [
     { name: "Ayesha K.", city: "Karachi", emoji: "👩", child: "🧒", text: "My son stopped using mobile after getting this. He loves tracing every evening!" },
@@ -596,15 +694,14 @@ function Testimonials() {
   );
 }
 
-// ---- Instagram Gallery ----
 function InstagramGallery() {
   const posts = [
-    { emoji: "🧒", gradient: "bg-gradient-to-br from-brand-green/40 to-brand-sky/40" },
-    { emoji: "👧", gradient: "bg-gradient-to-br from-brand-coral/40 to-brand-purple/40" },
-    { emoji: "📘", gradient: "bg-gradient-to-br from-brand-yellow/40 to-brand-orange/40" },
-    { emoji: "✏️", gradient: "bg-gradient-to-br from-brand-purple/40 to-brand-sky/40" },
-    { emoji: "🎨", gradient: "bg-gradient-to-br from-brand-orange/40 to-brand-coral/40" },
-    { emoji: "👦", gradient: "bg-gradient-to-br from-brand-sky/40 to-brand-green/40" },
+    { src: preschoolImg.url,   tint: "green"  as const },
+    { src: wipeCleanImg.url,   tint: "coral"  as const },
+    { src: activitiesImg.url,  tint: "yellow" as const },
+    { src: whatsInsideImg.url, tint: "sky"    as const },
+    { src: perfectSizeImg.url, tint: "purple" as const },
+    { src: earlySkillsImg.url, tint: "orange" as const },
   ];
   return (
     <section className="relative px-4 py-20">
@@ -617,7 +714,7 @@ function InstagramGallery() {
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
           {posts.map((p, i) => (
             <a key={i} href="#" className="card-lift block">
-              <ImgPlaceholder label="@magictracing.pk" emoji={p.emoji} gradient={p.gradient} />
+              <TintedImage src={p.src} alt="Instagram post" tint={p.tint} aspect="aspect-square" />
             </a>
           ))}
         </div>
@@ -631,12 +728,11 @@ function InstagramGallery() {
   );
 }
 
-// ---- FAQ ----
 function FAQ() {
   const faqs = [
     { q: "Is it really reusable?", a: "Yes! Wipe pages clean with the included sponge and reuse them forever. The special markers are designed for the wipe-clean surface." },
-    { q: "How many pages does it have?", a: "The book includes 30+ activity pages covering alphabets, numbers, shapes, patterns, drawing and more." },
-    { q: "What age is it for?", a: "Recommended for children aged 3 to 6 years. Perfect for preschool and early learning at home." },
+    { q: "How many pages does it have?", a: "The set includes 64 reusable activity pages covering alphabets, numbers, shapes, line tracing, matching, mazes and more." },
+    { q: "What age is it for?", a: "Recommended for children aged 2 to 6 years. Perfect for preschool and early learning at home." },
     { q: "How long does delivery take?", a: "We deliver across Pakistan in 2–4 business days. Major cities often receive within 48 hours." },
     { q: "Is Cash on Delivery available?", a: "Yes! Pay only when the parcel reaches your doorstep. Available all over Pakistan." },
     { q: "How do I order?", a: "Click any WhatsApp button on this page, share your name, city and quantity — we'll handle the rest." },
@@ -669,7 +765,6 @@ function FAQ() {
   );
 }
 
-// ---- Final CTA ----
 function FinalCTA() {
   return (
     <section className="relative px-4 py-20">
@@ -692,7 +787,6 @@ function FinalCTA() {
   );
 }
 
-// ---- Footer ----
 function Footer() {
   return (
     <footer className="relative bg-foreground text-white">
@@ -741,7 +835,6 @@ function Footer() {
   );
 }
 
-// ---- Sticky Buttons ----
 function StickyButtons() {
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -752,10 +845,7 @@ function StickyButtons() {
   return (
     <>
       <a
-        href={waLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Order on WhatsApp"
+        href={waLink} target="_blank" rel="noopener noreferrer" aria-label="Order on WhatsApp"
         className="btn-pulse fixed bottom-5 right-5 z-50 grid size-16 place-items-center rounded-full bg-brand-green text-white shadow-2xl transition hover:scale-110"
       >
         <MessageCircle className="size-8" strokeWidth={2.5} />
