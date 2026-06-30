@@ -82,29 +82,23 @@ function Doodle({ children, className = "" }: { children: React.ReactNode; class
  * harmonises with the site's green/yellow/coral/purple theme.
  */
 function TintedImage({
-  src, alt, tint = "green", className = "", aspect = "aspect-[4/3]", overlayOpacity = 0.18,
+  src, alt, tint = "sky", className = "", aspect = "aspect-[4/3]", overlayOpacity = 0,
 }: {
   src: string; alt: string;
   tint?: "green" | "sky" | "yellow" | "orange" | "coral" | "purple" | "rainbow";
   className?: string; aspect?: string; overlayOpacity?: number;
 }) {
   const frame: Record<string, string> = {
-    green:   "from-brand-green/30 via-brand-sky/20 to-brand-yellow/30",
-    sky:     "from-brand-sky/30 via-brand-purple/20 to-brand-coral/25",
-    yellow:  "from-brand-yellow/35 via-brand-orange/25 to-brand-coral/25",
-    orange:  "from-brand-orange/30 via-brand-coral/25 to-brand-yellow/25",
-    coral:   "from-brand-coral/30 via-brand-purple/20 to-brand-orange/25",
-    purple:  "from-brand-purple/30 via-brand-sky/20 to-brand-green/25",
-    rainbow: "from-brand-green/25 via-brand-yellow/25 to-brand-coral/30",
+    green:   "from-brand-sky/30 via-brand-green/20 to-brand-yellow/25",
+    sky:     "from-brand-sky/35 via-brand-purple/15 to-brand-green/20",
+    yellow:  "from-brand-yellow/30 via-brand-sky/25 to-brand-orange/20",
+    orange:  "from-brand-orange/25 via-brand-sky/25 to-brand-yellow/25",
+    coral:   "from-brand-coral/25 via-brand-sky/25 to-brand-purple/20",
+    purple:  "from-brand-purple/25 via-brand-sky/25 to-brand-green/20",
+    rainbow: "from-brand-sky/30 via-brand-yellow/20 to-brand-coral/25",
   };
   const overlay: Record<string, string> = {
-    green:   "from-brand-green/60 to-brand-yellow/40",
-    sky:     "from-brand-purple/55 to-brand-coral/35",
-    yellow:  "from-brand-yellow/60 to-brand-orange/45",
-    orange:  "from-brand-orange/55 to-brand-coral/40",
-    coral:   "from-brand-coral/55 to-brand-purple/40",
-    purple:  "from-brand-purple/55 to-brand-green/40",
-    rainbow: "from-brand-green/45 via-brand-yellow/35 to-brand-coral/45",
+    green: "", sky: "", yellow: "", orange: "", coral: "", purple: "", rainbow: "",
   };
   return (
     <div className={`relative ${aspect} w-full overflow-hidden rounded-3xl bg-gradient-to-br ${frame[tint]} p-3 sm:p-4 shadow-lg ring-1 ring-white/60 ${className}`}>
