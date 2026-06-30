@@ -1,11 +1,13 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   MessageCircle, ArrowUp, Play, Truck, Star, RefreshCw, Package,
   Sparkles, Brain, PencilLine, Palette, Smile,
   Phone, Mail, Instagram, Facebook, Music2, Check, X, ChevronDown, MapPin,
-  Eye, Hand, Trophy, Lightbulb, Target,
+  Eye, Hand, Trophy, Lightbulb, Target, ShoppingCart, Plus, Minus,
 } from "lucide-react";
+import { useCart } from "@/lib/cart";
+import { PRODUCT, formatPKR } from "@/lib/product";
 import preschoolImg from "@/assets/preschool.jpeg.asset.json";
 import whatsInsideImg from "@/assets/whats-inside.jpeg.asset.json";
 import wipeCleanImg from "@/assets/wipe-clean.jpeg.asset.json";
