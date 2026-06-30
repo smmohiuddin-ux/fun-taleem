@@ -45,7 +45,7 @@ function WhatsAppButton({
   return (
     <a
       href={waLink} target="_blank" rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center gap-2 rounded-full bg-brand-green text-white font-semibold shadow-lg shadow-brand-green/30 transition hover:scale-[1.03] hover:bg-brand-green-dark ${sizeCls} ${pulse ? "btn-pulse" : ""} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-full bg-cta text-primary-foreground font-semibold shadow-lg shadow-cta/30 transition hover:scale-[1.03] hover:bg-cta-dark ${sizeCls} ${pulse ? "btn-pulse" : ""} ${className}`}
     >
       <MessageCircle className="size-5" strokeWidth={2.5} />
       {label}
@@ -59,7 +59,7 @@ function SectionTitle({
   return (
     <div className={`mb-12 ${center ? "text-center" : ""}`}>
       {eyebrow && (
-        <span className="inline-block rounded-full bg-brand-yellow/20 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-orange">
+        <span className="inline-block rounded-full bg-brand-sky/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-green-dark">
           {eyebrow}
         </span>
       )}
@@ -89,13 +89,13 @@ function TintedImage({
   className?: string; aspect?: string; overlayOpacity?: number;
 }) {
   const frame: Record<string, string> = {
-    green:   "from-brand-sky/30 via-brand-green/20 to-brand-yellow/25",
-    sky:     "from-brand-sky/35 via-brand-purple/15 to-brand-green/20",
-    yellow:  "from-brand-yellow/30 via-brand-sky/25 to-brand-orange/20",
-    orange:  "from-brand-orange/25 via-brand-sky/25 to-brand-yellow/25",
-    coral:   "from-brand-coral/25 via-brand-sky/25 to-brand-purple/20",
+    green:   "from-brand-sky/35 via-primary/20 to-brand-green/25",
+    sky:     "from-brand-sky/40 via-primary/15 to-brand-green/20",
+    yellow:  "from-brand-sky/35 via-primary/15 to-cta/15",
+    orange:  "from-primary/25 via-brand-sky/25 to-cta/15",
+    coral:   "from-cta/20 via-brand-sky/30 to-primary/20",
     purple:  "from-brand-purple/25 via-brand-sky/25 to-brand-green/20",
-    rainbow: "from-brand-sky/30 via-brand-yellow/20 to-brand-coral/25",
+    rainbow: "from-brand-sky/40 via-primary/20 to-cta/15",
   };
   const overlay: Record<string, string> = {
     green: "", sky: "", yellow: "", orange: "", coral: "", purple: "", rainbow: "",
@@ -155,7 +155,7 @@ function LandingPage() {
 
 function UrgencyBar() {
   return (
-    <div className="relative z-10 bg-gradient-to-r from-brand-coral via-brand-orange to-brand-yellow py-2.5 text-center text-sm font-semibold text-white">
+    <div className="relative z-10 bg-gradient-to-r from-brand-green-dark via-primary to-brand-sky py-2.5 text-center text-sm font-semibold text-primary-foreground">
       <span className="animate-pulse">🔥</span> Limited Stock Available — Cash on Delivery All Over Pakistan 🇵🇰
     </div>
   );
@@ -164,9 +164,9 @@ function UrgencyBar() {
 function Hero() {
   return (
     <section className="relative isolate px-4 pt-10 pb-16 sm:pt-16 sm:pb-24">
-      <div className="blob -top-20 -left-20 size-[420px] bg-brand-green/40" />
-      <div className="blob top-40 -right-20 size-[420px] bg-brand-sky/40" />
-      <div className="blob bottom-0 left-1/3 size-[300px] bg-brand-yellow/30" />
+      <div className="blob -top-20 -left-20 size-[420px] bg-brand-sky/45" />
+      <div className="blob top-40 -right-20 size-[420px] bg-primary/35" />
+      <div className="blob bottom-0 left-1/3 size-[300px] bg-brand-green/20" />
 
       <Doodle className="top-10 left-1/4 text-4xl float-slow">☁️</Doodle>
       <Doodle className="top-20 right-1/3 text-3xl float-med">⭐</Doodle>
@@ -181,7 +181,7 @@ function Hero() {
             Screen-Free{" "}
             <span className="text-brand-green">Learning</span>{" "}
             <span className="block">that Kids{" "}
-              <span className="bg-gradient-to-r from-brand-coral via-brand-orange to-brand-purple bg-clip-text text-transparent">Love</span>
+              <span className="bg-gradient-to-r from-brand-green-dark via-primary to-brand-sky bg-clip-text text-transparent">Love</span>
             </span>
           </h1>
           <p className="mt-5 max-w-lg text-lg text-muted-foreground">
@@ -202,7 +202,7 @@ function Hero() {
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <WhatsAppButton size="lg" />
             <a href="#showcase" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-4 text-base font-semibold text-foreground shadow-md ring-1 ring-border transition hover:scale-[1.03]">
-              <Play className="size-5 text-brand-coral" /> Watch Product
+              <Play className="size-5 text-cta" /> Watch Product
             </a>
           </div>
 
@@ -222,7 +222,7 @@ function Hero() {
         </div>
 
         <div className="relative">
-          <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-brand-green/30 via-brand-yellow/30 to-brand-coral/30 blur-2xl" />
+          <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-brand-sky/35 via-primary/20 to-cta/20 blur-2xl" />
           <TintedImage
             src={preschoolImg.url}
             alt="Child happily using the Reusable Magic Tracing Book"
@@ -280,7 +280,7 @@ function WhyParentsLove() {
   ];
   return (
     <section className="relative px-4 py-20">
-      <div className="blob top-20 -left-32 size-[400px] bg-brand-coral/20" />
+      <div className="blob top-20 -left-32 size-[400px] bg-brand-sky/25" />
       <div className="mx-auto max-w-7xl">
         <SectionTitle
           eyebrow="Why parents love it"
@@ -310,8 +310,8 @@ function PerfectSize() {
           <TintedImage src={perfectSizeImg.url} alt="Perfect size dimensions for little hands" tint="green" aspect="aspect-square" />
         </div>
         <div className="order-1 md:order-2">
-          <span className="inline-block rounded-full bg-brand-green/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-green-dark">Perfect Fit</span>
-          <h2 className="mt-3 font-display text-4xl sm:text-5xl font-bold">Just the right size for <span className="text-brand-green">little hands</span></h2>
+          <span className="inline-block rounded-full bg-brand-sky/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-green-dark">Perfect Fit</span>
+          <h2 className="mt-3 font-display text-4xl sm:text-5xl font-bold">Just the right size for <span className="text-primary">little hands</span></h2>
           <p className="mt-4 text-muted-foreground text-lg">Light, sturdy and travel-friendly — fits in any school bag, backpack or car seat pocket.</p>
           <ul className="mt-6 space-y-3">
             {[
@@ -321,7 +321,7 @@ function PerfectSize() {
               { k: "Eraser", v: "2.8 in bone-shaped wipe pad" },
             ].map((s) => (
               <li key={s.k} className="flex items-center gap-3 rounded-2xl bg-white p-3 ring-1 ring-border">
-                <div className="grid size-9 place-items-center rounded-full bg-brand-yellow/30 text-brand-orange"><Check className="size-4" strokeWidth={3}/></div>
+                <div className="grid size-9 place-items-center rounded-full bg-brand-sky/20 text-primary"><Check className="size-4" strokeWidth={3}/></div>
                 <div><span className="font-bold">{s.k}: </span><span className="text-muted-foreground">{s.v}</span></div>
               </li>
             ))}
@@ -380,8 +380,8 @@ function WhatsIncluded() {
           <TintedImage src={whatsInsideImg.url} alt="What's inside the set" tint="sky" aspect="aspect-square" />
         </div>
         <div>
-          <span className="inline-block rounded-full bg-brand-purple/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-purple">What's inside</span>
-          <h2 className="mt-3 font-display text-4xl sm:text-5xl font-bold">Everything in one <span className="text-brand-purple">premium box</span></h2>
+          <span className="inline-block rounded-full bg-brand-sky/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-green-dark">What's inside</span>
+          <h2 className="mt-3 font-display text-4xl sm:text-5xl font-bold">Everything in one <span className="text-primary">premium box</span></h2>
           <p className="mt-4 text-muted-foreground text-lg">Open the box and your child can start learning immediately — no batteries, no setup, no screens.</p>
           <div className="mt-6 grid grid-cols-2 gap-3">
             {items.map((i) => (
@@ -440,7 +440,7 @@ function LearningCategories() {
 
 function WipeCleanSection() {
   return (
-    <section className="relative px-4 py-20 bg-gradient-to-b from-brand-sky/10 to-brand-green/10">
+    <section className="relative px-4 py-20 bg-gradient-to-b from-brand-sky/15 to-primary/10">
       <div className="mx-auto max-w-7xl">
         <SectionTitle
           eyebrow="Wipe • Clean • Reuse"
@@ -484,15 +484,15 @@ function ComparisonSection() {
               ))}
             </ul>
           </div>
-          <div className="rounded-3xl bg-gradient-to-br from-brand-green/15 to-brand-sky/15 p-8 ring-2 ring-brand-green/40 shadow-lg">
+          <div className="rounded-3xl bg-gradient-to-br from-brand-sky/20 to-primary/15 p-8 ring-2 ring-primary/35 shadow-lg">
             <div className="mb-4 flex items-center gap-3">
-              <div className="grid size-12 place-items-center rounded-2xl bg-brand-green/20 text-brand-green text-2xl">📘</div>
+              <div className="grid size-12 place-items-center rounded-2xl bg-brand-sky/20 text-primary text-2xl">📘</div>
               <h3 className="text-2xl font-bold">Magic Tracing Book</h3>
             </div>
             <ul className="space-y-3">
               {magic.map((m) => (
                 <li key={m} className="flex items-start gap-3 text-base font-medium">
-                  <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-brand-green text-white">
+                  <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground">
                     <Check className="size-4" strokeWidth={3} />
                   </span>
                   {m}
@@ -550,9 +550,9 @@ function EducationalBenefits() {
 
 function HowItWorks() {
   const steps = [
-    { n: 1, title: "Write", emoji: "✍️", color: "bg-brand-green", desc: "Open a page and trace with the magic marker." },
+    { n: 1, title: "Write", emoji: "✍️", color: "bg-primary", desc: "Open a page and trace with the magic marker." },
     { n: 2, title: "Wipe", emoji: "🧽", color: "bg-brand-sky", desc: "Wipe instantly with the included eraser." },
-    { n: 3, title: "Reuse", emoji: "🔁", color: "bg-brand-coral", desc: "Practice again — pages last forever." },
+    { n: 3, title: "Reuse", emoji: "🔁", color: "bg-brand-green-dark", desc: "Practice again — pages last forever." },
     { n: 4, title: "Repeat", emoji: "🌟", color: "bg-brand-purple", desc: "Build skills every single day." },
   ];
   return (
@@ -579,13 +579,13 @@ function HowItWorks() {
 function CTASection({ title, subtitle }: { title: string; subtitle: string }) {
   return (
     <section className="relative px-4 py-12">
-      <div className="mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-brand-green via-brand-sky to-brand-purple p-8 sm:p-14 text-center text-white shadow-xl">
+        <div className="mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-brand-green-dark via-primary to-brand-sky p-8 sm:p-14 text-center text-primary-foreground shadow-xl">
         <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(circle at 20% 20%, white 1px, transparent 2px), radial-gradient(circle at 80% 60%, white 1px, transparent 2px)", backgroundSize: "40px 40px" }} />
         <div className="relative">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">{title}</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-white/90">{subtitle}</p>
+          <p className="mx-auto mt-3 max-w-2xl text-primary-foreground/90">{subtitle}</p>
           <div className="mt-7">
-            <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn-pulse inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-lg font-bold text-brand-green-dark shadow-xl transition hover:scale-105">
+            <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn-pulse inline-flex items-center gap-2 rounded-full bg-cta px-8 py-4 text-lg font-bold text-primary-foreground shadow-xl transition hover:scale-105 hover:bg-cta-dark">
               <MessageCircle className="size-6" /> Order on WhatsApp
             </a>
           </div>
@@ -603,13 +603,13 @@ function OrderProcess() {
     { n: 4, title: "Cash on Delivery", desc: "Pay when it arrives", emoji: "💰" },
   ];
   return (
-    <section className="relative px-4 py-20 bg-gradient-to-b from-brand-green/10 to-brand-sky/10">
+    <section className="relative px-4 py-20 bg-gradient-to-b from-brand-sky/15 to-primary/10">
       <div className="mx-auto max-w-6xl">
         <SectionTitle eyebrow="Easy ordering" title="How to Order" subtitle="It only takes 30 seconds. No payment online — pay when you receive." />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s) => (
             <div key={s.n} className="card-lift rounded-3xl bg-white p-6 text-center shadow-md ring-1 ring-border">
-              <div className="mx-auto grid size-14 place-items-center rounded-full bg-brand-green text-xl font-bold text-white">{s.n}</div>
+              <div className="mx-auto grid size-14 place-items-center rounded-full bg-primary text-xl font-bold text-primary-foreground">{s.n}</div>
               <div className="mt-3 text-4xl">{s.emoji}</div>
               <h3 className="mt-3 text-lg font-bold">{s.title}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{s.desc}</p>
@@ -713,7 +713,7 @@ function InstagramGallery() {
           ))}
         </div>
         <div className="mt-10 text-center">
-          <a href="#" className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-coral via-brand-purple to-brand-orange px-6 py-3.5 font-semibold text-white shadow-lg transition hover:scale-105">
+          <a href="#" className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-green-dark via-primary to-brand-sky px-6 py-3.5 font-semibold text-primary-foreground shadow-lg transition hover:scale-105">
             <Instagram className="size-5" /> Follow us on Instagram
           </a>
         </div>
@@ -744,7 +744,7 @@ function FAQ() {
                 className="flex w-full items-center justify-between gap-4 p-5 text-left font-semibold"
               >
                 <span>{f.q}</span>
-                <ChevronDown className={`size-5 shrink-0 text-brand-green transition ${open === i ? "rotate-180" : ""}`} />
+                <ChevronDown className={`size-5 shrink-0 text-primary transition ${open === i ? "rotate-180" : ""}`} />
               </button>
               <div className={`grid transition-all duration-300 ${open === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
                 <div className="overflow-hidden">
@@ -762,14 +762,14 @@ function FAQ() {
 function FinalCTA() {
   return (
     <section className="relative px-4 py-20">
-      <div className="mx-auto max-w-6xl overflow-hidden rounded-[3rem] bg-gradient-to-br from-brand-yellow via-brand-orange to-brand-coral p-10 sm:p-16 text-center text-white shadow-2xl">
+      <div className="mx-auto max-w-6xl overflow-hidden rounded-[3rem] bg-gradient-to-br from-brand-green-dark via-primary to-brand-sky p-10 sm:p-16 text-center text-primary-foreground shadow-2xl">
         <div className="text-5xl">🎁</div>
         <h2 className="mt-4 font-display text-4xl sm:text-5xl md:text-6xl font-bold">Screen-Free Learning Starts Here</h2>
-        <p className="mx-auto mt-4 max-w-2xl text-lg text-white/95">
+        <p className="mx-auto mt-4 max-w-2xl text-lg text-primary-foreground/95">
           The premium educational gift your child will use every single day. Limited stock — order today.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn-pulse inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-lg font-bold text-brand-coral shadow-xl transition hover:scale-105">
+          <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn-pulse inline-flex items-center gap-2 rounded-full bg-cta px-8 py-4 text-lg font-bold text-primary-foreground shadow-xl transition hover:scale-105 hover:bg-cta-dark">
             <MessageCircle className="size-6" /> Order on WhatsApp
           </a>
           <div className="inline-flex items-center gap-2 rounded-full bg-white/20 px-5 py-3 text-sm font-semibold backdrop-blur">
@@ -840,7 +840,7 @@ function StickyButtons() {
     <>
       <a
         href={waLink} target="_blank" rel="noopener noreferrer" aria-label="Order on WhatsApp"
-        className="btn-pulse fixed bottom-5 right-5 z-50 grid size-16 place-items-center rounded-full bg-brand-green text-white shadow-2xl transition hover:scale-110"
+        className="btn-pulse fixed bottom-5 right-5 z-50 grid size-16 place-items-center rounded-full bg-cta text-primary-foreground shadow-2xl transition hover:scale-110 hover:bg-cta-dark"
       >
         <MessageCircle className="size-8" strokeWidth={2.5} />
       </a>
