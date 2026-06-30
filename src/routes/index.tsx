@@ -252,7 +252,14 @@ function Hero() {
             ))}
           </ul>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <div className="mt-8 flex flex-wrap items-baseline gap-3">
+            <span className="text-3xl font-extrabold text-foreground">{formatPKR(PRODUCT.price)}</span>
+            <span className="text-lg text-muted-foreground line-through">{formatPKR(PRODUCT.compareAt)}</span>
+            <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-bold text-emerald-700">SAVE 40%</span>
+          </div>
+
+          <div className="mt-5 flex flex-wrap items-center gap-3">
+            <AddToCartButton />
             <WhatsAppButton size="lg" />
             <button
               type="button"
@@ -262,6 +269,7 @@ function Hero() {
               <Play className="size-5 text-cta" /> Watch Product
             </button>
           </div>
+
 
           <div className="mt-6 flex items-center gap-4 text-sm text-muted-foreground">
             <div className="flex -space-x-2">
