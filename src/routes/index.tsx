@@ -1,11 +1,13 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   MessageCircle, ArrowUp, Play, Truck, Star, RefreshCw, Package,
   Sparkles, Brain, PencilLine, Palette, Smile,
   Phone, Mail, Instagram, Facebook, Music2, Check, X, ChevronDown, MapPin,
-  Eye, Hand, Trophy, Lightbulb, Target,
+  Eye, Hand, Trophy, Lightbulb, Target, ShoppingCart, Plus, Minus,
 } from "lucide-react";
+import { useCart } from "@/lib/cart";
+import { PRODUCT, formatPKR } from "@/lib/product";
 import preschoolImg from "@/assets/preschool.jpeg.asset.json";
 import whatsInsideImg from "@/assets/whats-inside.jpeg.asset.json";
 import wipeCleanImg from "@/assets/wipe-clean.jpeg.asset.json";
@@ -250,7 +252,14 @@ function Hero() {
             ))}
           </ul>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <div className="mt-8 flex flex-wrap items-baseline gap-3">
+            <span className="text-3xl font-extrabold text-foreground">{formatPKR(PRODUCT.price)}</span>
+            <span className="text-lg text-muted-foreground line-through">{formatPKR(PRODUCT.compareAt)}</span>
+            <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-bold text-emerald-700">SAVE 40%</span>
+          </div>
+
+          <div className="mt-5 flex flex-wrap items-center gap-3">
+            <AddToCartButton />
             <WhatsAppButton size="lg" />
             <button
               type="button"
@@ -260,6 +269,7 @@ function Hero() {
               <Play className="size-5 text-cta" /> Watch Product
             </button>
           </div>
+
 
           <div className="mt-6 flex items-center gap-4 text-sm text-muted-foreground">
             <div className="flex -space-x-2">
@@ -884,8 +894,34 @@ function Footer() {
   );
 }
 
+function AddToCartButton() {
+  const { qty, add, increment, decrement } = useCart();
+  if (qty === 0) {
+    return (
+      <button
+        type="button"
+        onClick={() => add(1)}
+        className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-4 text-base font-bold text-primary-foreground shadow-lg shadow-primary/30 transition hover:scale-[1.03] hover:bg-primary/90"
+      >
+        <ShoppingCart className="size-5" /> Add to Cart
+      </button>
+    );
+  }
+  return (
+    <div className="inline-flex items-center gap-2 rounded-full bg-white p-1.5 shadow-md ring-1 ring-border">
+      <button onClick={decrement} aria-label="Decrease" className="grid size-10 place-items-center rounded-full bg-muted hover:bg-muted/70"><Minus className="size-4"/></button>
+      <span className="min-w-8 text-center text-base font-bold">{qty}</span>
+      <button onClick={increment} aria-label="Increase" className="grid size-10 place-items-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90"><Plus className="size-4"/></button>
+      <Link to="/cart" className="ml-1 inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-sm font-bold text-background hover:bg-foreground/90">
+        View Cart →
+      </Link>
+    </div>
+  );
+}
+
 function StickyButtons() {
   const [show, setShow] = useState(false);
+  const { qty } = useCart();
   useEffect(() => {
     const onScroll = () => setShow(window.scrollY > 600);
     window.addEventListener("scroll", onScroll);
@@ -893,6 +929,15 @@ function StickyButtons() {
   }, []);
   return (
     <>
+      <Link
+        to="/cart" aria-label="View cart"
+        className={`fixed right-5 z-50 grid size-14 place-items-center rounded-full bg-white text-foreground shadow-xl ring-1 ring-border transition hover:scale-110 ${qty > 0 ? "bottom-24 opacity-100" : "pointer-events-none bottom-24 opacity-0"}`}
+      >
+        <ShoppingCart className="size-6" />
+        {qty > 0 && (
+          <span className="absolute -right-1 -top-1 grid size-6 place-items-center rounded-full bg-cta text-xs font-bold text-primary-foreground ring-2 ring-white">{qty}</span>
+        )}
+      </Link>
       <a
         href={waLink} target="_blank" rel="noopener noreferrer" aria-label="Order on WhatsApp"
         className="btn-pulse fixed bottom-5 right-5 z-50 grid size-16 place-items-center rounded-full bg-cta text-primary-foreground shadow-2xl transition hover:scale-110 hover:bg-cta-dark"
