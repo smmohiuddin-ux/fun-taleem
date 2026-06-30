@@ -15,7 +15,7 @@ shared host like Hostinger — no Node server required.
 npm install        # or pnpm install / bun install
 
 # Produce a static build
-NITRO_PRESET=static npm run build
+STATIC_BUILD=1 NITRO_PRESET=static npm run build
 ```
 
 When the build finishes you'll get a folder like:
@@ -58,7 +58,7 @@ folder that contains `index.html`.)
 
 ## 4. Updating the site
 
-Re-run `NITRO_PRESET=static npm run build` and re-upload the contents of
+Re-run `STATIC_BUILD=1 NITRO_PRESET=static npm run build` and re-upload the contents of
 `.output/public/`. You can safely overwrite existing files.
 
 ## 5. Things to know
