@@ -29,7 +29,7 @@ export const Route = createFileRoute("/")({
   component: LandingPage,
 });
 
-const WHATSAPP_NUMBER = "923000000000";
+const WHATSAPP_NUMBER = "923042175897";
 const WA_MESSAGE = encodeURIComponent(
   "Hi! I want to order the Reusable Magic Tracing Book.\n\nMy Name:\nCity:\nQuantity:\n\nPlease guide me."
 );
@@ -870,7 +870,7 @@ function Footer() {
           <div>
             <h4 className="font-bold">Contact</h4>
             <ul className="mt-4 space-y-2 text-sm text-white/70">
-              <li className="flex items-center gap-2"><Phone className="size-4 text-brand-green"/> +92 300 000 0000</li>
+              <li className="flex items-center gap-2"><Phone className="size-4 text-brand-green"/> <a href="tel:+923042175897" className="hover:text-foreground">+92 304 2175897</a></li>
               <li className="flex items-center gap-2"><Mail className="size-4 text-brand-green"/> hello@magictracing.pk</li>
               <li className="flex items-center gap-2"><MapPin className="size-4 text-brand-green"/> Pakistan 🇵🇰</li>
             </ul>
