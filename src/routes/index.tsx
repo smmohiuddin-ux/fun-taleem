@@ -149,7 +149,58 @@ function LandingPage() {
       <FinalCTA />
       <Footer />
       <StickyButtons />
+      <VideoModal />
     </main>
+  );
+}
+
+function VideoModal() {
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    const handler = () => setOpen(true);
+    window.addEventListener("open-product-video", handler);
+    return () => window.removeEventListener("open-product-video", handler);
+  }, []);
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+  if (!open) return null;
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+      onClick={() => setOpen(false)}
+    >
+      <div
+        className="relative w-full max-w-4xl overflow-hidden rounded-2xl bg-black shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          aria-label="Close video"
+          className="absolute right-3 top-3 z-10 grid size-10 place-items-center rounded-full bg-white/90 text-foreground shadow-lg transition hover:scale-110 hover:bg-white"
+        >
+          <X className="size-5" strokeWidth={2.5} />
+        </button>
+        <div className="relative aspect-video w-full">
+          <iframe
+            className="absolute inset-0 size-full"
+            src="https://www.youtube.com/embed/RhgsLEKGxEM?autoplay=1&rel=0"
+            title="Magic Tracing Book — Product Video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -201,9 +252,13 @@ function Hero() {
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <WhatsAppButton size="lg" />
-            <a href="#showcase" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-4 text-base font-semibold text-foreground shadow-md ring-1 ring-border transition hover:scale-[1.03]">
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new CustomEvent("open-product-video"))}
+              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-4 text-base font-semibold text-foreground shadow-md ring-1 ring-border transition hover:scale-[1.03]"
+            >
               <Play className="size-5 text-cta" /> Watch Product
-            </a>
+            </button>
           </div>
 
           <div className="mt-6 flex items-center gap-4 text-sm text-muted-foreground">
