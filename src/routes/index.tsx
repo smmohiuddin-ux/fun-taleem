@@ -201,9 +201,13 @@ function Hero() {
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <WhatsAppButton size="lg" />
-            <a href="#showcase" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-4 text-base font-semibold text-foreground shadow-md ring-1 ring-border transition hover:scale-[1.03]">
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new CustomEvent("open-product-video"))}
+              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-4 text-base font-semibold text-foreground shadow-md ring-1 ring-border transition hover:scale-[1.03]"
+            >
               <Play className="size-5 text-cta" /> Watch Product
-            </a>
+            </button>
           </div>
 
           <div className="mt-6 flex items-center gap-4 text-sm text-muted-foreground">
