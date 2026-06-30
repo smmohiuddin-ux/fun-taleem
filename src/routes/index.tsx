@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
-  ShoppingCart, MessageCircle, ArrowUp, Play, Truck, Star, RefreshCw, Package,
-  Shield, Sparkles, Brain, PencilLine, BookOpen, Palette, Smile, Leaf, Gift,
+  MessageCircle, ArrowUp, Play, Truck, Star, RefreshCw, Package,
+  Sparkles, Brain, PencilLine, Palette, Smile,
   Phone, Mail, Instagram, Facebook, Music2, Check, X, ChevronDown, MapPin,
-  Eye, Hand, Trophy, Lightbulb, Target, Heart,
+  Eye, Hand, Trophy, Lightbulb, Target,
 } from "lucide-react";
 import heroAsset from "@/assets/hero-product.png.asset.json";
 
