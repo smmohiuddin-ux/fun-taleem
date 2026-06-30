@@ -11,5 +11,20 @@ export default defineConfig({
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
+    // Prerender every page route to plain HTML so the build is fully static
+    // (deployable to Hostinger / any static host). Crawl links automatically
+    // to catch anything we forget to list here.
+    prerender: {
+      enabled: true,
+      crawlLinks: true,
+      autoSubfolderIndex: true,
+      routes: ["/", "/cart", "/checkout", "/order-success"],
+    },
+    pages: [
+      { path: "/" },
+      { path: "/cart" },
+      { path: "/checkout" },
+      { path: "/order-success" },
+    ],
   },
 });
