@@ -49,25 +49,25 @@
 
 :root {
   --radius: 1rem;
-  --background: oklch(0.99 0.005 95);
-  --foreground: oklch(0.22 0.05 150);
+  --background: oklch(0.985 0.012 230);
+  --foreground: oklch(0.22 0.06 240);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.05 150);
+  --card-foreground: oklch(0.22 0.06 240);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.05 150);
-  --primary: oklch(0.68 0.18 145);
+  --popover-foreground: oklch(0.22 0.06 240);
+  --primary: oklch(0.72 0.15 230);
   --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.78 0.13 230);
-  --secondary-foreground: oklch(0.18 0.05 230);
-  --muted: oklch(0.96 0.01 120);
-  --muted-foreground: oklch(0.45 0.03 150);
+  --secondary: oklch(0.68 0.18 145);
+  --secondary-foreground: oklch(0.99 0 0);
+  --muted: oklch(0.96 0.02 230);
+  --muted-foreground: oklch(0.45 0.04 235);
   --accent: oklch(0.88 0.16 90);
   --accent-foreground: oklch(0.22 0.05 90);
   --destructive: oklch(0.65 0.22 25);
   --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(0.92 0.02 140);
-  --input: oklch(0.92 0.02 140);
-  --ring: oklch(0.68 0.18 145);
+  --border: oklch(0.92 0.03 230);
+  --input: oklch(0.92 0.03 230);
+  --ring: oklch(0.72 0.15 230);
 
   /* Brand palette */
   --brand-green: oklch(0.68 0.18 145);       /* #4CAF50 */
