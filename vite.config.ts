@@ -6,25 +6,31 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+// Enable static prerender only when explicitly requested (e.g. for the
+// Hostinger static build). Inside Lovable's Cloudflare build, prerendering
+// crashes the worker bundle — so we keep it off by default.
+const STATIC_BUILD = process.env.STATIC_BUILD === "1" || process.env.NITRO_PRESET === "static";
+
 export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
-    // Prerender every page route to plain HTML so the build is fully static
-    // (deployable to Hostinger / any static host). Crawl links automatically
-    // to catch anything we forget to list here.
-    prerender: {
-      enabled: true,
-      crawlLinks: true,
-      autoSubfolderIndex: true,
-      routes: ["/", "/cart", "/checkout", "/order-success"],
-    },
-    pages: [
-      { path: "/" },
-      { path: "/cart" },
-      { path: "/checkout" },
-      { path: "/order-success" },
-    ],
+    ...(STATIC_BUILD
+      ? {
+          prerender: {
+            enabled: true,
+            crawlLinks: true,
+            autoSubfolderIndex: true,
+            routes: ["/", "/cart", "/checkout", "/order-success"],
+          },
+          pages: [
+            { path: "/" },
+            { path: "/cart" },
+            { path: "/checkout" },
+            { path: "/order-success" },
+          ],
+        }
+      : {}),
   },
 });
