@@ -11,7 +11,7 @@ type Product = {
   price: number;
   compareAt: number;
   image: string;
-  href?: "/products/preschool-learning-cards" | "/products/finger-painting-kit";
+  href?: "/products/preschool-learning-cards" | "/products/finger-painting-kit" | "/products/interactive-busy-book";
   comingSoon?: boolean;
 };
 
@@ -41,7 +41,7 @@ const PRODUCTS: Product[] = [
     price: 1499,
     compareAt: 2499,
     image: busyImg.url,
-    comingSoon: true,
+    href: "/products/interactive-busy-book",
   },
 ];
 

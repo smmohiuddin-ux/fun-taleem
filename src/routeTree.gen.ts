@@ -16,6 +16,7 @@ import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsPreschoolLearningCardsRouteImport } from './routes/products.preschool-learning-cards'
+import { Route as ProductsInteractiveBusyBookRouteImport } from './routes/products.interactive-busy-book'
 import { Route as ProductsFingerPaintingKitRouteImport } from './routes/products.finger-painting-kit'
 
 const ShopRoute = ShopRouteImport.update({
@@ -54,6 +55,12 @@ const ProductsPreschoolLearningCardsRoute =
     path: '/products/preschool-learning-cards',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ProductsInteractiveBusyBookRoute =
+  ProductsInteractiveBusyBookRouteImport.update({
+    id: '/products/interactive-busy-book',
+    path: '/products/interactive-busy-book',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ProductsFingerPaintingKitRoute =
   ProductsFingerPaintingKitRouteImport.update({
     id: '/products/finger-painting-kit',
@@ -69,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/order-success': typeof OrderSuccessRoute
   '/shop': typeof ShopRoute
   '/products/finger-painting-kit': typeof ProductsFingerPaintingKitRoute
+  '/products/interactive-busy-book': typeof ProductsInteractiveBusyBookRoute
   '/products/preschool-learning-cards': typeof ProductsPreschoolLearningCardsRoute
 }
 export interface FileRoutesByTo {
@@ -79,6 +87,7 @@ export interface FileRoutesByTo {
   '/order-success': typeof OrderSuccessRoute
   '/shop': typeof ShopRoute
   '/products/finger-painting-kit': typeof ProductsFingerPaintingKitRoute
+  '/products/interactive-busy-book': typeof ProductsInteractiveBusyBookRoute
   '/products/preschool-learning-cards': typeof ProductsPreschoolLearningCardsRoute
 }
 export interface FileRoutesById {
@@ -90,6 +99,7 @@ export interface FileRoutesById {
   '/order-success': typeof OrderSuccessRoute
   '/shop': typeof ShopRoute
   '/products/finger-painting-kit': typeof ProductsFingerPaintingKitRoute
+  '/products/interactive-busy-book': typeof ProductsInteractiveBusyBookRoute
   '/products/preschool-learning-cards': typeof ProductsPreschoolLearningCardsRoute
 }
 export interface FileRouteTypes {
@@ -102,6 +112,7 @@ export interface FileRouteTypes {
     | '/order-success'
     | '/shop'
     | '/products/finger-painting-kit'
+    | '/products/interactive-busy-book'
     | '/products/preschool-learning-cards'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -112,6 +123,7 @@ export interface FileRouteTypes {
     | '/order-success'
     | '/shop'
     | '/products/finger-painting-kit'
+    | '/products/interactive-busy-book'
     | '/products/preschool-learning-cards'
   id:
     | '__root__'
@@ -122,6 +134,7 @@ export interface FileRouteTypes {
     | '/order-success'
     | '/shop'
     | '/products/finger-painting-kit'
+    | '/products/interactive-busy-book'
     | '/products/preschool-learning-cards'
   fileRoutesById: FileRoutesById
 }
@@ -133,6 +146,7 @@ export interface RootRouteChildren {
   OrderSuccessRoute: typeof OrderSuccessRoute
   ShopRoute: typeof ShopRoute
   ProductsFingerPaintingKitRoute: typeof ProductsFingerPaintingKitRoute
+  ProductsInteractiveBusyBookRoute: typeof ProductsInteractiveBusyBookRoute
   ProductsPreschoolLearningCardsRoute: typeof ProductsPreschoolLearningCardsRoute
 }
 
@@ -187,6 +201,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsPreschoolLearningCardsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/products/interactive-busy-book': {
+      id: '/products/interactive-busy-book'
+      path: '/products/interactive-busy-book'
+      fullPath: '/products/interactive-busy-book'
+      preLoaderRoute: typeof ProductsInteractiveBusyBookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/finger-painting-kit': {
       id: '/products/finger-painting-kit'
       path: '/products/finger-painting-kit'
@@ -205,6 +226,7 @@ const rootRouteChildren: RootRouteChildren = {
   OrderSuccessRoute: OrderSuccessRoute,
   ShopRoute: ShopRoute,
   ProductsFingerPaintingKitRoute: ProductsFingerPaintingKitRoute,
+  ProductsInteractiveBusyBookRoute: ProductsInteractiveBusyBookRoute,
   ProductsPreschoolLearningCardsRoute: ProductsPreschoolLearningCardsRoute,
 }
 export const routeTree = rootRouteImport
