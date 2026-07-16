@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ShoppingBag } from "lucide-react";
 import preschoolImg from "@/assets/child-learning.png.asset.json";
+import fingerImg from "@/assets/fpk-main.jpg.asset.json";
+import busyImg from "@/assets/busy-book-collection.jpg.asset.json";
 
 type Product = {
   slug: "preschool-learning-cards" | "finger-painting-kit" | "interactive-busy-book";
@@ -9,7 +11,7 @@ type Product = {
   price: number;
   compareAt: number;
   image: string;
-  href?: "/products/preschool-learning-cards";
+  href?: "/products/preschool-learning-cards" | "/products/finger-painting-kit";
   comingSoon?: boolean;
 };
 
@@ -26,11 +28,11 @@ const PRODUCTS: Product[] = [
   {
     slug: "finger-painting-kit",
     name: "Kids Finger Painting Kit",
-    tagline: "Mess-free creativity for little artists",
+    tagline: "12 washable colors • 30 activity cards • Ages 3+",
     price: 1499,
     compareAt: 2499,
-    image: preschoolImg.url,
-    comingSoon: true,
+    image: fingerImg.url,
+    href: "/products/finger-painting-kit",
   },
   {
     slug: "interactive-busy-book",
@@ -38,7 +40,7 @@ const PRODUCTS: Product[] = [
     tagline: "Hands-on learning that keeps them engaged",
     price: 1499,
     compareAt: 2499,
-    image: preschoolImg.url,
+    image: busyImg.url,
     comingSoon: true,
   },
 ];

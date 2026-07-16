@@ -16,6 +16,7 @@ import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsPreschoolLearningCardsRouteImport } from './routes/products.preschool-learning-cards'
+import { Route as ProductsFingerPaintingKitRouteImport } from './routes/products.finger-painting-kit'
 
 const ShopRoute = ShopRouteImport.update({
   id: '/shop',
@@ -53,6 +54,12 @@ const ProductsPreschoolLearningCardsRoute =
     path: '/products/preschool-learning-cards',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ProductsFingerPaintingKitRoute =
+  ProductsFingerPaintingKitRouteImport.update({
+    id: '/products/finger-painting-kit',
+    path: '/products/finger-painting-kit',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +68,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/order-success': typeof OrderSuccessRoute
   '/shop': typeof ShopRoute
+  '/products/finger-painting-kit': typeof ProductsFingerPaintingKitRoute
   '/products/preschool-learning-cards': typeof ProductsPreschoolLearningCardsRoute
 }
 export interface FileRoutesByTo {
@@ -70,6 +78,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/order-success': typeof OrderSuccessRoute
   '/shop': typeof ShopRoute
+  '/products/finger-painting-kit': typeof ProductsFingerPaintingKitRoute
   '/products/preschool-learning-cards': typeof ProductsPreschoolLearningCardsRoute
 }
 export interface FileRoutesById {
@@ -80,6 +89,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/order-success': typeof OrderSuccessRoute
   '/shop': typeof ShopRoute
+  '/products/finger-painting-kit': typeof ProductsFingerPaintingKitRoute
   '/products/preschool-learning-cards': typeof ProductsPreschoolLearningCardsRoute
 }
 export interface FileRouteTypes {
@@ -91,6 +101,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/order-success'
     | '/shop'
+    | '/products/finger-painting-kit'
     | '/products/preschool-learning-cards'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -100,6 +111,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/order-success'
     | '/shop'
+    | '/products/finger-painting-kit'
     | '/products/preschool-learning-cards'
   id:
     | '__root__'
@@ -109,6 +121,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/order-success'
     | '/shop'
+    | '/products/finger-painting-kit'
     | '/products/preschool-learning-cards'
   fileRoutesById: FileRoutesById
 }
@@ -119,6 +132,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   OrderSuccessRoute: typeof OrderSuccessRoute
   ShopRoute: typeof ShopRoute
+  ProductsFingerPaintingKitRoute: typeof ProductsFingerPaintingKitRoute
   ProductsPreschoolLearningCardsRoute: typeof ProductsPreschoolLearningCardsRoute
 }
 
@@ -173,6 +187,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsPreschoolLearningCardsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/products/finger-painting-kit': {
+      id: '/products/finger-painting-kit'
+      path: '/products/finger-painting-kit'
+      fullPath: '/products/finger-painting-kit'
+      preLoaderRoute: typeof ProductsFingerPaintingKitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -183,6 +204,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   OrderSuccessRoute: OrderSuccessRoute,
   ShopRoute: ShopRoute,
+  ProductsFingerPaintingKitRoute: ProductsFingerPaintingKitRoute,
   ProductsPreschoolLearningCardsRoute: ProductsPreschoolLearningCardsRoute,
 }
 export const routeTree = rootRouteImport
