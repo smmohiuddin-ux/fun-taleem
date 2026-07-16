@@ -69,10 +69,10 @@ const PRODUCTS: ProductCard[] = [
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Funtaleem — Interactive Learning Toys for Kids in Pakistan" },
-      { name: "description", content: "Funtaleem brings premium screen-free learning toys to Pakistani kids — reusable activity cards, finger painting kits, busy books and more. Cash on Delivery all over Pakistan." },
+      { title: "Funtaleem - Interactive Learning Toys for Kids in Pakistan" },
+      { name: "description", content: "Funtaleem brings premium screen-free learning toys to Pakistani kids - reusable activity cards, finger painting kits, busy books and more. Cash on Delivery all over Pakistan." },
       { name: "keywords", content: "Funtaleem, Kids Learning Toys Pakistan, Educational Toys Pakistan, Montessori Toys Pakistan, Screen Free Learning, Preschool Toys, Finger Painting Kit, Busy Book, Learning Cards" },
-      { property: "og:title", content: "Funtaleem — Learning Through Play" },
+      { property: "og:title", content: "Funtaleem - Learning Through Play" },
       { property: "og:description", content: "Premium interactive learning toys for Pakistani kids. Cash on Delivery." },
       { property: "og:image", content: fingerFamily.url },
       { name: "twitter:card", content: "summary_large_image" },
@@ -271,7 +271,7 @@ function Hero() {
           </h1>
           <p className="mx-auto mt-5 max-w-lg text-base text-muted-foreground sm:text-lg md:mx-0">
             Funtaleem crafts joyful, hands-on toys that help Pakistani children discover
-            colors, letters, numbers, and creativity — one delightful moment at a time.
+            colors, letters, numbers, and creativity - one delightful moment at a time.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3 md:justify-start">
@@ -453,7 +453,7 @@ function FeaturedProducts() {
 /* ---------- Why Funtaleem ---------- */
 function WhyFuntaleem() {
   const pillars = [
-    { emoji: "📵", title: "Screen-Free", text: "Every toy is designed for hands-on play — kids stay off phones and tablets." },
+    { emoji: "📵", title: "Screen-Free", text: "Every toy is designed for hands-on play - kids stay off phones and tablets." },
     { emoji: "🧠", title: "Educator-Curated", text: "Activities built with early-childhood educators to grow real cognitive skills." },
     { emoji: "♻️", title: "Reusable Forever", text: "Wipe-clean, sturdy materials mean one toy plays hundreds of times." },
     { emoji: "🇵🇰", title: "Made for Pakistan", text: "Fast Cash on Delivery, local support, WhatsApp-friendly ordering." },
@@ -594,7 +594,7 @@ function BrandStory() {
           </h2>
           <p className="mt-5 text-muted-foreground">
             Funtaleem started when two parents in Karachi couldn't find educational toys that felt as premium
-            and thoughtful as international brands — at a price Pakistani families could love. So we built one.
+            and thoughtful as international brands - at a price Pakistani families could love. So we built one.
           </p>
           <p className="mt-3 text-muted-foreground">
             Today, thousands of families across Pakistan trust Funtaleem to keep their little learners
@@ -703,7 +703,7 @@ function Newsletter() {
         <div className="pointer-events-none absolute -bottom-16 -right-10 text-[9rem] opacity-10 floaty" style={{ animationDelay: "-2s" }}>🎈</div>
         <h2 className="font-display text-4xl font-bold sm:text-5xl">Get 10% off your first order</h2>
         <p className="mx-auto mt-3 max-w-xl text-white/90">
-          Join the Funtaleem family. New toy drops, parenting tips, and exclusive discounts — straight to your inbox.
+          Join the Funtaleem family. New toy drops, parenting tips, and exclusive discounts - straight to your inbox.
         </p>
         <form
           onSubmit={(e) => { e.preventDefault(); alert("Thanks for subscribing!"); }}

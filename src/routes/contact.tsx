@@ -7,9 +7,9 @@ const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hi! 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Little Learners PK | WhatsApp Order & Support" },
+      { title: "Contact - Little Learners PK | WhatsApp Order & Support" },
       { name: "description", content: "Get in touch with Little Learners PK. Order on WhatsApp, call or email us. Fast Cash on Delivery all over Pakistan." },
-      { property: "og:title", content: "Contact — Little Learners PK" },
+      { property: "og:title", content: "Contact - Little Learners PK" },
       { property: "og:description", content: "Reach us on WhatsApp, phone or email. Cash on Delivery in Pakistan." },
     ],
   }),
@@ -40,7 +40,7 @@ function ContactPage() {
           </span>
           <h1 className="mt-3 font-display text-4xl font-bold sm:text-5xl">We'd love to hear from you</h1>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            The fastest way to reach us is WhatsApp — we usually reply within minutes.
+            The fastest way to reach us is WhatsApp - we usually reply within minutes.
           </p>
         </div>
 

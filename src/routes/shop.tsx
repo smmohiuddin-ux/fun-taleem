@@ -46,9 +46,9 @@ const PRODUCTS: Product[] = [
 export const Route = createFileRoute("/shop")({
   head: () => ({
     meta: [
-      { title: "Shop — Little Learners PK | Screen-Free Learning Toys" },
-      { name: "description", content: "Shop our full range of screen-free learning toys for kids — reusable activity sets, painting kits and interactive busy books. Cash on Delivery all over Pakistan." },
-      { property: "og:title", content: "Shop — Little Learners PK" },
+      { title: "Shop - Little Learners PK | Screen-Free Learning Toys" },
+      { name: "description", content: "Shop our full range of screen-free learning toys for kids - reusable activity sets, painting kits and interactive busy books. Cash on Delivery all over Pakistan." },
+      { property: "og:title", content: "Shop - Little Learners PK" },
       { property: "og:description", content: "Screen-free learning toys for Pakistani kids. Cash on Delivery." },
     ],
   }),
@@ -79,7 +79,7 @@ function ShopPage() {
           </span>
           <h1 className="mt-3 font-display text-4xl font-bold sm:text-5xl">Screen-Free Learning Toys</h1>
           <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
-            Thoughtfully designed toys that help Pakistani kids learn through play — not screens.
+            Thoughtfully designed toys that help Pakistani kids learn through play - not screens.
           </p>
         </div>
 

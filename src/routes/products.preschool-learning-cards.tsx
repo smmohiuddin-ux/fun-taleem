@@ -20,7 +20,7 @@ export const Route = createFileRoute("/products/preschool-learning-cards")({
   head: () => ({
     meta: [
       { title: "Reusable Preschool Learning Cards Set with 64 Activities | Pakistan" },
-      { name: "description", content: "Reusable Preschool Learning Cards Set with 64 Activities — screen-free learning, handwriting, numbers, shapes & drawing for kids 3+. Cash on Delivery all over Pakistan. Order on WhatsApp today." },
+      { name: "description", content: "Reusable Preschool Learning Cards Set with 64 Activities - screen-free learning, handwriting, numbers, shapes & drawing for kids 3+. Cash on Delivery all over Pakistan. Order on WhatsApp today." },
       { name: "keywords", content: "Preschool Learning Cards Pakistan, Reusable Activity Set Pakistan, Kids Learning Cards, Montessori Cards Pakistan, Educational Toys Pakistan, Screen Free Learning, Kids Activity Cards, Handwriting Practice, Preschool Learning Toys" },
       { property: "og:title", content: "Reusable Preschool Learning Cards Set with 64 Activities" },
       { property: "og:description", content: "Help your child learn through fun, not screens. 64 reusable activity cards + markers. Cash on Delivery in Pakistan." },
@@ -142,7 +142,7 @@ function LandingPage() {
       <HowItWorks />
       <CTASection
         title="Help Your Child Learn While Having Fun"
-        subtitle="Limited stock available — order today with Cash on Delivery."
+        subtitle="Limited stock available - order today with Cash on Delivery."
       />
       <OrderProcess />
       <WhyBuyFromUs />
@@ -197,7 +197,7 @@ function VideoModal() {
           <iframe
             className="absolute inset-0 size-full"
             src="https://www.youtube.com/embed/RhgsLEKGxEM?autoplay=1&rel=0"
-            title="Preschool Learning Cards Set — Product Video"
+            title="Preschool Learning Cards Set - Product Video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           />
@@ -210,7 +210,7 @@ function VideoModal() {
 function UrgencyBar() {
   return (
     <div className="relative z-10 bg-gradient-to-r from-brand-green-dark via-primary to-brand-sky py-2.5 text-center text-sm font-semibold text-primary-foreground">
-      <span className="animate-pulse">🔥</span> Limited Stock Available — Cash on Delivery All Over Pakistan 🇵🇰
+      <span className="animate-pulse">🔥</span> Limited Stock Available - Cash on Delivery All Over Pakistan 🇵🇰
     </div>
   );
 }
@@ -448,12 +448,12 @@ function PerfectSize() {
         <div className="order-1 md:order-2">
           <span className="inline-block rounded-full bg-brand-sky/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-green-dark">Perfect Fit</span>
           <h2 className="mt-3 font-display text-4xl sm:text-5xl font-bold">Just the right size for <span className="text-primary">little hands</span></h2>
-          <p className="mt-4 text-muted-foreground text-lg">Light, sturdy and travel-friendly — fits in any school bag, backpack or car seat pocket.</p>
+          <p className="mt-4 text-muted-foreground text-lg">Light, sturdy and travel-friendly - fits in any school bag, backpack or car seat pocket.</p>
           <ul className="mt-6 space-y-3">
             {[
               { k: "Book", v: "9.1 × 7.0 in (23 × 17.8 cm)" },
               { k: "Pages", v: "5.1 × 6.7 in dry-erase boards" },
-              { k: "Marker", v: "4.5 in — perfect kid grip" },
+              { k: "Marker", v: "4.5 in - perfect kid grip" },
               { k: "Eraser", v: "2.8 in bone-shaped wipe pad" },
             ].map((s) => (
               <li key={s.k} className="flex items-center gap-3 rounded-2xl bg-white p-3 ring-1 ring-border">
@@ -484,7 +484,7 @@ function ProductShowcase() {
         <SectionTitle
           eyebrow="Product showcase"
           title="See it in your child's hands"
-          subtitle="Premium quality, vibrant colors, and pages that wipe clean — over and over again."
+          subtitle="Premium quality, vibrant colors, and pages that wipe clean - over and over again."
         />
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {gallery.map((g) => (
@@ -518,7 +518,7 @@ function WhatsIncluded() {
         <div>
           <span className="inline-block rounded-full bg-brand-sky/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-green-dark">What's inside</span>
           <h2 className="mt-3 font-display text-4xl sm:text-5xl font-bold">Everything in one <span className="text-primary">premium box</span></h2>
-          <p className="mt-4 text-muted-foreground text-lg">Open the box and your child can start learning immediately — no batteries, no setup, no screens.</p>
+          <p className="mt-4 text-muted-foreground text-lg">Open the box and your child can start learning immediately - no batteries, no setup, no screens.</p>
           <div className="mt-6 grid grid-cols-2 gap-3">
             {items.map((i) => (
               <div key={i.name} className="card-lift rounded-2xl bg-white p-4 text-center shadow-sm ring-1 ring-border">
@@ -551,7 +551,7 @@ function LearningCategories() {
         <SectionTitle
           eyebrow="Learning categories"
           title="64 Fun Learning Activities"
-          subtitle="Letters, numbers, shapes, line tracing, matching, mazes and more — designed for ages 2+."
+          subtitle="Letters, numbers, shapes, line tracing, matching, mazes and more - designed for ages 2+."
         />
         <div className="grid items-center gap-10 lg:grid-cols-5">
           <div className="lg:col-span-3">
@@ -580,7 +580,7 @@ function WipeCleanSection() {
       <div className="mx-auto max-w-7xl">
         <SectionTitle
           eyebrow="Wipe • Clean • Reuse"
-          title="Practice again and again — forever"
+          title="Practice again and again - forever"
           subtitle="The dry-erase pages let your child write, wipe and reuse infinitely. One book, endless learning."
         />
         <TintedImage src={wipeCleanImg.url} alt="Wipe clean and reusable" tint="green" aspect="aspect-[16/10]" />
@@ -601,7 +601,7 @@ function ComparisonSection() {
         <SectionTitle
           eyebrow="Better than screens"
           title="Why this beats a mobile phone"
-          subtitle="A side-by-side look at what your child gets — and what they avoid."
+          subtitle="A side-by-side look at what your child gets - and what they avoid."
         />
         <div className="grid gap-6 md:grid-cols-2">
           <div className="rounded-3xl bg-gradient-to-br from-destructive/10 to-destructive/5 p-8 ring-1 ring-destructive/20">
@@ -688,13 +688,13 @@ function HowItWorks() {
   const steps = [
     { n: 1, title: "Write", emoji: "✍️", color: "bg-primary", desc: "Open a page and trace with the magic marker." },
     { n: 2, title: "Wipe", emoji: "🧽", color: "bg-brand-sky", desc: "Wipe instantly with the included eraser." },
-    { n: 3, title: "Reuse", emoji: "🔁", color: "bg-brand-green-dark", desc: "Practice again — pages last forever." },
+    { n: 3, title: "Reuse", emoji: "🔁", color: "bg-brand-green-dark", desc: "Practice again - pages last forever." },
     { n: 4, title: "Repeat", emoji: "🌟", color: "bg-brand-purple", desc: "Build skills every single day." },
   ];
   return (
     <section className="relative px-4 py-20">
       <div className="mx-auto max-w-7xl">
-        <SectionTitle eyebrow="How it works" title="Write. Wipe. Reuse." subtitle="Learning in 4 simple steps — over and over again." />
+        <SectionTitle eyebrow="How it works" title="Write. Wipe. Reuse." subtitle="Learning in 4 simple steps - over and over again." />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s) => (
             <div key={s.n} className="card-lift relative rounded-3xl bg-white p-8 text-center shadow-sm ring-1 ring-border">
@@ -741,7 +741,7 @@ function OrderProcess() {
   return (
     <section className="relative px-4 py-20 bg-gradient-to-b from-brand-sky/15 to-primary/10">
       <div className="mx-auto max-w-6xl">
-        <SectionTitle eyebrow="Easy ordering" title="How to Order" subtitle="It only takes 30 seconds. No payment online — pay when you receive." />
+        <SectionTitle eyebrow="Easy ordering" title="How to Order" subtitle="It only takes 30 seconds. No payment online - pay when you receive." />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s) => (
             <div key={s.n} className="card-lift rounded-3xl bg-white p-6 text-center shadow-md ring-1 ring-border">
@@ -865,7 +865,7 @@ function FAQ() {
     { q: "What age is it for?", a: "Recommended for children aged 2 to 6 years. Perfect for preschool and early learning at home." },
     { q: "How long does delivery take?", a: "We deliver across Pakistan in 2–4 business days. Major cities often receive within 48 hours." },
     { q: "Is Cash on Delivery available?", a: "Yes! Pay only when the parcel reaches your doorstep. Available all over Pakistan." },
-    { q: "How do I order?", a: "Click any WhatsApp button on this page, share your name, city and quantity — we'll handle the rest." },
+    { q: "How do I order?", a: "Click any WhatsApp button on this page, share your name, city and quantity - we'll handle the rest." },
   ];
   const [open, setOpen] = useState<number | null>(0);
   return (
@@ -902,7 +902,7 @@ function FinalCTA() {
         <div className="text-5xl">🎁</div>
         <h2 className="mt-4 font-display text-4xl sm:text-5xl md:text-6xl font-bold">Screen-Free Learning Starts Here</h2>
         <p className="mx-auto mt-4 max-w-2xl text-lg text-primary-foreground/95">
-          The premium educational gift your child will use every single day. Limited stock — order today.
+          The premium educational gift your child will use every single day. Limited stock - order today.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn-pulse inline-flex items-center gap-2 rounded-full bg-cta px-8 py-4 text-lg font-bold text-primary-foreground shadow-xl transition hover:scale-105 hover:bg-cta-dark">

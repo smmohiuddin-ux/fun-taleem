@@ -78,7 +78,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Little Learners PK | Screen-Free Learning for Kids 3+" },
-      { name: "description", content: "Reusable Preschool Learning Cards Set — screen-free learning, handwriting, numbers & shapes for kids 3+. Cash on Delivery all over Pakistan. Order on WhatsApp." },
+      { name: "description", content: "Reusable Preschool Learning Cards Set - screen-free learning, handwriting, numbers & shapes for kids 3+. Cash on Delivery all over Pakistan. Order on WhatsApp." },
       { name: "author", content: "Preschool Learning Cards Set PK" },
       { property: "og:title", content: "Little Learners PK | Screen-Free Learning" },
       { property: "og:description", content: "Help your child learn through fun, not screens. Reusable tracing workbook for ages 3+. Cash on Delivery in Pakistan." },
