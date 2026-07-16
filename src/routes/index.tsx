@@ -8,22 +8,22 @@ import {
 } from "lucide-react";
 import { useCart } from "@/lib/cart";
 import { PRODUCT, formatPKR } from "@/lib/product";
-import preschoolImg from "@/assets/preschool.jpeg.asset.json";
+import preschoolImg from "@/assets/child-learning.png.asset.json";
 import whatsInsideImg from "@/assets/whats-inside.jpeg.asset.json";
 import wipeCleanImg from "@/assets/wipe-clean.jpeg.asset.json";
 import activitiesImg from "@/assets/activities.jpeg.asset.json";
 import productFlatImg from "@/assets/product-flat.jpeg.asset.json";
 import perfectSizeImg from "@/assets/perfect-size.jpeg.asset.json";
-import earlySkillsImg from "@/assets/early-skills.jpeg.asset.json";
+import earlySkillsImg from "@/assets/child-learning.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Magic Tracing Book Pakistan | Reusable Screen-Free Learning Book for Kids 3+" },
-      { name: "description", content: "Reusable Magic Tracing Book — screen-free learning, handwriting, numbers, shapes & drawing for kids 3+. Cash on Delivery all over Pakistan. Order on WhatsApp today." },
-      { name: "keywords", content: "Reusable Magic Book Pakistan, Kids Learning Book Pakistan, Tracing Book Pakistan, Montessori Toys Pakistan, Educational Toys Pakistan, Screen Free Learning, Kids Activity Book, Handwriting Practice Book, Preschool Learning Toys" },
-      { property: "og:title", content: "Magic Tracing Book Pakistan | Screen-Free Learning for Kids" },
-      { property: "og:description", content: "Help your child learn through fun, not screens. Reusable workbook + markers. Cash on Delivery in Pakistan." },
+      { title: "Reusable Preschool Learning Cards Set with 64 Activities | Pakistan" },
+      { name: "description", content: "Reusable Preschool Learning Cards Set with 64 Activities — screen-free learning, handwriting, numbers, shapes & drawing for kids 3+. Cash on Delivery all over Pakistan. Order on WhatsApp today." },
+      { name: "keywords", content: "Preschool Learning Cards Pakistan, Reusable Activity Set Pakistan, Kids Learning Cards, Montessori Cards Pakistan, Educational Toys Pakistan, Screen Free Learning, Kids Activity Cards, Handwriting Practice, Preschool Learning Toys" },
+      { property: "og:title", content: "Reusable Preschool Learning Cards Set with 64 Activities" },
+      { property: "og:description", content: "Help your child learn through fun, not screens. 64 reusable activity cards + markers. Cash on Delivery in Pakistan." },
       { property: "og:image", content: preschoolImg.url },
       { name: "twitter:image", content: preschoolImg.url },
     ],
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/")({
 
 const WHATSAPP_NUMBER = "923042175897";
 const WA_MESSAGE = encodeURIComponent(
-  "Hi! I want to order the Reusable Magic Tracing Book.\n\nMy Name:\nCity:\nQuantity:\n\nPlease guide me."
+  "Hi! I want to order the Reusable Preschool Learning Cards Set (64 Activities).\n\nMy Name:\nCity:\nQuantity:\n\nPlease guide me."
 );
 const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${WA_MESSAGE}`;
 
