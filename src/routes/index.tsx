@@ -128,6 +128,7 @@ function LandingPage() {
   return (
     <main className="relative overflow-hidden bg-background text-foreground">
       <UrgencyBar />
+      <SiteHeader />
       <Hero />
       <TrustBar />
       <WhyParentsLove />
@@ -211,6 +212,76 @@ function UrgencyBar() {
     <div className="relative z-10 bg-gradient-to-r from-brand-green-dark via-primary to-brand-sky py-2.5 text-center text-sm font-semibold text-primary-foreground">
       <span className="animate-pulse">🔥</span> Limited Stock Available — Cash on Delivery All Over Pakistan 🇵🇰
     </div>
+  );
+}
+
+function SiteHeader() {
+  const { qty } = useCart();
+  return (
+    <header className="sticky top-0 z-40 border-b border-border/50 bg-white/85 backdrop-blur">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
+        <Link to="/" className="flex items-center gap-2">
+          <div className="grid size-9 place-items-center rounded-2xl bg-brand-green text-lg">📘</div>
+          <span className="font-display text-lg font-bold tracking-tight">Little Learners PK</span>
+        </Link>
+        <nav className="hidden items-center gap-1 md:flex">
+          {[
+            { to: "/" as const, label: "Home" },
+            { to: "/shop" as const, label: "Shop" },
+            { to: "/contact" as const, label: "Contact" },
+          ].map((l) => (
+            <Link
+              key={l.to}
+              to={l.to}
+              activeOptions={{ exact: true }}
+              activeProps={{ className: "bg-brand-green/10 text-brand-green-dark" }}
+              className="rounded-full px-4 py-2 text-sm font-semibold text-foreground/80 transition hover:bg-muted"
+            >
+              {l.label}
+            </Link>
+          ))}
+        </nav>
+        <div className="flex items-center gap-2">
+          <Link
+            to="/cart"
+            aria-label="View cart"
+            className="relative grid size-10 place-items-center rounded-full bg-muted text-foreground transition hover:bg-brand-green/10"
+          >
+            <ShoppingCart className="size-5" />
+            {qty > 0 && (
+              <span className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-cta text-[10px] font-bold text-primary-foreground ring-2 ring-white">
+                {qty}
+              </span>
+            )}
+          </Link>
+          <a
+            href={waLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden items-center gap-1.5 rounded-full bg-cta px-4 py-2 text-sm font-bold text-primary-foreground shadow-md transition hover:bg-cta-dark sm:inline-flex"
+          >
+            <MessageCircle className="size-4" /> Order
+          </a>
+        </div>
+      </div>
+      <nav className="flex items-center justify-center gap-1 border-t border-border/40 px-4 py-2 md:hidden">
+        {[
+          { to: "/" as const, label: "Home" },
+          { to: "/shop" as const, label: "Shop" },
+          { to: "/contact" as const, label: "Contact" },
+        ].map((l) => (
+          <Link
+            key={l.to}
+            to={l.to}
+            activeOptions={{ exact: true }}
+            activeProps={{ className: "bg-brand-green/10 text-brand-green-dark" }}
+            className="rounded-full px-4 py-1.5 text-sm font-semibold text-foreground/80"
+          >
+            {l.label}
+          </Link>
+        ))}
+      </nav>
+    </header>
   );
 }
 
@@ -854,7 +925,7 @@ function Footer() {
           <div>
             <div className="flex items-center gap-2">
               <div className="grid size-10 place-items-center rounded-2xl bg-brand-green text-xl">📘</div>
-              <span className="font-display text-xl font-bold">Magic Tracing</span>
+              <span className="font-display text-xl font-bold">Little Learners PK</span>
             </div>
             <p className="mt-4 text-sm text-white/70">Screen-free learning toys for happy Pakistani kids. Made with love. Loved by thousands.</p>
           </div>
