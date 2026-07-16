@@ -11,7 +11,7 @@ type Product = {
   price: number;
   compareAt: number;
   image: string;
-  href?: "/products/preschool-learning-cards" | "/products/finger-painting-kit";
+  href?: "/products/preschool-learning-cards" | "/products/finger-painting-kit" | "/products/interactive-busy-book";
   comingSoon?: boolean;
 };
 
