@@ -8,7 +8,7 @@ import preschoolImg from "@/assets/preschool.jpeg.asset.json";
 export const Route = createFileRoute("/checkout")({
   head: () => ({
     meta: [
-      { title: "Checkout — Cash on Delivery | Magic Tracing Book" },
+      { title: "Checkout — Cash on Delivery | Preschool Learning Cards Set" },
       { name: "description", content: "Place your order with Cash on Delivery all over Pakistan. Pay only when your order arrives." },
       { name: "robots", content: "noindex" },
     ],

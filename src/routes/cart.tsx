@@ -7,8 +7,8 @@ import preschoolImg from "@/assets/preschool.jpeg.asset.json";
 export const Route = createFileRoute("/cart")({
   head: () => ({
     meta: [
-      { title: "Your Cart — Magic Tracing Book Pakistan" },
-      { name: "description", content: "Review your Reusable Magic Tracing Book order and proceed to Cash on Delivery checkout." },
+      { title: "Your Cart — Little Learners PK" },
+      { name: "description", content: "Review your Reusable Preschool Learning Cards Set order and proceed to Cash on Delivery checkout." },
       { name: "robots", content: "noindex" },
     ],
   }),
@@ -122,7 +122,7 @@ function EmptyCart() {
         <ShoppingBag className="size-10 text-primary" />
       </div>
       <h2 className="mt-5 text-xl font-bold">Your cart is empty</h2>
-      <p className="mt-2 text-sm text-muted-foreground">Add the Magic Tracing Book to get started.</p>
+      <p className="mt-2 text-sm text-muted-foreground">Add the Preschool Learning Cards Set to get started.</p>
       <Link to="/" className="mt-6 inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90">
         Browse Product
       </Link>

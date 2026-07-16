@@ -197,7 +197,7 @@ function VideoModal() {
           <iframe
             className="absolute inset-0 size-full"
             src="https://www.youtube.com/embed/RhgsLEKGxEM?autoplay=1&rel=0"
-            title="Magic Tracing Book — Product Video"
+            title="Preschool Learning Cards Set — Product Video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           />
@@ -361,7 +361,7 @@ function Hero() {
           <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-brand-sky/35 via-primary/20 to-cta/20 blur-2xl" />
           <TintedImage
             src={preschoolImg.url}
-            alt="Child happily using the Reusable Magic Tracing Book"
+            alt="Child happily using the Reusable Preschool Learning Cards Set"
             tint="rainbow"
             aspect="aspect-square"
             overlayOpacity={0.14}
@@ -623,7 +623,7 @@ function ComparisonSection() {
           <div className="rounded-3xl bg-gradient-to-br from-brand-sky/20 to-primary/15 p-8 ring-2 ring-primary/35 shadow-lg">
             <div className="mb-4 flex items-center gap-3">
               <div className="grid size-12 place-items-center rounded-2xl bg-brand-sky/20 text-primary text-2xl">📘</div>
-              <h3 className="text-2xl font-bold">Magic Tracing Book</h3>
+              <h3 className="text-2xl font-bold">Preschool Learning Cards Set</h3>
             </div>
             <ul className="space-y-3">
               {magic.map((m) => (
@@ -958,7 +958,7 @@ function Footer() {
           </div>
         </div>
         <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-white/50">
-          © {new Date().getFullYear()} Magic Tracing Pakistan. All rights reserved.
+          © {new Date().getFullYear()} Little Learners PK. All rights reserved.
         </div>
       </div>
     </footer>
