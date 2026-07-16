@@ -14,7 +14,7 @@ import { Route as OrderSuccessRouteImport } from './routes/order-success'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CartRouteImport } from './routes/cart'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProductsPreschoolLearningCardsRouteImport } from './routes/products.preschool-learning-cards'
 
 const ShopRoute = ShopRouteImport.update({
   id: '/shop',
@@ -41,65 +41,72 @@ const CartRoute = CartRouteImport.update({
   path: '/cart',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
+const ProductsPreschoolLearningCardsRoute =
+  ProductsPreschoolLearningCardsRouteImport.update({
+    id: '/products/preschool-learning-cards',
+    path: '/products/preschool-learning-cards',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/order-success': typeof OrderSuccessRoute
   '/shop': typeof ShopRoute
+  '/products/preschool-learning-cards': typeof ProductsPreschoolLearningCardsRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/order-success': typeof OrderSuccessRoute
   '/shop': typeof ShopRoute
+  '/products/preschool-learning-cards': typeof ProductsPreschoolLearningCardsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/order-success': typeof OrderSuccessRoute
   '/shop': typeof ShopRoute
+  '/products/preschool-learning-cards': typeof ProductsPreschoolLearningCardsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
     | '/cart'
     | '/checkout'
     | '/contact'
     | '/order-success'
     | '/shop'
+    | '/products/preschool-learning-cards'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cart' | '/checkout' | '/contact' | '/order-success' | '/shop'
+  to:
+    | '/cart'
+    | '/checkout'
+    | '/contact'
+    | '/order-success'
+    | '/shop'
+    | '/products/preschool-learning-cards'
   id:
     | '__root__'
-    | '/'
     | '/cart'
     | '/checkout'
     | '/contact'
     | '/order-success'
     | '/shop'
+    | '/products/preschool-learning-cards'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
   CartRoute: typeof CartRoute
   CheckoutRoute: typeof CheckoutRoute
   ContactRoute: typeof ContactRoute
   OrderSuccessRoute: typeof OrderSuccessRoute
   ShopRoute: typeof ShopRoute
+  ProductsPreschoolLearningCardsRoute: typeof ProductsPreschoolLearningCardsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -139,23 +146,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CartRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/products/preschool-learning-cards': {
+      id: '/products/preschool-learning-cards'
+      path: '/products/preschool-learning-cards'
+      fullPath: '/products/preschool-learning-cards'
+      preLoaderRoute: typeof ProductsPreschoolLearningCardsRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
   CartRoute: CartRoute,
   CheckoutRoute: CheckoutRoute,
   ContactRoute: ContactRoute,
   OrderSuccessRoute: OrderSuccessRoute,
   ShopRoute: ShopRoute,
+  ProductsPreschoolLearningCardsRoute: ProductsPreschoolLearningCardsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -16,7 +16,7 @@ import productFlatImg from "@/assets/product-flat.jpeg.asset.json";
 import perfectSizeImg from "@/assets/perfect-size.jpeg.asset.json";
 import earlySkillsImg from "@/assets/child-learning.png.asset.json";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/products/preschool-learning-cards")({
   head: () => ({
     meta: [
       { title: "Reusable Preschool Learning Cards Set with 64 Activities | Pakistan" },
