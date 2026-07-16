@@ -491,11 +491,11 @@ function WhyFuntaleem() {
 /* ---------- Spotlight banner (Finger painting) ---------- */
 function SpotlightBanner() {
   return (
-    <section className="relative px-4 py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl">
-        <div className="grid overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#eaf7fb] via-white to-[#fff6e5] shadow-xl ring-1 ring-border md:grid-cols-2" data-reveal>
-          <div className="relative min-h-[320px] overflow-hidden">
-            <img src={fingerColors.url} alt="Finger painting kit with 12 colors and stamp cards" className="absolute inset-0 size-full object-cover transition duration-700 hover:scale-105" />
+    <section className="relative py-20 sm:py-28">
+      <div className="w-full">
+        <div className="grid overflow-hidden bg-gradient-to-br from-[#eaf7fb] via-white to-[#fff6e5] shadow-xl md:grid-cols-2" data-reveal>
+          <div className="relative min-h-[380px] overflow-hidden bg-white">
+            <img src={fingerColors.url} alt="Finger painting kit with 12 colors and stamp cards" className="absolute inset-0 size-full object-contain p-6 transition duration-700 hover:scale-105" />
             <span className="absolute left-5 top-5 rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-[#0a2647] shadow">Coming Soon</span>
           </div>
           <div className="flex flex-col justify-center p-8 sm:p-12">
