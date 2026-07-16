@@ -138,3 +138,88 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 @utility rise-in { animation: rise 0.7s ease-out both; }
+
+/* --- Funtaleem premium interactive utilities --- */
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-4deg); }
+  75% { transform: rotate(4deg); }
+}
+@utility wiggle-hover {
+  transition: transform 300ms ease;
+  &:hover { animation: wiggle 0.6s ease-in-out; }
+}
+
+@utility tilt-hover {
+  transition: transform 400ms cubic-bezier(.2,.8,.2,1), box-shadow 400ms ease;
+  transform-style: preserve-3d;
+  &:hover {
+    transform: perspective(900px) rotateX(4deg) rotateY(-6deg) translateY(-6px) scale(1.02);
+    box-shadow: 0 30px 60px -20px rgb(15 23 42 / 0.25);
+  }
+}
+
+@utility pop-hover {
+  transition: transform 350ms cubic-bezier(.2,.9,.3,1.4);
+  &:hover { transform: scale(1.08) rotate(-2deg); }
+}
+
+@utility shine-on-hover {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 30%, rgb(255 255 255 / 0.55) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform 700ms ease;
+    pointer-events: none;
+  }
+  &:hover::after { transform: translateX(120%); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@utility marquee { animation: marquee 28s linear infinite; }
+
+@keyframes floaty-x {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(8px, -14px) rotate(6deg); }
+}
+@utility floaty { animation: floaty-x 5s ease-in-out infinite; }
+
+@keyframes ping-soft {
+  0% { transform: scale(1); opacity: 0.9; }
+  75%, 100% { transform: scale(1.8); opacity: 0; }
+}
+@utility ping-soft::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: currentColor;
+  opacity: 0.4;
+  animation: ping-soft 2.2s cubic-bezier(0,0,0.2,1) infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@utility gradient-animate {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* Reveal on scroll (uses IntersectionObserver via data-reveal) */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 700ms ease, transform 700ms cubic-bezier(.2,.8,.2,1);
+}
+[data-reveal="in"] { opacity: 1; transform: translateY(0); }

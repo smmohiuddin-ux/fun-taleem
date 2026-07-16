@@ -9,7 +9,7 @@ type Product = {
   price: number;
   compareAt: number;
   image: string;
-  href?: "/";
+  href?: "/products/preschool-learning-cards";
   comingSoon?: boolean;
 };
 
@@ -21,7 +21,7 @@ const PRODUCTS: Product[] = [
     price: 1499,
     compareAt: 2499,
     image: preschoolImg.url,
-    href: "/",
+    href: "/products/preschool-learning-cards",
   },
   {
     slug: "finger-painting-kit",

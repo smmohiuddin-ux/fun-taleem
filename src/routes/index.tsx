@@ -1,255 +1,203 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
-  MessageCircle, ArrowUp, Play, Truck, Star, RefreshCw, Package,
-  Sparkles, Brain, PencilLine, Palette, Smile,
-  Phone, Mail, Instagram, Facebook, Music2, Check, X, ChevronDown, MapPin,
-  Eye, Hand, Trophy, Lightbulb, Target, ShoppingCart, Plus, Minus,
+  ArrowRight, MessageCircle, ShoppingCart, Star, Sparkles, Truck,
+  ShieldCheck, RefreshCw, Instagram, Facebook, Music2, Phone, Mail,
+  MapPin, Heart, Menu, X,
 } from "lucide-react";
 import { useCart } from "@/lib/cart";
-import { PRODUCT, formatPKR } from "@/lib/product";
-import preschoolImg from "@/assets/child-learning.png.asset.json";
-import whatsInsideImg from "@/assets/whats-inside.jpeg.asset.json";
-import wipeCleanImg from "@/assets/wipe-clean.jpeg.asset.json";
+import { formatPKR } from "@/lib/product";
+import logo from "@/assets/funtaleem-logo.png.asset.json";
+import preschoolImg from "@/assets/preschool.jpeg.asset.json";
+import childLearning from "@/assets/child-learning.png.asset.json";
 import activitiesImg from "@/assets/activities.jpeg.asset.json";
 import productFlatImg from "@/assets/product-flat.jpeg.asset.json";
-import perfectSizeImg from "@/assets/perfect-size.jpeg.asset.json";
-import earlySkillsImg from "@/assets/child-learning.png.asset.json";
+import whatsInsideImg from "@/assets/whats-inside.jpeg.asset.json";
+import wipeCleanImg from "@/assets/wipe-clean.jpeg.asset.json";
+import fingerFamily from "@/assets/finger-painting-family.png.asset.json";
+import fingerPlay from "@/assets/finger-painting-play.png.asset.json";
+
+const WHATSAPP_NUMBER = "923042175897";
+const waMsg = encodeURIComponent("Hi Funtaleem! I'd like to know more about your learning toys.");
+const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${waMsg}`;
+
+type ProductCard = {
+  name: string;
+  tagline: string;
+  price: number;
+  compare: number;
+  image: string;
+  badge: string;
+  badgeTone: "green" | "coral" | "purple";
+  href?: "/products/preschool-learning-cards";
+  comingSoon?: boolean;
+};
+
+const PRODUCTS: ProductCard[] = [
+  {
+    name: "Reusable Preschool Learning Cards",
+    tagline: "64 wipe-clean activities • Ages 3+",
+    price: 1499,
+    compare: 2499,
+    image: preschoolImg.url,
+    badge: "Bestseller",
+    badgeTone: "green",
+    href: "/products/preschool-learning-cards",
+  },
+  {
+    name: "Kids Finger Painting Kit",
+    tagline: "12 colors • 30 art cards • Ages 3+",
+    price: 1499,
+    compare: 2499,
+    image: fingerPlay.url,
+    badge: "New",
+    badgeTone: "coral",
+    comingSoon: true,
+  },
+  {
+    name: "Kids Interactive Busy Book",
+    tagline: "Hands-on montessori activities",
+    price: 1499,
+    compare: 2499,
+    image: childLearning.url,
+    badge: "Coming Soon",
+    badgeTone: "purple",
+    comingSoon: true,
+  },
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Reusable Preschool Learning Cards Set with 64 Activities | Pakistan" },
-      { name: "description", content: "Reusable Preschool Learning Cards Set with 64 Activities — screen-free learning, handwriting, numbers, shapes & drawing for kids 3+. Cash on Delivery all over Pakistan. Order on WhatsApp today." },
-      { name: "keywords", content: "Preschool Learning Cards Pakistan, Reusable Activity Set Pakistan, Kids Learning Cards, Montessori Cards Pakistan, Educational Toys Pakistan, Screen Free Learning, Kids Activity Cards, Handwriting Practice, Preschool Learning Toys" },
-      { property: "og:title", content: "Reusable Preschool Learning Cards Set with 64 Activities" },
-      { property: "og:description", content: "Help your child learn through fun, not screens. 64 reusable activity cards + markers. Cash on Delivery in Pakistan." },
-      { property: "og:image", content: preschoolImg.url },
-      { name: "twitter:image", content: preschoolImg.url },
+      { title: "Funtaleem — Interactive Learning Toys for Kids in Pakistan" },
+      { name: "description", content: "Funtaleem brings premium screen-free learning toys to Pakistani kids — reusable activity cards, finger painting kits, busy books and more. Cash on Delivery all over Pakistan." },
+      { name: "keywords", content: "Funtaleem, Kids Learning Toys Pakistan, Educational Toys Pakistan, Montessori Toys Pakistan, Screen Free Learning, Preschool Toys, Finger Painting Kit, Busy Book, Learning Cards" },
+      { property: "og:title", content: "Funtaleem — Learning Through Play" },
+      { property: "og:description", content: "Premium interactive learning toys for Pakistani kids. Cash on Delivery." },
+      { property: "og:image", content: fingerFamily.url },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: fingerFamily.url },
     ],
   }),
-  component: LandingPage,
+  component: HomePage,
 });
 
-const WHATSAPP_NUMBER = "923042175897";
-const WA_MESSAGE = encodeURIComponent(
-  "Hi! I want to order the Reusable Preschool Learning Cards Set (64 Activities).\n\nMy Name:\nCity:\nQuantity:\n\nPlease guide me."
-);
-const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${WA_MESSAGE}`;
-
-function WhatsAppButton({
-  size = "md", label = "Order on WhatsApp", pulse = true, className = "",
-}: { size?: "sm" | "md" | "lg"; label?: string; pulse?: boolean; className?: string }) {
-  const sizeCls =
-    size === "lg" ? "px-8 py-5 text-lg" :
-    size === "sm" ? "px-4 py-2.5 text-sm" :
-    "px-6 py-3.5 text-base";
-  return (
-    <a
-      href={waLink} target="_blank" rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center gap-2 rounded-full bg-cta text-primary-foreground font-semibold shadow-lg shadow-cta/30 transition hover:scale-[1.03] hover:bg-cta-dark ${sizeCls} ${pulse ? "btn-pulse" : ""} ${className}`}
-    >
-      <MessageCircle className="size-5" strokeWidth={2.5} />
-      {label}
-    </a>
-  );
-}
-
-function SectionTitle({
-  eyebrow, title, subtitle, center = true,
-}: { eyebrow?: string; title: string; subtitle?: string; center?: boolean }) {
-  return (
-    <div className={`mb-12 ${center ? "text-center" : ""}`}>
-      {eyebrow && (
-        <span className="inline-block rounded-full bg-brand-sky/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-green-dark">
-          {eyebrow}
-        </span>
-      )}
-      <h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-bold text-foreground">{title}</h2>
-      {subtitle && (
-        <p className={`mt-4 text-base sm:text-lg text-muted-foreground ${center ? "mx-auto max-w-2xl" : "max-w-2xl"}`}>{subtitle}</p>
-      )}
-    </div>
-  );
-}
-
-function Doodle({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return <div className={`pointer-events-none absolute select-none ${className}`}>{children}</div>;
-}
-
-/**
- * Brand-tinted image frame.
- * Wraps a product image in a colored gradient frame with a soft
- * brand-color overlay (multiply blend) so the photo's blue palette
- * harmonises with the site's green/yellow/coral/purple theme.
- */
-function TintedImage({
-  src, alt, tint = "sky", className = "", aspect = "aspect-[4/3]", overlayOpacity = 0,
-}: {
-  src: string; alt: string;
-  tint?: "green" | "sky" | "yellow" | "orange" | "coral" | "purple" | "rainbow";
-  className?: string; aspect?: string; overlayOpacity?: number;
-}) {
-  const frame: Record<string, string> = {
-    green:   "from-brand-sky/35 via-primary/20 to-brand-green/25",
-    sky:     "from-brand-sky/40 via-primary/15 to-brand-green/20",
-    yellow:  "from-brand-sky/35 via-primary/15 to-cta/15",
-    orange:  "from-primary/25 via-brand-sky/25 to-cta/15",
-    coral:   "from-cta/20 via-brand-sky/30 to-primary/20",
-    purple:  "from-brand-purple/25 via-brand-sky/25 to-brand-green/20",
-    rainbow: "from-brand-sky/40 via-primary/20 to-cta/15",
-  };
-  const overlay: Record<string, string> = {
-    green: "", sky: "", yellow: "", orange: "", coral: "", purple: "", rainbow: "",
-  };
-  return (
-    <div className={`relative ${aspect} w-full overflow-hidden rounded-3xl bg-gradient-to-br ${frame[tint]} p-3 sm:p-4 shadow-lg ring-1 ring-white/60 ${className}`}>
-      <div className="relative h-full w-full overflow-hidden rounded-2xl bg-white">
-        <img
-          src={src} alt={alt} loading="lazy"
-          className="h-full w-full object-contain"
-        />
-        <div
-          aria-hidden
-          className={`pointer-events-none absolute inset-0 bg-gradient-to-tr ${overlay[tint]} mix-blend-multiply`}
-          style={{ opacity: overlayOpacity }}
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 mix-blend-soft-light"
-          style={{ background: "radial-gradient(120% 80% at 20% 0%, rgba(255,255,255,0.6), transparent 60%)" }}
-        />
-      </div>
-    </div>
-  );
-}
-
-function LandingPage() {
+function HomePage() {
+  useReveal();
   return (
     <main className="relative overflow-hidden bg-background text-foreground">
-      <UrgencyBar />
+      <AnnouncementBar />
       <SiteHeader />
       <Hero />
-      <TrustBar />
-      <WhyParentsLove />
-      <PerfectSize />
-      <ProductShowcase />
-      <WhatsIncluded />
-      <LearningCategories />
-      <WipeCleanSection />
-      <ComparisonSection />
-      <EducationalBenefits />
-      <HowItWorks />
-      <CTASection
-        title="Help Your Child Learn While Having Fun"
-        subtitle="Limited stock available — order today with Cash on Delivery."
-      />
-      <OrderProcess />
-      <WhyBuyFromUs />
+      <Marquee />
+      <FeaturedProducts />
+      <WhyFuntaleem />
+      <SpotlightBanner />
+      <AgeCollections />
+      <BrandStory />
       <Testimonials />
-      <InstagramGallery />
-      <FAQ />
-      <FinalCTA />
+      <InstagramGrid />
+      <Newsletter />
       <Footer />
-      <StickyButtons />
-      <VideoModal />
+      <FloatingWhatsApp />
     </main>
   );
 }
 
-function VideoModal() {
-  const [open, setOpen] = useState(false);
+/* ---------- Reveal on scroll ---------- */
+function useReveal() {
   useEffect(() => {
-    const handler = () => setOpen(true);
-    window.addEventListener("open-product-video", handler);
-    return () => window.removeEventListener("open-product-video", handler);
+    const els = document.querySelectorAll<HTMLElement>("[data-reveal]");
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            e.target.setAttribute("data-reveal", "in");
+            io.unobserve(e.target);
+          }
+        }
+      },
+      { threshold: 0.12 }
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
   }, []);
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
-    document.addEventListener("keydown", onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
-    };
-  }, [open]);
-  if (!open) return null;
+}
+
+/* ---------- Announcement ---------- */
+function AnnouncementBar() {
   return (
-    <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
-      onClick={() => setOpen(false)}
-    >
-      <div
-        className="relative w-full max-w-4xl overflow-hidden rounded-2xl bg-black shadow-2xl"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          type="button"
-          onClick={() => setOpen(false)}
-          aria-label="Close video"
-          className="absolute right-3 top-3 z-10 grid size-10 place-items-center rounded-full bg-white/90 text-foreground shadow-lg transition hover:scale-110 hover:bg-white"
-        >
-          <X className="size-5" strokeWidth={2.5} />
-        </button>
-        <div className="relative aspect-video w-full">
-          <iframe
-            className="absolute inset-0 size-full"
-            src="https://www.youtube.com/embed/RhgsLEKGxEM?autoplay=1&rel=0"
-            title="Preschool Learning Cards Set — Product Video"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          />
-        </div>
-      </div>
+    <div className="relative z-20 gradient-animate bg-[linear-gradient(90deg,#0a2647,#1e88e5,#26c6da,#0a2647)] py-2 text-center text-xs font-semibold text-white sm:text-sm">
+      <span className="mr-2 inline-block animate-pulse">✨</span>
+      Free shipping over PKR 3,000 • Cash on Delivery All Over Pakistan 🇵🇰
     </div>
   );
 }
 
-function UrgencyBar() {
-  return (
-    <div className="relative z-10 bg-gradient-to-r from-brand-green-dark via-primary to-brand-sky py-2.5 text-center text-sm font-semibold text-primary-foreground">
-      <span className="animate-pulse">🔥</span> Limited Stock Available — Cash on Delivery All Over Pakistan 🇵🇰
-    </div>
-  );
-}
-
+/* ---------- Header ---------- */
 function SiteHeader() {
   const { qty } = useCart();
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const on = () => setScrolled(window.scrollY > 8);
+    on();
+    window.addEventListener("scroll", on, { passive: true });
+    return () => window.removeEventListener("scroll", on);
+  }, []);
+
+  const nav = [
+    { to: "/" as const, label: "Home" },
+    { to: "/shop" as const, label: "Shop" },
+    { to: "/contact" as const, label: "Contact" },
+  ];
+
   return (
-    <header className="sticky top-0 z-40 border-b border-border/50 bg-white/85 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
-        <Link to="/" className="flex items-center gap-2">
-          <div className="grid size-9 place-items-center rounded-2xl bg-brand-green text-lg">📘</div>
-          <span className="font-display text-lg font-bold tracking-tight">Little Learners PK</span>
+    <header
+      className={`sticky top-0 z-40 transition-all ${
+        scrolled ? "bg-white/90 shadow-sm backdrop-blur-lg" : "bg-white/70 backdrop-blur"
+      }`}
+    >
+      <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-4 px-4 py-3 md:grid-cols-3">
+        {/* Left: nav (desktop) / burger (mobile) */}
+        <div className="flex items-center gap-1">
+          <button
+            aria-label="Menu"
+            onClick={() => setOpen((o) => !o)}
+            className="grid size-10 place-items-center rounded-full text-foreground hover:bg-muted md:hidden"
+          >
+            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
+          <nav className="hidden items-center gap-1 md:flex">
+            {nav.map((l) => (
+              <Link
+                key={l.to}
+                to={l.to}
+                activeOptions={{ exact: true }}
+                activeProps={{ className: "text-[#0a2647] after:scale-x-100" }}
+                className="relative rounded-full px-4 py-2 text-sm font-semibold text-foreground/70 transition after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-6 after:-translate-x-1/2 after:scale-x-0 after:rounded-full after:bg-[#26c6da] after:transition-transform hover:text-[#0a2647] hover:after:scale-x-100"
+              >
+                {l.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        {/* Center: logo */}
+        <Link to="/" className="flex items-center justify-center wiggle-hover md:justify-self-center">
+          <img src={logo.url} alt="Funtaleem" className="h-11 w-auto sm:h-14" />
         </Link>
-        <nav className="hidden items-center gap-1 md:flex">
-          {[
-            { to: "/" as const, label: "Home" },
-            { to: "/shop" as const, label: "Shop" },
-            { to: "/contact" as const, label: "Contact" },
-          ].map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              activeOptions={{ exact: true }}
-              activeProps={{ className: "bg-brand-green/10 text-brand-green-dark" }}
-              className="rounded-full px-4 py-2 text-sm font-semibold text-foreground/80 transition hover:bg-muted"
-            >
-              {l.label}
-            </Link>
-          ))}
-        </nav>
-        <div className="flex items-center gap-2">
+
+        {/* Right: cart + WA */}
+        <div className="flex items-center justify-end gap-2">
           <Link
             to="/cart"
-            aria-label="View cart"
-            className="relative grid size-10 place-items-center rounded-full bg-muted text-foreground transition hover:bg-brand-green/10"
+            aria-label="Cart"
+            className="relative grid size-10 place-items-center rounded-full bg-muted text-foreground transition hover:scale-105 hover:bg-[#0a2647]/10"
           >
             <ShoppingCart className="size-5" />
             {qty > 0 && (
-              <span className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-cta text-[10px] font-bold text-primary-foreground ring-2 ring-white">
+              <span className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-[#f39c12] text-[10px] font-bold text-white ring-2 ring-white">
                 {qty}
               </span>
             )}
@@ -258,143 +206,152 @@ function SiteHeader() {
             href={waLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-1.5 rounded-full bg-cta px-4 py-2 text-sm font-bold text-primary-foreground shadow-md transition hover:bg-cta-dark sm:inline-flex"
+            className="hidden items-center gap-1.5 rounded-full bg-[#0a2647] px-4 py-2 text-sm font-bold text-white transition hover:scale-[1.03] hover:bg-[#0f3560] sm:inline-flex"
           >
-            <MessageCircle className="size-4" /> Order
+            <MessageCircle className="size-4" /> Chat
           </a>
         </div>
       </div>
-      <nav className="flex items-center justify-center gap-1 border-t border-border/40 px-4 py-2 md:hidden">
-        {[
-          { to: "/" as const, label: "Home" },
-          { to: "/shop" as const, label: "Shop" },
-          { to: "/contact" as const, label: "Contact" },
-        ].map((l) => (
-          <Link
-            key={l.to}
-            to={l.to}
-            activeOptions={{ exact: true }}
-            activeProps={{ className: "bg-brand-green/10 text-brand-green-dark" }}
-            className="rounded-full px-4 py-1.5 text-sm font-semibold text-foreground/80"
-          >
-            {l.label}
-          </Link>
-        ))}
-      </nav>
+
+      {/* Mobile nav drawer */}
+      {open && (
+        <nav className="border-t border-border bg-white px-4 py-3 md:hidden">
+          <div className="flex flex-col gap-1">
+            {nav.map((l) => (
+              <Link
+                key={l.to}
+                to={l.to}
+                onClick={() => setOpen(false)}
+                activeProps={{ className: "bg-[#26c6da]/10 text-[#0a2647]" }}
+                className="rounded-2xl px-4 py-3 text-sm font-semibold text-foreground/80"
+              >
+                {l.label}
+              </Link>
+            ))}
+          </div>
+        </nav>
+      )}
     </header>
   );
 }
 
+/* ---------- Hero ---------- */
 function Hero() {
   return (
-    <section className="relative isolate px-4 pt-10 pb-16 sm:pt-16 sm:pb-24">
-      <div className="blob -top-20 -left-20 size-[420px] bg-brand-sky/45" />
-      <div className="blob top-40 -right-20 size-[420px] bg-primary/35" />
-      <div className="blob bottom-0 left-1/3 size-[300px] bg-brand-green/20" />
+    <section className="relative isolate overflow-hidden bg-gradient-to-b from-[#eaf7fb] via-white to-white px-4 pb-20 pt-10 sm:pt-16">
+      {/* decorative blobs */}
+      <div className="blob -left-24 top-10 size-[420px] bg-[#26c6da]/40" />
+      <div className="blob -right-32 top-32 size-[460px] bg-[#f39c12]/25" />
+      <div className="blob bottom-0 left-1/3 size-[300px] bg-[#0a2647]/10" />
 
-      <Doodle className="top-10 left-1/4 text-4xl float-slow">☁️</Doodle>
-      <Doodle className="top-20 right-1/3 text-3xl float-med">⭐</Doodle>
-      <Doodle className="bottom-32 left-10 text-4xl float-slow">🌈</Doodle>
+      {/* floating emoji */}
+      <div className="pointer-events-none absolute left-[8%] top-24 text-5xl floaty">🎨</div>
+      <div className="pointer-events-none absolute right-[6%] top-40 text-5xl floaty" style={{ animationDelay: "-1.5s" }}>🧩</div>
+      <div className="pointer-events-none absolute left-[15%] bottom-10 text-4xl floaty" style={{ animationDelay: "-3s" }}>⭐</div>
+      <div className="pointer-events-none absolute right-[18%] bottom-24 text-5xl floaty" style={{ animationDelay: "-4.2s" }}>🚀</div>
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-10 md:grid-cols-2">
-        <div className="rise-in">
-          <span className="inline-flex items-center gap-2 rounded-full bg-brand-green/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-green-dark">
-            <Sparkles className="size-4" /> Ages 3+ • Reusable
+        <div className="rise-in text-center md:text-left">
+          <span className="inline-flex items-center gap-2 rounded-full bg-white/90 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647] shadow-sm ring-1 ring-[#26c6da]/40">
+            <Sparkles className="size-4 text-[#f39c12]" /> Premium Learning Toys for Kids
           </span>
-          <h1 className="mt-4 font-display text-5xl sm:text-6xl md:text-7xl font-bold leading-[0.95] tracking-tight">
-            Screen-Free{" "}
-            <span className="text-brand-green">Learning</span>{" "}
-            <span className="block">that Kids{" "}
-              <span className="bg-gradient-to-r from-brand-green-dark via-primary to-brand-sky bg-clip-text text-transparent">Love</span>
+          <h1 className="mt-5 font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl md:text-7xl">
+            Learning through{" "}
+            <span className="relative inline-block">
+              <span className="bg-gradient-to-r from-[#0a2647] via-[#1e88e5] to-[#26c6da] bg-clip-text text-transparent">Play</span>
+              <svg
+                aria-hidden viewBox="0 0 200 12"
+                className="absolute -bottom-2 left-0 h-3 w-full text-[#f39c12]"
+              >
+                <path d="M2 8 Q 50 -2, 100 6 T 198 6" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+              </svg>
             </span>
+            <br />
+            <span className="text-foreground">not through screens.</span>
           </h1>
-          <p className="mt-5 max-w-lg text-lg text-muted-foreground">
-            Help your child learn through fun instead of mobile screens. Reusable pages, magic markers, and endless smiles.
+          <p className="mx-auto mt-5 max-w-lg text-base text-muted-foreground sm:text-lg md:mx-0">
+            Funtaleem crafts joyful, hands-on toys that help Pakistani children discover
+            colors, letters, numbers, and creativity — one delightful moment at a time.
           </p>
 
-          <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-2 text-sm sm:text-base">
-            {["Reusable Pages","Improves Handwriting","Builds Focus","Fun Learning","Safe for Kids"].map((b) => (
-              <li key={b} className="flex items-center gap-2 font-medium">
-                <span className="grid size-5 place-items-center rounded-full bg-brand-green text-white">
-                  <Check className="size-3.5" strokeWidth={3} />
-                </span>
-                {b}
-              </li>
-            ))}
-          </ul>
-
-          <div className="mt-8 flex flex-wrap items-baseline gap-3">
-            <span className="text-3xl font-extrabold text-foreground">{formatPKR(PRODUCT.price)}</span>
-            <span className="text-lg text-muted-foreground line-through">{formatPKR(PRODUCT.compareAt)}</span>
-            <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-bold text-emerald-700">SAVE 40%</span>
-          </div>
-
-          <div className="mt-5 flex flex-wrap items-center gap-3">
-            <AddToCartButton />
-            <WhatsAppButton size="lg" />
-            <button
-              type="button"
-              onClick={() => window.dispatchEvent(new CustomEvent("open-product-video"))}
-              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-4 text-base font-semibold text-foreground shadow-md ring-1 ring-border transition hover:scale-[1.03]"
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 md:justify-start">
+            <Link
+              to="/shop"
+              className="group inline-flex items-center gap-2 rounded-full bg-[#0a2647] px-7 py-4 text-base font-bold text-white shadow-lg shadow-[#0a2647]/25 transition hover:scale-[1.03] hover:bg-[#0f3560] shine-on-hover"
             >
-              <Play className="size-5 text-cta" /> Watch Product
-            </button>
+              Shop Collection
+              <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
+            </Link>
+            <a
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-4 text-base font-semibold text-foreground shadow ring-1 ring-border transition hover:scale-[1.03] hover:ring-[#26c6da]"
+            >
+              <MessageCircle className="size-5 text-[#f39c12]" /> Chat on WhatsApp
+            </a>
           </div>
 
-
-          <div className="mt-6 flex items-center gap-4 text-sm text-muted-foreground">
+          <div className="mt-8 flex items-center justify-center gap-6 text-sm text-muted-foreground md:justify-start">
             <div className="flex -space-x-2">
               {["🧒","👧","👦","👶"].map((e,i) => (
-                <div key={i} className="grid size-9 place-items-center rounded-full bg-white text-xl ring-2 ring-white shadow">{e}</div>
+                <div key={i} className="grid size-9 place-items-center rounded-full bg-white text-xl shadow ring-2 ring-white">{e}</div>
               ))}
             </div>
             <div>
-              <div className="flex items-center gap-1 text-brand-yellow">
+              <div className="flex items-center gap-1 text-[#f39c12]">
                 {[...Array(5)].map((_,i)=><Star key={i} className="size-4 fill-current"/>)}
               </div>
-              <p>Loved by 5,000+ Pakistani parents</p>
+              <p className="mt-1">Loved by 5,000+ Pakistani families</p>
             </div>
           </div>
         </div>
 
-        <div className="relative">
-          <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-brand-sky/35 via-primary/20 to-cta/20 blur-2xl" />
-          <TintedImage
-            src={preschoolImg.url}
-            alt="Child happily using the Reusable Preschool Learning Cards Set"
-            tint="rainbow"
-            aspect="aspect-square"
-            overlayOpacity={0.14}
-            className="relative shadow-2xl"
-          />
-          <Doodle className="-top-6 -left-6 text-5xl float-med">🔤</Doodle>
-          <Doodle className="-bottom-6 -right-6 text-5xl float-slow">🔢</Doodle>
-          <Doodle className="top-10 -right-10 text-4xl spin-slow">✏️</Doodle>
+        {/* Hero image collage */}
+        <div className="relative mx-auto w-full max-w-lg">
+          <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/40 via-[#1e88e5]/20 to-[#f39c12]/25 blur-2xl" />
+          <div className="relative aspect-square overflow-hidden rounded-[2.5rem] bg-white shadow-2xl ring-1 ring-white tilt-hover">
+            <img src={fingerFamily.url} alt="Family enjoying Funtaleem finger painting kit" className="size-full object-cover" />
+          </div>
+          {/* small floating cards */}
+          <div className="absolute -bottom-6 -left-6 flex items-center gap-3 rounded-2xl bg-white p-3 shadow-xl ring-1 ring-border floaty">
+            <div className="grid size-11 place-items-center rounded-xl bg-[#26c6da]/20 text-2xl">🎨</div>
+            <div>
+              <div className="text-xs font-bold text-muted-foreground">Creativity</div>
+              <div className="text-sm font-bold">+12 skills</div>
+            </div>
+          </div>
+          <div className="absolute -top-4 -right-4 flex items-center gap-3 rounded-2xl bg-white p-3 shadow-xl ring-1 ring-border floaty" style={{ animationDelay: "-2s" }}>
+            <div className="grid size-11 place-items-center rounded-xl bg-[#f39c12]/20 text-2xl">🏆</div>
+            <div>
+              <div className="text-xs font-bold text-muted-foreground">Rated</div>
+              <div className="flex items-center gap-0.5 text-[#f39c12]">{[...Array(5)].map((_,i)=><Star key={i} className="size-3 fill-current"/>)}</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function TrustBar() {
+/* ---------- Marquee ---------- */
+function Marquee() {
   const items = [
     { icon: Truck, label: "Cash on Delivery" },
-    { icon: MapPin, label: "All Over Pakistan" },
-    { icon: Star, label: "Parent Approved" },
-    { icon: Smile, label: "Ages 3+" },
-    { icon: RefreshCw, label: "Reusable" },
-    { icon: Package, label: "Premium Quality" },
+    { icon: ShieldCheck, label: "Safe & Non-toxic" },
+    { icon: RefreshCw, label: "Reusable Materials" },
+    { icon: Star, label: "5,000+ Happy Parents" },
+    { icon: Heart, label: "Curated by Educators" },
+    { icon: MapPin, label: "Delivered Pakistan-wide" },
   ];
+  const row = [...items, ...items];
   return (
-    <section className="relative z-10 -mt-2 px-4">
-      <div className="mx-auto max-w-7xl rounded-3xl bg-white p-4 sm:p-6 shadow-xl ring-1 ring-border">
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-          {items.map(({ icon: Icon, label }) => (
-            <div key={label} className="flex flex-col items-center gap-2 text-center">
-              <div className="grid size-12 place-items-center rounded-2xl bg-brand-green/10 text-brand-green">
-                <Icon className="size-6" />
-              </div>
-              <span className="text-xs sm:text-sm font-semibold">{label}</span>
+    <section className="border-y border-border bg-white py-4">
+      <div className="mx-auto max-w-full overflow-hidden">
+        <div className="flex w-max gap-10 marquee">
+          {row.map(({ icon: Icon, label }, i) => (
+            <div key={i} className="flex shrink-0 items-center gap-2 text-sm font-semibold text-foreground/70">
+              <Icon className="size-4 text-[#26c6da]" /> {label}
             </div>
           ))}
         </div>
@@ -403,33 +360,127 @@ function TrustBar() {
   );
 }
 
-function WhyParentsLove() {
-  const cards = [
-    { emoji: "📵", title: "Screen-Free Learning", color: "bg-brand-green/10 text-brand-green" },
-    { emoji: "♻️", title: "Reusable Forever", color: "bg-brand-sky/15 text-brand-sky" },
-    { emoji: "✍️", title: "Develops Writing Skills", color: "bg-brand-coral/15 text-brand-coral" },
-    { emoji: "🎨", title: "Builds Creativity", color: "bg-brand-purple/15 text-brand-purple" },
-    { emoji: "🎯", title: "Boosts Focus", color: "bg-brand-orange/15 text-brand-orange" },
-    { emoji: "😊", title: "Fun Daily Activity", color: "bg-brand-yellow/20 text-brand-orange" },
-    { emoji: "🧼", title: "No Mess", color: "bg-brand-green/10 text-brand-green" },
-    { emoji: "🌱", title: "Eco Friendly", color: "bg-brand-sky/15 text-brand-sky" },
-  ];
+/* ---------- Featured products ---------- */
+function FeaturedProducts() {
   return (
-    <section className="relative px-4 py-20">
-      <div className="blob top-20 -left-32 size-[400px] bg-brand-sky/25" />
+    <section className="relative px-4 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl">
-        <SectionTitle
-          eyebrow="Why parents love it"
-          title="A toy that does the teaching for you"
-          subtitle="Designed by educators, loved by little learners. Every page is built to delight, develop, and reuse."
-        />
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-          {cards.map((c) => (
-            <div key={c.title} className="card-lift group rounded-3xl bg-white p-6 text-center shadow-sm ring-1 ring-border">
-              <div className={`mx-auto grid size-16 place-items-center rounded-2xl ${c.color} text-3xl transition group-hover:scale-110`}>
-                {c.emoji}
+        <div className="mb-12 text-center" data-reveal>
+          <span className="inline-block rounded-full bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
+            Our Toys
+          </span>
+          <h2 className="mt-3 font-display text-4xl font-bold sm:text-5xl">
+            Made to spark <span className="text-[#26c6da]">tiny imaginations</span>
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
+            Every Funtaleem product is designed with love, tested with real kids, and built to be reused for years.
+          </p>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {PRODUCTS.map((p, i) => (
+            <article
+              key={p.name}
+              data-reveal
+              style={{ transitionDelay: `${i * 90}ms` }}
+              className="group relative flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-border tilt-hover"
+            >
+              <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-[#eaf7fb] to-white">
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  loading="lazy"
+                  className="size-full object-cover transition duration-700 group-hover:scale-110"
+                />
+                <span
+                  className={`absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-bold text-white shadow ${
+                    p.badgeTone === "green" ? "bg-[#0a2647]" :
+                    p.badgeTone === "coral" ? "bg-[#f39c12]" : "bg-[#26c6da]"
+                  }`}
+                >
+                  {p.badge}
+                </span>
+                {/* quick-view floating action */}
+                {p.href && (
+                  <Link
+                    to={p.href}
+                    className="absolute bottom-4 right-4 inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-2 text-xs font-bold text-[#0a2647] opacity-0 shadow-lg transition group-hover:opacity-100"
+                  >
+                    Quick view <ArrowRight className="size-3.5" />
+                  </Link>
+                )}
               </div>
-              <h3 className="mt-4 text-base font-bold sm:text-lg">{c.title}</h3>
+              <div className="flex flex-1 flex-col p-5">
+                <h3 className="text-base font-bold leading-snug">{p.name}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{p.tagline}</p>
+                <div className="mt-3 flex items-baseline gap-2">
+                  <span className="text-lg font-extrabold">{formatPKR(p.price)}</span>
+                  <span className="text-sm text-muted-foreground line-through">{formatPKR(p.compare)}</span>
+                </div>
+                <div className="mt-5 flex-1" />
+                {p.href ? (
+                  <Link
+                    to={p.href}
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0a2647] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#0f3560]"
+                  >
+                    Shop Now <ArrowRight className="size-4" />
+                  </Link>
+                ) : (
+                  <a
+                    href={waLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-muted px-5 py-3 text-sm font-bold text-foreground/70 transition hover:bg-[#26c6da]/20"
+                  >
+                    Notify Me
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-10 text-center" data-reveal>
+          <Link to="/shop" className="inline-flex items-center gap-2 text-sm font-bold text-[#0a2647] hover:text-[#1e88e5]">
+            View all products <ArrowRight className="size-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Why Funtaleem ---------- */
+function WhyFuntaleem() {
+  const pillars = [
+    { emoji: "📵", title: "Screen-Free", text: "Every toy is designed for hands-on play — kids stay off phones and tablets." },
+    { emoji: "🧠", title: "Educator-Curated", text: "Activities built with early-childhood educators to grow real cognitive skills." },
+    { emoji: "♻️", title: "Reusable Forever", text: "Wipe-clean, sturdy materials mean one toy plays hundreds of times." },
+    { emoji: "🇵🇰", title: "Made for Pakistan", text: "Fast Cash on Delivery, local support, WhatsApp-friendly ordering." },
+  ];
+  return (
+    <section className="relative bg-[#0a2647] px-4 py-20 text-white sm:py-28">
+      <div className="pointer-events-none absolute inset-0 opacity-30" style={{ background: "radial-gradient(circle at 20% 20%, rgba(38,198,218,0.4), transparent 50%), radial-gradient(circle at 80% 80%, rgba(243,156,18,0.35), transparent 50%)" }} />
+      <div className="relative mx-auto max-w-7xl">
+        <div className="mb-12 text-center" data-reveal>
+          <span className="inline-block rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#26c6da]">
+            Why Funtaleem
+          </span>
+          <h2 className="mt-3 font-display text-4xl font-bold sm:text-5xl">A brand built by parents, for parents</h2>
+        </div>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {pillars.map((p, i) => (
+            <div
+              key={p.title}
+              data-reveal
+              style={{ transitionDelay: `${i * 90}ms` }}
+              className="group rounded-3xl bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur transition hover:-translate-y-1 hover:bg-white/10 hover:ring-[#26c6da]/50"
+            >
+              <div className="grid size-14 place-items-center rounded-2xl bg-[#26c6da]/20 text-3xl transition group-hover:scale-110 group-hover:rotate-6">
+                {p.emoji}
+              </div>
+              <h3 className="mt-4 font-display text-xl font-bold">{p.title}</h3>
+              <p className="mt-2 text-sm text-white/70">{p.text}</p>
             </div>
           ))}
         </div>
@@ -438,385 +489,171 @@ function WhyParentsLove() {
   );
 }
 
-function PerfectSize() {
+/* ---------- Spotlight banner (Finger painting) ---------- */
+function SpotlightBanner() {
   return (
-    <section className="relative px-4 py-20 bg-brand-cream">
-      <div className="mx-auto grid max-w-7xl items-center gap-10 md:grid-cols-2">
-        <div className="order-2 md:order-1">
-          <TintedImage src={perfectSizeImg.url} alt="Perfect size dimensions for little hands" tint="green" aspect="aspect-square" />
+    <section className="relative px-4 py-20 sm:py-28">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#eaf7fb] via-white to-[#fff6e5] shadow-xl ring-1 ring-border md:grid-cols-2" data-reveal>
+          <div className="relative min-h-[320px] overflow-hidden">
+            <img src={fingerPlay.url} alt="Child creating art with the Funtaleem finger painting kit" className="absolute inset-0 size-full object-cover transition duration-700 hover:scale-105" />
+            <span className="absolute left-5 top-5 rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-[#0a2647] shadow">Coming Soon</span>
+          </div>
+          <div className="flex flex-col justify-center p-8 sm:p-12">
+            <span className="inline-block w-fit rounded-full bg-[#f39c12]/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#f39c12]">
+              Spotlight
+            </span>
+            <h2 className="mt-3 font-display text-4xl font-bold sm:text-5xl">Finger Painting Kit</h2>
+            <p className="mt-3 text-lg text-muted-foreground">
+              12 washable colors, 30 pre-printed art cards, and endless family bonding. Mess-free, mind-full creativity for ages 3+.
+            </p>
+            <ul className="mt-5 space-y-2 text-sm">
+              {["Non-toxic washable inks","30 cute themed art cards","Perfect for gifts","Ages 3+"].map((f) => (
+                <li key={f} className="flex items-center gap-2 font-medium">
+                  <span className="grid size-5 place-items-center rounded-full bg-[#26c6da] text-white text-[10px] font-black">✓</span>
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <a href={waLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#f39c12] px-6 py-3.5 font-bold text-white shadow-lg transition hover:scale-[1.03] hover:bg-[#e08e0a] shine-on-hover">
+                <MessageCircle className="size-4" /> Pre-order on WhatsApp
+              </a>
+              <Link to="/shop" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 font-bold text-foreground ring-1 ring-border transition hover:ring-[#0a2647]">
+                Browse all toys
+              </Link>
+            </div>
+          </div>
         </div>
-        <div className="order-1 md:order-2">
-          <span className="inline-block rounded-full bg-brand-sky/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-green-dark">Perfect Fit</span>
-          <h2 className="mt-3 font-display text-4xl sm:text-5xl font-bold">Just the right size for <span className="text-primary">little hands</span></h2>
-          <p className="mt-4 text-muted-foreground text-lg">Light, sturdy and travel-friendly — fits in any school bag, backpack or car seat pocket.</p>
-          <ul className="mt-6 space-y-3">
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Age collections ---------- */
+function AgeCollections() {
+  const cols = [
+    { age: "Ages 2–3", title: "Toddlers", desc: "First words, sensory play, colors", emoji: "🐣", tone: "from-[#eaf7fb] to-white" },
+    { age: "Ages 3–5", title: "Preschool", desc: "Tracing, shapes, early writing", emoji: "🎨", tone: "from-[#fff6e5] to-white" },
+    { age: "Ages 5–7", title: "Early School", desc: "Numbers, reading, problem solving", emoji: "🧠", tone: "from-[#f0eafe] to-white" },
+  ];
+  return (
+    <section className="relative bg-[#eaf7fb]/40 px-4 py-20 sm:py-28">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-12 text-center" data-reveal>
+          <span className="inline-block rounded-full bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647] shadow-sm">
+            Shop by Age
+          </span>
+          <h2 className="mt-3 font-display text-4xl font-bold sm:text-5xl">Perfect toys, at every stage</h2>
+        </div>
+        <div className="grid gap-6 md:grid-cols-3">
+          {cols.map((c, i) => (
+            <Link
+              key={c.title}
+              to="/shop"
+              data-reveal
+              style={{ transitionDelay: `${i * 90}ms` }}
+              className={`group relative overflow-hidden rounded-3xl bg-gradient-to-br ${c.tone} p-8 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-xl`}
+            >
+              <div className="text-6xl transition-transform group-hover:scale-125 group-hover:-rotate-6">{c.emoji}</div>
+              <div className="mt-6 text-xs font-bold uppercase tracking-wider text-[#26c6da]">{c.age}</div>
+              <h3 className="mt-1 font-display text-2xl font-bold">{c.title}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{c.desc}</p>
+              <div className="mt-6 inline-flex items-center gap-1.5 text-sm font-bold text-[#0a2647]">
+                Explore <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Brand story ---------- */
+function BrandStory() {
+  return (
+    <section className="relative px-4 py-20 sm:py-28">
+      <div className="mx-auto grid max-w-7xl items-center gap-12 md:grid-cols-2">
+        <div className="relative" data-reveal>
+          <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/25 via-transparent to-[#f39c12]/25 blur-2xl" />
+          <div className="relative grid grid-cols-2 gap-4">
+            <img src={activitiesImg.url} alt="Activity cards" className="aspect-square w-full rounded-3xl object-cover shadow-lg tilt-hover" />
+            <img src={productFlatImg.url} alt="Product flatlay" className="mt-8 aspect-square w-full rounded-3xl object-cover shadow-lg tilt-hover" />
+            <img src={wipeCleanImg.url} alt="Wipe clean" className="aspect-square w-full rounded-3xl object-cover shadow-lg tilt-hover" />
+            <img src={whatsInsideImg.url} alt="What's inside" className="mt-8 aspect-square w-full rounded-3xl object-cover shadow-lg tilt-hover" />
+          </div>
+        </div>
+        <div data-reveal>
+          <span className="inline-block rounded-full bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
+            Our Story
+          </span>
+          <h2 className="mt-3 font-display text-4xl font-bold sm:text-5xl">
+            We believe every child deserves
+            <span className="block bg-gradient-to-r from-[#0a2647] to-[#26c6da] bg-clip-text text-transparent">joyful learning.</span>
+          </h2>
+          <p className="mt-5 text-muted-foreground">
+            Funtaleem started when two parents in Karachi couldn't find educational toys that felt as premium
+            and thoughtful as international brands — at a price Pakistani families could love. So we built one.
+          </p>
+          <p className="mt-3 text-muted-foreground">
+            Today, thousands of families across Pakistan trust Funtaleem to keep their little learners
+            engaged, curious, and off screens.
+          </p>
+          <div className="mt-8 grid grid-cols-3 gap-4">
             {[
-              { k: "Book", v: "9.1 × 7.0 in (23 × 17.8 cm)" },
-              { k: "Pages", v: "5.1 × 6.7 in dry-erase boards" },
-              { k: "Marker", v: "4.5 in — perfect kid grip" },
-              { k: "Eraser", v: "2.8 in bone-shaped wipe pad" },
+              { n: "5,000+", l: "Happy families" },
+              { n: "3", l: "Products & growing" },
+              { n: "100%", l: "COD nationwide" },
             ].map((s) => (
-              <li key={s.k} className="flex items-center gap-3 rounded-2xl bg-white p-3 ring-1 ring-border">
-                <div className="grid size-9 place-items-center rounded-full bg-brand-sky/20 text-primary"><Check className="size-4" strokeWidth={3}/></div>
-                <div><span className="font-bold">{s.k}: </span><span className="text-muted-foreground">{s.v}</span></div>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-7"><WhatsAppButton /></div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ProductShowcase() {
-  const gallery = [
-    { src: productFlatImg.url, label: "Box & Contents", tint: "sky" as const },
-    { src: whatsInsideImg.url, label: "What's Inside",  tint: "green" as const },
-    { src: activitiesImg.url,  label: "64 Activities",  tint: "yellow" as const },
-    { src: wipeCleanImg.url,   label: "Wipe & Reuse",   tint: "coral" as const },
-    { src: preschoolImg.url,   label: "Child Using It", tint: "purple" as const },
-    { src: earlySkillsImg.url, label: "Early Skills",   tint: "orange" as const },
-  ];
-  return (
-    <section id="showcase" className="relative px-4 py-20">
-      <div className="mx-auto max-w-7xl">
-        <SectionTitle
-          eyebrow="Product showcase"
-          title="See it in your child's hands"
-          subtitle="Premium quality, vibrant colors, and pages that wipe clean — over and over again."
-        />
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {gallery.map((g) => (
-            <div key={g.label} className="card-lift">
-              <TintedImage src={g.src} alt={g.label} tint={g.tint} aspect="aspect-square" />
-              <p className="mt-3 text-center text-sm font-bold text-foreground/80">{g.label}</p>
-            </div>
-          ))}
-        </div>
-        <div className="mt-10 text-center">
-          <WhatsAppButton size="lg" label="Order Now on WhatsApp" />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function WhatsIncluded() {
-  const items = [
-    { name: "64 Reusable Activity Pages", emoji: "📘", color: "bg-brand-green/15" },
-    { name: "3 Dry-Erase Markers", emoji: "🖊️", color: "bg-brand-coral/15" },
-    { name: "3 Binder Rings", emoji: "⭕", color: "bg-brand-sky/15" },
-    { name: "1 Wipe-Clean Eraser", emoji: "🧽", color: "bg-brand-yellow/20" },
-  ];
-  return (
-    <section className="relative px-4 py-20 bg-brand-cream">
-      <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2">
-        <div>
-          <TintedImage src={whatsInsideImg.url} alt="What's inside the set" tint="sky" aspect="aspect-square" />
-        </div>
-        <div>
-          <span className="inline-block rounded-full bg-brand-sky/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-green-dark">What's inside</span>
-          <h2 className="mt-3 font-display text-4xl sm:text-5xl font-bold">Everything in one <span className="text-primary">premium box</span></h2>
-          <p className="mt-4 text-muted-foreground text-lg">Open the box and your child can start learning immediately — no batteries, no setup, no screens.</p>
-          <div className="mt-6 grid grid-cols-2 gap-3">
-            {items.map((i) => (
-              <div key={i.name} className="card-lift rounded-2xl bg-white p-4 text-center shadow-sm ring-1 ring-border">
-                <div className={`mx-auto grid size-14 place-items-center rounded-2xl ${i.color} text-2xl`}>{i.emoji}</div>
-                <h3 className="mt-3 text-sm font-bold">{i.name}</h3>
-              </div>
-            ))}
-          </div>
-          <div className="mt-7"><WhatsAppButton /></div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function LearningCategories() {
-  const cats = [
-    { name: "Alphabet", emoji: "🔤", bg: "bg-brand-coral/15" },
-    { name: "Numbers", emoji: "🔢", bg: "bg-brand-sky/15" },
-    { name: "Shapes", emoji: "🔷", bg: "bg-brand-purple/15" },
-    { name: "Animals", emoji: "🐘", bg: "bg-brand-orange/15" },
-    { name: "Drawing", emoji: "🎨", bg: "bg-brand-yellow/20" },
-    { name: "Line Tracing", emoji: "✏️", bg: "bg-brand-green/15" },
-    { name: "Matching", emoji: "🧩", bg: "bg-brand-coral/15" },
-    { name: "Patterns", emoji: "🌀", bg: "bg-brand-sky/15" },
-  ];
-  return (
-    <section className="relative px-4 py-20">
-      <div className="mx-auto max-w-7xl">
-        <SectionTitle
-          eyebrow="Learning categories"
-          title="64 Fun Learning Activities"
-          subtitle="Letters, numbers, shapes, line tracing, matching, mazes and more — designed for ages 2+."
-        />
-        <div className="grid items-center gap-10 lg:grid-cols-5">
-          <div className="lg:col-span-3">
-            <TintedImage src={activitiesImg.url} alt="64 fun learning activities" tint="yellow" aspect="aspect-square" />
-          </div>
-          <div className="lg:col-span-2 grid grid-cols-2 gap-3">
-            {cats.map((c) => (
-              <div key={c.name} className={`card-lift rounded-2xl ${c.bg} p-5 text-center`}>
-                <div className="text-4xl">{c.emoji}</div>
-                <h3 className="mt-2 font-bold text-sm">{c.name}</h3>
+              <div key={s.l} className="rounded-2xl bg-white p-4 text-center shadow-sm ring-1 ring-border">
+                <div className="font-display text-2xl font-black text-[#0a2647]">{s.n}</div>
+                <div className="mt-1 text-xs text-muted-foreground">{s.l}</div>
               </div>
             ))}
           </div>
         </div>
-        <div className="mt-10 text-center">
-          <WhatsAppButton size="lg" label="Order Now on WhatsApp" />
-        </div>
       </div>
     </section>
   );
 }
 
-function WipeCleanSection() {
-  return (
-    <section className="relative px-4 py-20 bg-gradient-to-b from-brand-sky/15 to-primary/10">
-      <div className="mx-auto max-w-7xl">
-        <SectionTitle
-          eyebrow="Wipe • Clean • Reuse"
-          title="Practice again and again — forever"
-          subtitle="The dry-erase pages let your child write, wipe and reuse infinitely. One book, endless learning."
-        />
-        <TintedImage src={wipeCleanImg.url} alt="Wipe clean and reusable" tint="green" aspect="aspect-[16/10]" />
-        <div className="mt-10 text-center">
-          <WhatsAppButton size="lg" label="Get Yours on WhatsApp" />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ComparisonSection() {
-  const mobile = ["Too much screen time", "Eye strain & headaches", "Addictive habits", "Passive learning"];
-  const magic = ["Hands-on learning", "Better focus & calm", "Boosts creativity", "Real writing skills", "Reusable & eco-friendly", "Family interaction time"];
-  return (
-    <section className="relative px-4 py-20">
-      <div className="mx-auto max-w-6xl">
-        <SectionTitle
-          eyebrow="Better than screens"
-          title="Why this beats a mobile phone"
-          subtitle="A side-by-side look at what your child gets — and what they avoid."
-        />
-        <div className="grid gap-6 md:grid-cols-2">
-          <div className="rounded-3xl bg-gradient-to-br from-destructive/10 to-destructive/5 p-8 ring-1 ring-destructive/20">
-            <div className="mb-4 flex items-center gap-3">
-              <div className="grid size-12 place-items-center rounded-2xl bg-destructive/15 text-destructive text-2xl">📱</div>
-              <h3 className="text-2xl font-bold">Mobile Phone</h3>
-            </div>
-            <ul className="space-y-3">
-              {mobile.map((m) => (
-                <li key={m} className="flex items-start gap-3 text-base">
-                  <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-destructive/15 text-destructive">
-                    <X className="size-4" strokeWidth={3} />
-                  </span>
-                  {m}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="rounded-3xl bg-gradient-to-br from-brand-sky/20 to-primary/15 p-8 ring-2 ring-primary/35 shadow-lg">
-            <div className="mb-4 flex items-center gap-3">
-              <div className="grid size-12 place-items-center rounded-2xl bg-brand-sky/20 text-primary text-2xl">📘</div>
-              <h3 className="text-2xl font-bold">Preschool Learning Cards Set</h3>
-            </div>
-            <ul className="space-y-3">
-              {magic.map((m) => (
-                <li key={m} className="flex items-start gap-3 text-base font-medium">
-                  <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground">
-                    <Check className="size-4" strokeWidth={3} />
-                  </span>
-                  {m}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function EducationalBenefits() {
-  const benefits = [
-    { icon: Hand, label: "Fine Motor Skills", color: "bg-brand-green/15 text-brand-green" },
-    { icon: PencilLine, label: "Pencil Control", color: "bg-brand-coral/15 text-brand-coral" },
-    { icon: Target, label: "Concentration", color: "bg-brand-orange/15 text-brand-orange" },
-    { icon: Brain, label: "Letter & Number Recognition", color: "bg-brand-purple/15 text-brand-purple" },
-    { icon: Lightbulb, label: "Problem Solving", color: "bg-brand-yellow/20 text-brand-orange" },
-    { icon: Palette, label: "Creativity", color: "bg-brand-sky/15 text-brand-sky" },
-    { icon: Trophy, label: "Confidence", color: "bg-brand-green/15 text-brand-green" },
-    { icon: Eye, label: "Hand-Eye Coordination", color: "bg-brand-coral/15 text-brand-coral" },
-  ];
-  return (
-    <section className="relative px-4 py-20 bg-brand-cream">
-      <div className="mx-auto max-w-7xl">
-        <SectionTitle eyebrow="Educational benefits" title="Builds Early Learning Skills" subtitle="A playful way to support preschool development." />
-        <div className="grid items-center gap-10 lg:grid-cols-5">
-          <div className="lg:col-span-2 grid grid-cols-2 gap-3">
-            {benefits.slice(0,4).map(({ icon: Icon, label, color }) => (
-              <div key={label} className="card-lift rounded-2xl bg-white p-4 text-center shadow-sm ring-1 ring-border">
-                <div className={`mx-auto grid size-12 place-items-center rounded-2xl ${color}`}><Icon className="size-6"/></div>
-                <p className="mt-2 text-xs font-bold sm:text-sm">{label}</p>
-              </div>
-            ))}
-          </div>
-          <div className="lg:col-span-3 order-first lg:order-none">
-            <TintedImage src={earlySkillsImg.url} alt="Builds early learning skills" tint="purple" aspect="aspect-square" />
-          </div>
-          <div className="lg:col-span-2 lg:col-start-1 lg:row-start-1 hidden" />
-        </div>
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {benefits.slice(4).map(({ icon: Icon, label, color }) => (
-            <div key={label} className="card-lift rounded-2xl bg-white p-4 text-center shadow-sm ring-1 ring-border">
-              <div className={`mx-auto grid size-12 place-items-center rounded-2xl ${color}`}><Icon className="size-6"/></div>
-              <p className="mt-2 text-xs font-bold sm:text-sm">{label}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function HowItWorks() {
-  const steps = [
-    { n: 1, title: "Write", emoji: "✍️", color: "bg-primary", desc: "Open a page and trace with the magic marker." },
-    { n: 2, title: "Wipe", emoji: "🧽", color: "bg-brand-sky", desc: "Wipe instantly with the included eraser." },
-    { n: 3, title: "Reuse", emoji: "🔁", color: "bg-brand-green-dark", desc: "Practice again — pages last forever." },
-    { n: 4, title: "Repeat", emoji: "🌟", color: "bg-brand-purple", desc: "Build skills every single day." },
-  ];
-  return (
-    <section className="relative px-4 py-20">
-      <div className="mx-auto max-w-7xl">
-        <SectionTitle eyebrow="How it works" title="Write. Wipe. Reuse." subtitle="Learning in 4 simple steps — over and over again." />
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {steps.map((s) => (
-            <div key={s.n} className="card-lift relative rounded-3xl bg-white p-8 text-center shadow-sm ring-1 ring-border">
-              <div className={`absolute -top-5 left-1/2 grid size-12 -translate-x-1/2 place-items-center rounded-full ${s.color} text-xl font-bold text-white shadow-lg`}>
-                {s.n}
-              </div>
-              <div className="pt-4 text-6xl">{s.emoji}</div>
-              <h3 className="mt-4 text-xl font-bold">{s.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CTASection({ title, subtitle }: { title: string; subtitle: string }) {
-  return (
-    <section className="relative px-4 py-12">
-        <div className="mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-brand-green-dark via-primary to-brand-sky p-8 sm:p-14 text-center text-primary-foreground shadow-xl">
-        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(circle at 20% 20%, white 1px, transparent 2px), radial-gradient(circle at 80% 60%, white 1px, transparent 2px)", backgroundSize: "40px 40px" }} />
-        <div className="relative">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">{title}</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-primary-foreground/90">{subtitle}</p>
-          <div className="mt-7">
-            <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn-pulse inline-flex items-center gap-2 rounded-full bg-cta px-8 py-4 text-lg font-bold text-primary-foreground shadow-xl transition hover:scale-105 hover:bg-cta-dark">
-              <MessageCircle className="size-6" /> Order on WhatsApp
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function OrderProcess() {
-  const steps = [
-    { n: 1, title: "Click WhatsApp", desc: "Tap the green button below", emoji: "💬" },
-    { n: 2, title: "Send Your Name", desc: "Tell us who you are", emoji: "📝" },
-    { n: 3, title: "Share Address", desc: "Your delivery details", emoji: "🏠" },
-    { n: 4, title: "Cash on Delivery", desc: "Pay when it arrives", emoji: "💰" },
-  ];
-  return (
-    <section className="relative px-4 py-20 bg-gradient-to-b from-brand-sky/15 to-primary/10">
-      <div className="mx-auto max-w-6xl">
-        <SectionTitle eyebrow="Easy ordering" title="How to Order" subtitle="It only takes 30 seconds. No payment online — pay when you receive." />
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {steps.map((s) => (
-            <div key={s.n} className="card-lift rounded-3xl bg-white p-6 text-center shadow-md ring-1 ring-border">
-              <div className="mx-auto grid size-14 place-items-center rounded-full bg-primary text-xl font-bold text-primary-foreground">{s.n}</div>
-              <div className="mt-3 text-4xl">{s.emoji}</div>
-              <h3 className="mt-3 text-lg font-bold">{s.title}</h3>
-              <p className="mt-1 text-sm text-muted-foreground">{s.desc}</p>
-            </div>
-          ))}
-        </div>
-        <div className="mt-10 text-center">
-          <WhatsAppButton size="lg" label="Start Order on WhatsApp" />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function WhyBuyFromUs() {
-  const items = [
-    { emoji: "🇵🇰", title: "Made for Pakistan" },
-    { emoji: "🚚", title: "Fast Delivery" },
-    { emoji: "💵", title: "Cash on Delivery" },
-    { emoji: "✅", title: "Trusted Seller" },
-    { emoji: "🎁", title: "Premium Packaging" },
-    { emoji: "📞", title: "Quick Support" },
-    { emoji: "🔄", title: "Easy Returns" },
-    { emoji: "❤️", title: "5,000+ Happy Parents" },
-  ];
-  return (
-    <section className="relative px-4 py-20">
-      <div className="mx-auto max-w-7xl">
-        <SectionTitle eyebrow="Why buy from us" title="Trusted by parents across Pakistan" />
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-          {items.map((i) => (
-            <div key={i.title} className="card-lift rounded-3xl bg-white p-6 text-center shadow-sm ring-1 ring-border">
-              <div className="text-4xl">{i.emoji}</div>
-              <p className="mt-3 font-bold text-sm sm:text-base">{i.title}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
+/* ---------- Testimonials ---------- */
 function Testimonials() {
-  const reviews = [
-    { name: "Ayesha K.", city: "Karachi", emoji: "👩", child: "🧒", text: "My son stopped using mobile after getting this. He loves tracing every evening!" },
-    { name: "Sara M.", city: "Lahore", emoji: "👩‍🦰", child: "👧", text: "Excellent quality. Worth every rupee. Delivery was super fast." },
-    { name: "Hina A.", city: "Islamabad", emoji: "🧕", child: "👦", text: "Very useful for handwriting. My daughter's writing improved in just two weeks." },
-    { name: "Bilal R.", city: "Rawalpindi", emoji: "👨", child: "🧒", text: "Highly recommended. The best educational gift I've bought." },
+  const items = [
+    { name: "Ayesha K.", city: "Karachi", text: "My son used to snatch my phone every 10 minutes. Now he asks for his Funtaleem cards. Life-changing!", emoji: "👩🏻" },
+    { name: "Bilal R.", city: "Lahore", text: "Delivered in 2 days, packaging was premium, and my daughter is obsessed. Worth every rupee.", emoji: "👨🏽" },
+    { name: "Sana M.", city: "Islamabad", text: "Finally an educational brand made in Pakistan that feels world-class. Ordering again for my niece.", emoji: "👩🏽" },
   ];
   return (
-    <section className="relative px-4 py-20 bg-brand-cream">
+    <section className="relative bg-white px-4 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl">
-        <SectionTitle eyebrow="Real reviews" title="Thousands of happy parents" />
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {reviews.map((r) => (
-            <div key={r.name} className="card-lift rounded-3xl bg-white p-6 shadow-sm ring-1 ring-border">
-              <div className="flex items-center gap-1 text-brand-yellow">
+        <div className="mb-12 text-center" data-reveal>
+          <div className="flex items-center justify-center gap-1 text-[#f39c12]">
+            {[...Array(5)].map((_,i)=><Star key={i} className="size-5 fill-current"/>)}
+          </div>
+          <h2 className="mt-3 font-display text-4xl font-bold sm:text-5xl">Loved by Pakistani parents</h2>
+        </div>
+        <div className="grid gap-6 md:grid-cols-3">
+          {items.map((t, i) => (
+            <blockquote
+              key={t.name}
+              data-reveal
+              style={{ transitionDelay: `${i * 90}ms` }}
+              className="rounded-3xl bg-gradient-to-br from-[#eaf7fb] to-white p-6 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+            >
+              <div className="flex items-center gap-1 text-[#f39c12]">
                 {[...Array(5)].map((_,i)=><Star key={i} className="size-4 fill-current"/>)}
               </div>
-              <p className="mt-3 text-sm leading-relaxed">"{r.text}"</p>
-              <div className="mt-5 flex items-center gap-3">
-                <div className="relative">
-                  <div className="grid size-12 place-items-center rounded-full bg-brand-green/15 text-2xl">{r.emoji}</div>
-                  <div className="absolute -bottom-1 -right-1 grid size-6 place-items-center rounded-full bg-white text-sm ring-2 ring-white">{r.child}</div>
-                </div>
+              <p className="mt-4 text-base text-foreground/80">"{t.text}"</p>
+              <footer className="mt-5 flex items-center gap-3">
+                <div className="grid size-10 place-items-center rounded-full bg-white text-xl shadow ring-1 ring-border">{t.emoji}</div>
                 <div>
-                  <div className="font-bold text-sm">{r.name}</div>
-                  <div className="text-xs text-muted-foreground">{r.city}, Pakistan</div>
+                  <div className="text-sm font-bold">{t.name}</div>
+                  <div className="text-xs text-muted-foreground">{t.city}</div>
                 </div>
-              </div>
-            </div>
+              </footer>
+            </blockquote>
           ))}
         </div>
       </div>
@@ -824,204 +661,132 @@ function Testimonials() {
   );
 }
 
-function InstagramGallery() {
-  const posts = [
-    { src: preschoolImg.url,   tint: "green"  as const },
-    { src: wipeCleanImg.url,   tint: "coral"  as const },
-    { src: activitiesImg.url,  tint: "yellow" as const },
-    { src: whatsInsideImg.url, tint: "sky"    as const },
-    { src: perfectSizeImg.url, tint: "purple" as const },
-    { src: earlySkillsImg.url, tint: "orange" as const },
-  ];
+/* ---------- Instagram grid ---------- */
+function InstagramGrid() {
+  const shots = [fingerFamily.url, activitiesImg.url, childLearning.url, fingerPlay.url, wipeCleanImg.url, whatsInsideImg.url];
   return (
-    <section className="relative px-4 py-20">
+    <section className="relative px-4 py-20 sm:py-24">
       <div className="mx-auto max-w-7xl">
-        <SectionTitle
-          eyebrow="@magictracing.pk"
-          title="See it on Instagram"
-          subtitle="Real kids. Real moments. Real learning."
-        />
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
-          {posts.map((p, i) => (
-            <a key={i} href="#" className="card-lift block">
-              <TintedImage src={p.src} alt="Instagram post" tint={p.tint} aspect="aspect-square" />
+        <div className="mb-10 text-center" data-reveal>
+          <span className="inline-block rounded-full bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
+            @funtaleem.pk
+          </span>
+          <h2 className="mt-3 font-display text-4xl font-bold sm:text-5xl">Real kids. Real moments.</h2>
+        </div>
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
+          {shots.map((s, i) => (
+            <a
+              key={i}
+              href="#"
+              data-reveal
+              style={{ transitionDelay: `${i * 60}ms` }}
+              className="group relative aspect-square overflow-hidden rounded-2xl bg-muted shadow-sm"
+            >
+              <img src={s} alt="Instagram post" loading="lazy" className="size-full object-cover transition duration-500 group-hover:scale-110" />
+              <div className="absolute inset-0 grid place-items-center bg-[#0a2647]/0 transition group-hover:bg-[#0a2647]/50">
+                <Instagram className="size-8 text-white opacity-0 transition group-hover:opacity-100" />
+              </div>
             </a>
           ))}
         </div>
-        <div className="mt-10 text-center">
-          <a href="#" className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-green-dark via-primary to-brand-sky px-6 py-3.5 font-semibold text-primary-foreground shadow-lg transition hover:scale-105">
-            <Instagram className="size-5" /> Follow us on Instagram
-          </a>
-        </div>
       </div>
     </section>
   );
 }
 
-function FAQ() {
-  const faqs = [
-    { q: "Is it really reusable?", a: "Yes! Wipe pages clean with the included sponge and reuse them forever. The special markers are designed for the wipe-clean surface." },
-    { q: "How many pages does it have?", a: "The set includes 64 reusable activity pages covering alphabets, numbers, shapes, line tracing, matching, mazes and more." },
-    { q: "What age is it for?", a: "Recommended for children aged 2 to 6 years. Perfect for preschool and early learning at home." },
-    { q: "How long does delivery take?", a: "We deliver across Pakistan in 2–4 business days. Major cities often receive within 48 hours." },
-    { q: "Is Cash on Delivery available?", a: "Yes! Pay only when the parcel reaches your doorstep. Available all over Pakistan." },
-    { q: "How do I order?", a: "Click any WhatsApp button on this page, share your name, city and quantity — we'll handle the rest." },
-  ];
-  const [open, setOpen] = useState<number | null>(0);
+/* ---------- Newsletter CTA ---------- */
+function Newsletter() {
   return (
-    <section className="relative px-4 py-20 bg-brand-cream">
-      <div className="mx-auto max-w-3xl">
-        <SectionTitle eyebrow="FAQ" title="Questions, answered" />
-        <div className="space-y-3">
-          {faqs.map((f, i) => (
-            <div key={i} className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-border">
-              <button
-                onClick={() => setOpen(open === i ? null : i)}
-                className="flex w-full items-center justify-between gap-4 p-5 text-left font-semibold"
-              >
-                <span>{f.q}</span>
-                <ChevronDown className={`size-5 shrink-0 text-primary transition ${open === i ? "rotate-180" : ""}`} />
-              </button>
-              <div className={`grid transition-all duration-300 ${open === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
-                <div className="overflow-hidden">
-                  <p className="px-5 pb-5 text-sm text-muted-foreground">{f.a}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function FinalCTA() {
-  return (
-    <section className="relative px-4 py-20">
-      <div className="mx-auto max-w-6xl overflow-hidden rounded-[3rem] bg-gradient-to-br from-brand-green-dark via-primary to-brand-sky p-10 sm:p-16 text-center text-primary-foreground shadow-2xl">
-        <div className="text-5xl">🎁</div>
-        <h2 className="mt-4 font-display text-4xl sm:text-5xl md:text-6xl font-bold">Screen-Free Learning Starts Here</h2>
-        <p className="mx-auto mt-4 max-w-2xl text-lg text-primary-foreground/95">
-          The premium educational gift your child will use every single day. Limited stock — order today.
+    <section className="px-4 py-20">
+      <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#0a2647] via-[#1e88e5] to-[#26c6da] p-10 text-center text-white shadow-2xl sm:p-16 gradient-animate">
+        <div className="pointer-events-none absolute -top-16 -left-16 text-[10rem] opacity-10 floaty">🎁</div>
+        <div className="pointer-events-none absolute -bottom-16 -right-10 text-[9rem] opacity-10 floaty" style={{ animationDelay: "-2s" }}>🎈</div>
+        <h2 className="font-display text-4xl font-bold sm:text-5xl">Get 10% off your first order</h2>
+        <p className="mx-auto mt-3 max-w-xl text-white/90">
+          Join the Funtaleem family. New toy drops, parenting tips, and exclusive discounts — straight to your inbox.
         </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn-pulse inline-flex items-center gap-2 rounded-full bg-cta px-8 py-4 text-lg font-bold text-primary-foreground shadow-xl transition hover:scale-105 hover:bg-cta-dark">
-            <MessageCircle className="size-6" /> Order on WhatsApp
-          </a>
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/20 px-5 py-3 text-sm font-semibold backdrop-blur">
-            <Truck className="size-4" /> Cash on Delivery
-          </div>
-        </div>
+        <form
+          onSubmit={(e) => { e.preventDefault(); alert("Thanks for subscribing!"); }}
+          className="mx-auto mt-8 flex max-w-md flex-col gap-2 sm:flex-row"
+        >
+          <input
+            type="email" required placeholder="your@email.com"
+            className="flex-1 rounded-full bg-white/95 px-5 py-3.5 text-sm font-medium text-foreground outline-none ring-2 ring-transparent focus:ring-[#f39c12]"
+          />
+          <button
+            type="submit"
+            className="rounded-full bg-[#f39c12] px-6 py-3.5 text-sm font-bold text-white shadow-lg transition hover:scale-[1.03] hover:bg-[#e08e0a]"
+          >
+            Subscribe
+          </button>
+        </form>
       </div>
     </section>
   );
 }
 
+/* ---------- Footer ---------- */
 function Footer() {
   return (
-    <footer className="relative bg-foreground text-white">
-      <div className="mx-auto max-w-7xl px-4 py-14">
-        <div className="grid gap-10 md:grid-cols-4">
-          <div>
-            <div className="flex items-center gap-2">
-              <div className="grid size-10 place-items-center rounded-2xl bg-brand-green text-xl">📘</div>
-              <span className="font-display text-xl font-bold">Little Learners PK</span>
-            </div>
-            <p className="mt-4 text-sm text-white/70">Screen-free learning toys for happy Pakistani kids. Made with love. Loved by thousands.</p>
-          </div>
-          <div>
-            <h4 className="font-bold">Quick Links</h4>
-            <ul className="mt-4 space-y-2 text-sm text-white/70">
-              <li><a href="#showcase" className="hover:text-brand-yellow">Product</a></li>
-              <li><a href="#" className="hover:text-brand-yellow">Reviews</a></li>
-              <li><a href="#" className="hover:text-brand-yellow">FAQ</a></li>
-              <li><a href={waLink} className="hover:text-brand-yellow">Order Now</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold">Follow Us</h4>
-            <div className="mt-4 flex gap-3">
-              {[Instagram, Facebook, Music2, MessageCircle].map((I, i) => (
-                <a key={i} href={i === 3 ? waLink : "#"} className="grid size-10 place-items-center rounded-full bg-white/10 transition hover:bg-brand-green">
-                  <I className="size-5" />
-                </a>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h4 className="font-bold">Contact</h4>
-            <ul className="mt-4 space-y-2 text-sm text-white/70">
-              <li className="flex items-center gap-2"><Phone className="size-4 text-brand-green"/> <a href="tel:+923042175897" className="hover:text-foreground">+92 304 2175897</a></li>
-              <li className="flex items-center gap-2"><Mail className="size-4 text-brand-green"/> hello@magictracing.pk</li>
-              <li className="flex items-center gap-2"><MapPin className="size-4 text-brand-green"/> Pakistan 🇵🇰</li>
-            </ul>
+    <footer className="relative bg-[#061a33] px-4 pt-16 pb-8 text-white">
+      <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-4">
+        <div>
+          <img src={logo.url} alt="Funtaleem" className="h-12 w-auto brightness-0 invert" />
+          <p className="mt-4 text-sm text-white/70">
+            Premium screen-free learning toys for Pakistani kids. Made with love. Delivered nationwide.
+          </p>
+        </div>
+        <div>
+          <h4 className="font-bold">Shop</h4>
+          <ul className="mt-4 space-y-2 text-sm text-white/70">
+            <li><Link to="/shop" className="hover:text-[#26c6da]">All Products</Link></li>
+            <li><Link to="/products/preschool-learning-cards" className="hover:text-[#26c6da]">Learning Cards</Link></li>
+            <li><Link to="/shop" className="hover:text-[#26c6da]">Finger Painting Kit</Link></li>
+            <li><Link to="/shop" className="hover:text-[#26c6da]">Busy Book</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="font-bold">Help</h4>
+          <ul className="mt-4 space-y-2 text-sm text-white/70">
+            <li><Link to="/contact" className="hover:text-[#26c6da]">Contact</Link></li>
+            <li><a href={waLink} className="hover:text-[#26c6da]">WhatsApp Us</a></li>
+            <li><Link to="/cart" className="hover:text-[#26c6da]">Cart</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="font-bold">Get in touch</h4>
+          <ul className="mt-4 space-y-2 text-sm text-white/70">
+            <li className="flex items-center gap-2"><Phone className="size-4 text-[#26c6da]"/> <a href="tel:+923042175897" className="hover:text-white">+92 304 2175897</a></li>
+            <li className="flex items-center gap-2"><Mail className="size-4 text-[#26c6da]"/> hello@funtaleem.pk</li>
+            <li className="flex items-center gap-2"><MapPin className="size-4 text-[#26c6da]"/> Karachi, Pakistan</li>
+          </ul>
+          <div className="mt-4 flex gap-2">
+            {[Instagram, Facebook, Music2, MessageCircle].map((I, i) => (
+              <a key={i} href={i === 3 ? waLink : "#"} target={i === 3 ? "_blank" : undefined} rel="noopener noreferrer" className="grid size-10 place-items-center rounded-full bg-white/10 transition hover:scale-110 hover:bg-[#26c6da]">
+                <I className="size-4" />
+              </a>
+            ))}
           </div>
         </div>
-        <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-white/50">
-          © {new Date().getFullYear()} Little Learners PK. All rights reserved.
-        </div>
+      </div>
+      <div className="mx-auto mt-12 max-w-7xl border-t border-white/10 pt-6 text-center text-xs text-white/50">
+        © {new Date().getFullYear()} Funtaleem. Learning through play. Made in Pakistan 🇵🇰
       </div>
     </footer>
   );
 }
 
-function AddToCartButton() {
-  const { qty, add, increment, decrement } = useCart();
-  if (qty === 0) {
-    return (
-      <button
-        type="button"
-        onClick={() => add(1)}
-        className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-4 text-base font-bold text-primary-foreground shadow-lg shadow-primary/30 transition hover:scale-[1.03] hover:bg-primary/90"
-      >
-        <ShoppingCart className="size-5" /> Add to Cart
-      </button>
-    );
-  }
+/* ---------- Floating WhatsApp ---------- */
+function FloatingWhatsApp() {
   return (
-    <div className="inline-flex items-center gap-2 rounded-full bg-white p-1.5 shadow-md ring-1 ring-border">
-      <button onClick={decrement} aria-label="Decrease" className="grid size-10 place-items-center rounded-full bg-muted hover:bg-muted/70"><Minus className="size-4"/></button>
-      <span className="min-w-8 text-center text-base font-bold">{qty}</span>
-      <button onClick={increment} aria-label="Increase" className="grid size-10 place-items-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90"><Plus className="size-4"/></button>
-      <Link to="/cart" className="ml-1 inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-sm font-bold text-background hover:bg-foreground/90">
-        View Cart →
-      </Link>
-    </div>
-  );
-}
-
-function StickyButtons() {
-  const [show, setShow] = useState(false);
-  const { qty } = useCart();
-  useEffect(() => {
-    const onScroll = () => setShow(window.scrollY > 600);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-  return (
-    <>
-      <Link
-        to="/cart" aria-label="View cart"
-        className={`fixed right-5 z-50 grid size-14 place-items-center rounded-full bg-white text-foreground shadow-xl ring-1 ring-border transition hover:scale-110 ${qty > 0 ? "bottom-24 opacity-100" : "pointer-events-none bottom-24 opacity-0"}`}
-      >
-        <ShoppingCart className="size-6" />
-        {qty > 0 && (
-          <span className="absolute -right-1 -top-1 grid size-6 place-items-center rounded-full bg-cta text-xs font-bold text-primary-foreground ring-2 ring-white">{qty}</span>
-        )}
-      </Link>
-      <a
-        href={waLink} target="_blank" rel="noopener noreferrer" aria-label="Order on WhatsApp"
-        className="btn-pulse fixed bottom-5 right-5 z-50 grid size-16 place-items-center rounded-full bg-cta text-primary-foreground shadow-2xl transition hover:scale-110 hover:bg-cta-dark"
-      >
-        <MessageCircle className="size-8" strokeWidth={2.5} />
-      </a>
-      <button
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        aria-label="Back to top"
-        className={`fixed bottom-5 left-5 z-50 grid size-12 place-items-center rounded-full bg-white text-foreground shadow-xl ring-1 ring-border transition hover:scale-110 ${show ? "opacity-100" : "pointer-events-none opacity-0"}`}
-      >
-        <ArrowUp className="size-5" />
-      </button>
-    </>
+    <a
+      href={waLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat on WhatsApp"
+      className="fixed bottom-5 right-5 z-50 grid size-16 place-items-center rounded-full bg-[#25D366] text-white shadow-2xl transition hover:scale-110 btn-pulse"
+    >
+      <MessageCircle className="size-8" strokeWidth={2.5} />
+    </a>
   );
 }
