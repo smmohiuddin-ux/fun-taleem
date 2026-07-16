@@ -51,7 +51,7 @@ const PRODUCTS: ProductCard[] = [
     image: fingerColors.url,
     badge: "New",
     badgeTone: "coral",
-    comingSoon: true,
+    href: "/products/finger-painting-kit",
   },
   {
     name: "Kids Interactive Busy Book",
