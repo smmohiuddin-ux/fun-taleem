@@ -41,7 +41,7 @@ const PRODUCTS: Product[] = [
     price: 1499,
     compareAt: 2499,
     image: busyImg.url,
-    comingSoon: true,
+    href: "/products/interactive-busy-book",
   },
 ];
 
