@@ -310,7 +310,7 @@ function Hero() {
         <div className="relative mx-auto w-full max-w-lg">
           <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/40 via-[#1e88e5]/20 to-[#f39c12]/25 blur-2xl" />
           <div className="relative aspect-square overflow-hidden rounded-[2.5rem] bg-white shadow-2xl ring-1 ring-white tilt-hover">
-            <img src={busyBookHands.url} alt="Interactive busy book made for little hands" className="size-full object-cover" />
+            <img src={busyBookHands.url} alt="Interactive busy book made for little hands" className="size-full object-contain p-4" />
           </div>
           {/* small floating cards */}
           <div className="absolute -bottom-6 -left-6 flex items-center gap-3 rounded-2xl bg-white p-3 shadow-xl ring-1 ring-border floaty">
@@ -389,7 +389,7 @@ function FeaturedProducts() {
                   src={p.image}
                   alt={p.name}
                   loading="lazy"
-                  className="size-full object-cover transition duration-700 group-hover:scale-110"
+                  className="size-full object-contain p-4 transition duration-700 group-hover:scale-105"
                 />
                 <span
                   className={`absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-bold text-white shadow ${
@@ -577,10 +577,10 @@ function BrandStory() {
         <div className="relative" data-reveal>
           <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/25 via-transparent to-[#f39c12]/25 blur-2xl" />
           <div className="relative grid grid-cols-2 gap-4">
-            <img src={activityCards.url} alt="Reusable activity cards" className="aspect-square w-full rounded-3xl object-cover shadow-lg tilt-hover" />
-            <img src={busyBookInteractive.url} alt="Interactive busy book play" className="mt-8 aspect-square w-full rounded-3xl object-cover shadow-lg tilt-hover" />
-            <img src={fingerColors.url} alt="Finger painting kit colors" className="aspect-square w-full rounded-3xl object-cover shadow-lg tilt-hover" />
-            <img src={busyBookHands.url} alt="Busy book made for little hands" className="mt-8 aspect-square w-full rounded-3xl object-cover shadow-lg tilt-hover" />
+            <img src={activityCards.url} alt="Reusable activity cards" className="aspect-square w-full bg-white object-contain p-3 shadow-lg tilt-hover" />
+            <img src={busyBookInteractive.url} alt="Interactive busy book play" className="mt-8 aspect-square w-full bg-white object-contain p-3 shadow-lg tilt-hover" />
+            <img src={fingerColors.url} alt="Finger painting kit colors" className="aspect-square w-full bg-white object-contain p-3 shadow-lg tilt-hover" />
+            <img src={busyBookHands.url} alt="Busy book made for little hands" className="mt-8 aspect-square w-full bg-white object-contain p-3 shadow-lg tilt-hover" />
           </div>
         </div>
         <div data-reveal>
@@ -679,9 +679,9 @@ function InstagramGrid() {
               href="#"
               data-reveal
               style={{ transitionDelay: `${i * 60}ms` }}
-              className="group relative aspect-square overflow-hidden rounded-2xl bg-muted shadow-sm"
+              className="group relative aspect-square overflow-hidden bg-white shadow-sm"
             >
-              <img src={s} alt="Instagram post" loading="lazy" className="size-full object-cover transition duration-500 group-hover:scale-110" />
+              <img src={s} alt="Instagram post" loading="lazy" className="size-full object-contain p-2 transition duration-500 group-hover:scale-105" />
               <div className="absolute inset-0 grid place-items-center bg-[#0a2647]/0 transition group-hover:bg-[#0a2647]/50">
                 <Instagram className="size-8 text-white opacity-0 transition group-hover:opacity-100" />
               </div>
@@ -696,13 +696,13 @@ function InstagramGrid() {
 /* ---------- Newsletter CTA ---------- */
 function Newsletter() {
   return (
-    <section className="px-4 py-20">
-      <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#0a2647] via-[#1e88e5] to-[#26c6da] p-10 text-center text-white shadow-2xl sm:p-16 gradient-animate">
-        <div className="pointer-events-none absolute -top-16 -left-16 text-[10rem] opacity-10 floaty">🎁</div>
-        <div className="pointer-events-none absolute -bottom-16 -right-10 text-[9rem] opacity-10 floaty" style={{ animationDelay: "-2s" }}>🎈</div>
+    <section className="relative overflow-hidden gradient-animate bg-[linear-gradient(120deg,#0a2647,#1e88e5,#26c6da,#0a2647)] py-20 text-center text-white sm:py-28">
+      <div className="pointer-events-none absolute -top-16 left-8 text-[10rem] opacity-10 floaty">🎁</div>
+      <div className="pointer-events-none absolute -bottom-16 right-10 text-[9rem] opacity-10 floaty" style={{ animationDelay: "-2s" }}>🎈</div>
+      <div className="relative mx-auto max-w-3xl px-4">
         <h2 className="font-display text-4xl font-bold sm:text-5xl">Get 10% off your first order</h2>
         <p className="mx-auto mt-3 max-w-xl text-white/90">
-          Join the Funtaleem family. New toy drops, parenting tips, and exclusive discounts - straight to your inbox.
+          Join the Funtaleem family. New toy drops, parenting tips, and exclusive discounts, straight to your inbox.
         </p>
         <form
           onSubmit={(e) => { e.preventDefault(); alert("Thanks for subscribing!"); }}
@@ -727,48 +727,48 @@ function Newsletter() {
 /* ---------- Footer ---------- */
 function Footer() {
   return (
-    <footer className="relative bg-[#061a33] px-4 pt-16 pb-8 text-white">
+    <footer className="relative bg-white px-4 pt-16 pb-8 text-foreground">
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-4">
         <div>
-          <img src={logo.url} alt="Funtaleem" className="h-14 w-auto brightness-0 invert" />
-          <p className="mt-4 text-sm text-white/70">
+          <img src={logo.url} alt="Funtaleem" className="h-16 w-auto" />
+          <p className="mt-4 text-sm text-muted-foreground">
             Premium screen-free learning toys for Pakistani kids. Made with love. Delivered nationwide.
           </p>
         </div>
         <div>
-          <h4 className="font-bold">Shop</h4>
-          <ul className="mt-4 space-y-2 text-sm text-white/70">
-            <li><Link to="/shop" className="hover:text-[#26c6da]">All Products</Link></li>
-            <li><Link to="/products/preschool-learning-cards" className="hover:text-[#26c6da]">Learning Cards</Link></li>
-            <li><Link to="/shop" className="hover:text-[#26c6da]">Finger Painting Kit</Link></li>
-            <li><Link to="/shop" className="hover:text-[#26c6da]">Busy Book</Link></li>
+          <h4 className="font-bold text-[#0a2647]">Shop</h4>
+          <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+            <li><Link to="/shop" className="hover:text-[#1e88e5]">All Products</Link></li>
+            <li><Link to="/products/preschool-learning-cards" className="hover:text-[#1e88e5]">Learning Cards</Link></li>
+            <li><Link to="/shop" className="hover:text-[#1e88e5]">Finger Painting Kit</Link></li>
+            <li><Link to="/shop" className="hover:text-[#1e88e5]">Busy Book</Link></li>
           </ul>
         </div>
         <div>
-          <h4 className="font-bold">Help</h4>
-          <ul className="mt-4 space-y-2 text-sm text-white/70">
-            <li><Link to="/contact" className="hover:text-[#26c6da]">Contact</Link></li>
-            <li><a href={waLink} className="hover:text-[#26c6da]">WhatsApp Us</a></li>
-            <li><Link to="/cart" className="hover:text-[#26c6da]">Cart</Link></li>
+          <h4 className="font-bold text-[#0a2647]">Help</h4>
+          <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+            <li><Link to="/contact" className="hover:text-[#1e88e5]">Contact</Link></li>
+            <li><a href={waLink} className="hover:text-[#1e88e5]">WhatsApp Us</a></li>
+            <li><Link to="/cart" className="hover:text-[#1e88e5]">Cart</Link></li>
           </ul>
         </div>
         <div>
-          <h4 className="font-bold">Get in touch</h4>
-          <ul className="mt-4 space-y-2 text-sm text-white/70">
-            <li className="flex items-center gap-2"><Phone className="size-4 text-[#26c6da]"/> <a href="tel:+923042175897" className="hover:text-white">+92 304 2175897</a></li>
-            <li className="flex items-center gap-2"><Mail className="size-4 text-[#26c6da]"/> hello@funtaleem.pk</li>
-            <li className="flex items-center gap-2"><MapPin className="size-4 text-[#26c6da]"/> Karachi, Pakistan</li>
+          <h4 className="font-bold text-[#0a2647]">Get in touch</h4>
+          <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+            <li className="flex items-center gap-2"><Phone className="size-4 text-[#1e88e5]"/> <a href="tel:+923042175897" className="hover:text-[#0a2647]">+92 304 2175897</a></li>
+            <li className="flex items-center gap-2"><Mail className="size-4 text-[#1e88e5]"/> hello@funtaleem.pk</li>
+            <li className="flex items-center gap-2"><MapPin className="size-4 text-[#1e88e5]"/> Karachi, Pakistan</li>
           </ul>
           <div className="mt-4 flex gap-2">
             {[Instagram, Facebook, Music2, MessageCircle].map((I, i) => (
-              <a key={i} href={i === 3 ? waLink : "#"} target={i === 3 ? "_blank" : undefined} rel="noopener noreferrer" className="grid size-10 place-items-center rounded-full bg-white/10 transition hover:scale-110 hover:bg-[#26c6da]">
+              <a key={i} href={i === 3 ? waLink : "#"} target={i === 3 ? "_blank" : undefined} rel="noopener noreferrer" className="grid size-10 place-items-center rounded-full bg-[#eaf7fb] text-[#0a2647] transition hover:scale-110 hover:bg-[#26c6da] hover:text-white">
                 <I className="size-4" />
               </a>
             ))}
           </div>
         </div>
       </div>
-      <div className="mx-auto mt-12 max-w-7xl border-t border-white/10 pt-6 text-center text-xs text-white/50">
+      <div className="mx-auto mt-12 max-w-7xl border-t border-border pt-6 text-center text-xs text-muted-foreground">
         © {new Date().getFullYear()} Funtaleem. Learning through play. Made in Pakistan 🇵🇰
       </div>
     </footer>
