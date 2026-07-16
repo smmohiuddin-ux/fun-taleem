@@ -8,14 +8,13 @@ import {
 import { useCart } from "@/lib/cart";
 import { formatPKR } from "@/lib/product";
 import logo from "@/assets/funtaleem-logo.png.asset.json";
-import preschoolImg from "@/assets/preschool.jpeg.asset.json";
 import childLearning from "@/assets/child-learning.png.asset.json";
-import activitiesImg from "@/assets/activities.jpeg.asset.json";
-import productFlatImg from "@/assets/product-flat.jpeg.asset.json";
-import whatsInsideImg from "@/assets/whats-inside.jpeg.asset.json";
-import wipeCleanImg from "@/assets/wipe-clean.jpeg.asset.json";
 import fingerFamily from "@/assets/finger-painting-family.png.asset.json";
-import fingerPlay from "@/assets/finger-painting-play.png.asset.json";
+import fingerColors from "@/assets/finger-painting-colors.jpg.asset.json";
+import activityCards from "@/assets/activity-cards.jpg.asset.json";
+import busyBookHands from "@/assets/busy-book-hands.jpg.asset.json";
+import busyBookInteractive from "@/assets/busy-book-interactive.jpg.asset.json";
+import busyBookCollection from "@/assets/busy-book-collection.jpg.asset.json";
 
 const WHATSAPP_NUMBER = "923042175897";
 const waMsg = encodeURIComponent("Hi Funtaleem! I'd like to know more about your learning toys.");
@@ -39,7 +38,7 @@ const PRODUCTS: ProductCard[] = [
     tagline: "64 wipe-clean activities • Ages 3+",
     price: 1499,
     compare: 2499,
-    image: preschoolImg.url,
+    image: activityCards.url,
     badge: "Bestseller",
     badgeTone: "green",
     href: "/products/preschool-learning-cards",
@@ -49,7 +48,7 @@ const PRODUCTS: ProductCard[] = [
     tagline: "12 colors • 30 art cards • Ages 3+",
     price: 1499,
     compare: 2499,
-    image: fingerPlay.url,
+    image: fingerColors.url,
     badge: "New",
     badgeTone: "coral",
     comingSoon: true,
@@ -59,7 +58,7 @@ const PRODUCTS: ProductCard[] = [
     tagline: "Hands-on montessori activities",
     price: 1499,
     compare: 2499,
-    image: childLearning.url,
+    image: busyBookCollection.url,
     badge: "Coming Soon",
     badgeTone: "purple",
     comingSoon: true,
@@ -185,7 +184,7 @@ function SiteHeader() {
 
         {/* Center: logo */}
         <Link to="/" className="flex items-center justify-center wiggle-hover md:justify-self-center">
-          <img src={logo.url} alt="Funtaleem" className="h-11 w-auto sm:h-14" />
+          <img src={logo.url} alt="Funtaleem" className="h-14 w-auto sm:h-[4.25rem]" />
         </Link>
 
         {/* Right: cart + WA */}
@@ -311,7 +310,7 @@ function Hero() {
         <div className="relative mx-auto w-full max-w-lg">
           <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/40 via-[#1e88e5]/20 to-[#f39c12]/25 blur-2xl" />
           <div className="relative aspect-square overflow-hidden rounded-[2.5rem] bg-white shadow-2xl ring-1 ring-white tilt-hover">
-            <img src={fingerFamily.url} alt="Family enjoying Funtaleem finger painting kit" className="size-full object-cover" />
+            <img src={busyBookHands.url} alt="Interactive busy book made for little hands" className="size-full object-cover" />
           </div>
           {/* small floating cards */}
           <div className="absolute -bottom-6 -left-6 flex items-center gap-3 rounded-2xl bg-white p-3 shadow-xl ring-1 ring-border floaty">
@@ -496,7 +495,7 @@ function SpotlightBanner() {
       <div className="mx-auto max-w-7xl">
         <div className="grid overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#eaf7fb] via-white to-[#fff6e5] shadow-xl ring-1 ring-border md:grid-cols-2" data-reveal>
           <div className="relative min-h-[320px] overflow-hidden">
-            <img src={fingerPlay.url} alt="Child creating art with the Funtaleem finger painting kit" className="absolute inset-0 size-full object-cover transition duration-700 hover:scale-105" />
+            <img src={fingerColors.url} alt="Finger painting kit with 12 colors and stamp cards" className="absolute inset-0 size-full object-cover transition duration-700 hover:scale-105" />
             <span className="absolute left-5 top-5 rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-[#0a2647] shadow">Coming Soon</span>
           </div>
           <div className="flex flex-col justify-center p-8 sm:p-12">
@@ -578,10 +577,10 @@ function BrandStory() {
         <div className="relative" data-reveal>
           <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/25 via-transparent to-[#f39c12]/25 blur-2xl" />
           <div className="relative grid grid-cols-2 gap-4">
-            <img src={activitiesImg.url} alt="Activity cards" className="aspect-square w-full rounded-3xl object-cover shadow-lg tilt-hover" />
-            <img src={productFlatImg.url} alt="Product flatlay" className="mt-8 aspect-square w-full rounded-3xl object-cover shadow-lg tilt-hover" />
-            <img src={wipeCleanImg.url} alt="Wipe clean" className="aspect-square w-full rounded-3xl object-cover shadow-lg tilt-hover" />
-            <img src={whatsInsideImg.url} alt="What's inside" className="mt-8 aspect-square w-full rounded-3xl object-cover shadow-lg tilt-hover" />
+            <img src={activityCards.url} alt="Reusable activity cards" className="aspect-square w-full rounded-3xl object-cover shadow-lg tilt-hover" />
+            <img src={busyBookInteractive.url} alt="Interactive busy book play" className="mt-8 aspect-square w-full rounded-3xl object-cover shadow-lg tilt-hover" />
+            <img src={fingerColors.url} alt="Finger painting kit colors" className="aspect-square w-full rounded-3xl object-cover shadow-lg tilt-hover" />
+            <img src={busyBookHands.url} alt="Busy book made for little hands" className="mt-8 aspect-square w-full rounded-3xl object-cover shadow-lg tilt-hover" />
           </div>
         </div>
         <div data-reveal>
@@ -663,7 +662,7 @@ function Testimonials() {
 
 /* ---------- Instagram grid ---------- */
 function InstagramGrid() {
-  const shots = [fingerFamily.url, activitiesImg.url, childLearning.url, fingerPlay.url, wipeCleanImg.url, whatsInsideImg.url];
+  const shots = [busyBookCollection.url, activityCards.url, fingerColors.url, busyBookInteractive.url, childLearning.url, fingerFamily.url];
   return (
     <section className="relative px-4 py-20 sm:py-24">
       <div className="mx-auto max-w-7xl">
@@ -731,7 +730,7 @@ function Footer() {
     <footer className="relative bg-[#061a33] px-4 pt-16 pb-8 text-white">
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-4">
         <div>
-          <img src={logo.url} alt="Funtaleem" className="h-12 w-auto brightness-0 invert" />
+          <img src={logo.url} alt="Funtaleem" className="h-14 w-auto brightness-0 invert" />
           <p className="mt-4 text-sm text-white/70">
             Premium screen-free learning toys for Pakistani kids. Made with love. Delivered nationwide.
           </p>
