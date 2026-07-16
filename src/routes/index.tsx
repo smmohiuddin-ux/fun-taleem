@@ -631,8 +631,8 @@ function Footer() {
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
             <li><Link to="/" hash="products" className="hover:text-[#1e88e5]">All Products</Link></li>
             <li><Link to="/products/preschool-learning-cards" className="hover:text-[#1e88e5]">Learning Cards</Link></li>
-            <li><Link to="/" hash="products" className="hover:text-[#1e88e5]">Finger Painting Kit</Link></li>
-            <li><Link to="/" hash="products" className="hover:text-[#1e88e5]">Busy Book</Link></li>
+            <li><Link to="/products/finger-painting-kit" className="hover:text-[#1e88e5]">Finger Painting Kit</Link></li>
+            <li><Link to="/products/interactive-busy-book" className="hover:text-[#1e88e5]">Busy Book</Link></li>
           </ul>
         </div>
         <div>
