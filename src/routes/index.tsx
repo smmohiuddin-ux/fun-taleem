@@ -59,9 +59,9 @@ const PRODUCTS: ProductCard[] = [
     price: 1499,
     compare: 2499,
     image: busyBookCollection.url,
-    badge: "Coming Soon",
+    badge: "New",
     badgeTone: "purple",
-    comingSoon: true,
+    href: "/products/interactive-busy-book",
   },
 ];
 
