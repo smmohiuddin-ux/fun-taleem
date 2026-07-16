@@ -28,7 +28,7 @@ type ProductCard = {
   image: string;
   badge: string;
   badgeTone: "green" | "coral" | "purple";
-  href?: "/products/preschool-learning-cards" | "/products/finger-painting-kit";
+  href?: "/products/preschool-learning-cards" | "/products/finger-painting-kit" | "/products/interactive-busy-book";
   comingSoon?: boolean;
 };
 
