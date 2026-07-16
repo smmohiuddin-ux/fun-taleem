@@ -166,7 +166,7 @@ function Hero() {
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3 md:justify-start">
             <Link
-              to="/shop"
+              to="/" hash="products"
               className="group inline-flex items-center gap-2 rounded-full bg-[#0a2647] px-7 py-4 text-base font-bold text-white shadow-lg shadow-[#0a2647]/25 transition hover:scale-[1.03] hover:bg-[#0f3560] shine-on-hover"
             >
               Shop Collection
@@ -331,7 +331,7 @@ function FeaturedProducts() {
         </div>
 
         <div className="mt-10 text-center" data-reveal>
-          <Link to="/shop" className="inline-flex items-center gap-2 text-sm font-bold text-[#0a2647] hover:text-[#1e88e5]">
+          <Link to="/" hash="products" className="inline-flex items-center gap-2 text-sm font-bold text-[#0a2647] hover:text-[#1e88e5]">
             View all products <ArrowRight className="size-4" />
           </Link>
         </div>
@@ -409,7 +409,7 @@ function SpotlightBanner() {
               <a href={waLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#f39c12] px-6 py-3.5 font-bold text-white shadow-lg transition hover:scale-[1.03] hover:bg-[#e08e0a] shine-on-hover">
                 <MessageCircle className="size-4" /> Pre-order on WhatsApp
               </a>
-              <Link to="/shop" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 font-bold text-foreground ring-1 ring-border transition hover:ring-[#0a2647]">
+              <Link to="/" hash="products" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 font-bold text-foreground ring-1 ring-border transition hover:ring-[#0a2647]">
                 Browse all toys
               </Link>
             </div>
@@ -440,7 +440,7 @@ function AgeCollections() {
           {cols.map((c, i) => (
             <Link
               key={c.title}
-              to="/shop"
+              to="/" hash="products"
               data-reveal
               style={{ transitionDelay: `${i * 90}ms` }}
               className={`group relative overflow-hidden rounded-3xl bg-gradient-to-br ${c.tone} p-8 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-xl`}
@@ -629,10 +629,10 @@ function Footer() {
         <div>
           <h4 className="font-bold text-[#0a2647]">Shop</h4>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li><Link to="/shop" className="hover:text-[#1e88e5]">All Products</Link></li>
+            <li><Link to="/" hash="products" className="hover:text-[#1e88e5]">All Products</Link></li>
             <li><Link to="/products/preschool-learning-cards" className="hover:text-[#1e88e5]">Learning Cards</Link></li>
-            <li><Link to="/shop" className="hover:text-[#1e88e5]">Finger Painting Kit</Link></li>
-            <li><Link to="/shop" className="hover:text-[#1e88e5]">Busy Book</Link></li>
+            <li><Link to="/" hash="products" className="hover:text-[#1e88e5]">Finger Painting Kit</Link></li>
+            <li><Link to="/" hash="products" className="hover:text-[#1e88e5]">Busy Book</Link></li>
           </ul>
         </div>
         <div>

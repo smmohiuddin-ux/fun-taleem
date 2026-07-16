@@ -27,7 +27,7 @@ function CartPage() {
 
       <div className="mx-auto max-w-6xl px-4 pt-8">
         <div className="mb-6 flex items-center justify-between">
-          <Link to="/shop" className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-[#1e88e5]">
+          <Link to="/" hash="products" className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-[#1e88e5]">
             <ArrowLeft className="size-4" /> Continue shopping
           </Link>
           <h1 className="font-display text-2xl font-bold text-[#0a2647]">Your Cart</h1>
@@ -130,7 +130,7 @@ function EmptyCart() {
       </div>
       <h2 className="mt-5 font-display text-xl font-bold text-[#0a2647]">Your cart is empty</h2>
       <p className="mt-2 text-sm text-muted-foreground">Browse our interactive learning toys to get started.</p>
-      <Link to="/shop" className="mt-6 inline-flex items-center justify-center rounded-full bg-[#1e88e5] px-6 py-3 text-sm font-semibold text-white hover:bg-[#0a2647]">
+      <Link to="/" hash="products" className="mt-6 inline-flex items-center justify-center rounded-full bg-[#1e88e5] px-6 py-3 text-sm font-semibold text-white hover:bg-[#0a2647]">
         Browse Products
       </Link>
     </div>

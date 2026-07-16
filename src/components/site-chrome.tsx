@@ -278,10 +278,10 @@ export function SiteFooter() {
         <div>
           <h4 className="font-bold text-[#0a2647]">Shop</h4>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li><Link to="/shop" className="hover:text-[#1e88e5]">All Products</Link></li>
+            <li><Link to="/" hash="products" className="hover:text-[#1e88e5]">All Products</Link></li>
             <li><Link to="/products/preschool-learning-cards" className="hover:text-[#1e88e5]">Learning Cards</Link></li>
-            <li><Link to="/shop" className="hover:text-[#1e88e5]">Finger Painting Kit</Link></li>
-            <li><Link to="/shop" className="hover:text-[#1e88e5]">Busy Book</Link></li>
+            <li><Link to="/" hash="products" className="hover:text-[#1e88e5]">Finger Painting Kit</Link></li>
+            <li><Link to="/" hash="products" className="hover:text-[#1e88e5]">Busy Book</Link></li>
           </ul>
         </div>
         <div>
