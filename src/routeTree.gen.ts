@@ -9,7 +9,6 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ShopRouteImport } from './routes/shop'
 import { Route as OrderSuccessRouteImport } from './routes/order-success'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CheckoutRouteImport } from './routes/checkout'
@@ -19,11 +18,6 @@ import { Route as ProductsPreschoolLearningCardsRouteImport } from './routes/pro
 import { Route as ProductsInteractiveBusyBookRouteImport } from './routes/products.interactive-busy-book'
 import { Route as ProductsFingerPaintingKitRouteImport } from './routes/products.finger-painting-kit'
 
-const ShopRoute = ShopRouteImport.update({
-  id: '/shop',
-  path: '/shop',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const OrderSuccessRoute = OrderSuccessRouteImport.update({
   id: '/order-success',
   path: '/order-success',
@@ -74,7 +68,6 @@ export interface FileRoutesByFullPath {
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/order-success': typeof OrderSuccessRoute
-  '/shop': typeof ShopRoute
   '/products/finger-painting-kit': typeof ProductsFingerPaintingKitRoute
   '/products/interactive-busy-book': typeof ProductsInteractiveBusyBookRoute
   '/products/preschool-learning-cards': typeof ProductsPreschoolLearningCardsRoute
@@ -85,7 +78,6 @@ export interface FileRoutesByTo {
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/order-success': typeof OrderSuccessRoute
-  '/shop': typeof ShopRoute
   '/products/finger-painting-kit': typeof ProductsFingerPaintingKitRoute
   '/products/interactive-busy-book': typeof ProductsInteractiveBusyBookRoute
   '/products/preschool-learning-cards': typeof ProductsPreschoolLearningCardsRoute
@@ -97,7 +89,6 @@ export interface FileRoutesById {
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/order-success': typeof OrderSuccessRoute
-  '/shop': typeof ShopRoute
   '/products/finger-painting-kit': typeof ProductsFingerPaintingKitRoute
   '/products/interactive-busy-book': typeof ProductsInteractiveBusyBookRoute
   '/products/preschool-learning-cards': typeof ProductsPreschoolLearningCardsRoute
@@ -110,7 +101,6 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/contact'
     | '/order-success'
-    | '/shop'
     | '/products/finger-painting-kit'
     | '/products/interactive-busy-book'
     | '/products/preschool-learning-cards'
@@ -121,7 +111,6 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/contact'
     | '/order-success'
-    | '/shop'
     | '/products/finger-painting-kit'
     | '/products/interactive-busy-book'
     | '/products/preschool-learning-cards'
@@ -132,7 +121,6 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/contact'
     | '/order-success'
-    | '/shop'
     | '/products/finger-painting-kit'
     | '/products/interactive-busy-book'
     | '/products/preschool-learning-cards'
@@ -144,7 +132,6 @@ export interface RootRouteChildren {
   CheckoutRoute: typeof CheckoutRoute
   ContactRoute: typeof ContactRoute
   OrderSuccessRoute: typeof OrderSuccessRoute
-  ShopRoute: typeof ShopRoute
   ProductsFingerPaintingKitRoute: typeof ProductsFingerPaintingKitRoute
   ProductsInteractiveBusyBookRoute: typeof ProductsInteractiveBusyBookRoute
   ProductsPreschoolLearningCardsRoute: typeof ProductsPreschoolLearningCardsRoute
@@ -152,13 +139,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/shop': {
-      id: '/shop'
-      path: '/shop'
-      fullPath: '/shop'
-      preLoaderRoute: typeof ShopRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/order-success': {
       id: '/order-success'
       path: '/order-success'
@@ -224,7 +204,6 @@ const rootRouteChildren: RootRouteChildren = {
   CheckoutRoute: CheckoutRoute,
   ContactRoute: ContactRoute,
   OrderSuccessRoute: OrderSuccessRoute,
-  ShopRoute: ShopRoute,
   ProductsFingerPaintingKitRoute: ProductsFingerPaintingKitRoute,
   ProductsInteractiveBusyBookRoute: ProductsInteractiveBusyBookRoute,
   ProductsPreschoolLearningCardsRoute: ProductsPreschoolLearningCardsRoute,

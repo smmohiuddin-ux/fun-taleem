@@ -1,12 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import {
-  ArrowRight, MessageCircle, ShoppingCart, Star, Sparkles, Truck,
+  ArrowRight, MessageCircle, Star, Sparkles, Truck,
   ShieldCheck, RefreshCw, Instagram, Facebook, Music2, Phone, Mail,
-  MapPin, Heart, Menu, X,
+  MapPin, Heart,
 } from "lucide-react";
-import { useCart } from "@/lib/cart";
 import { formatPKR } from "@/lib/product";
+import { AnnouncementBar, SiteHeader } from "@/components/site-chrome";
 import logo from "@/assets/funtaleem-logo.png.asset.json";
 import childLearning from "@/assets/child-learning.png.asset.json";
 import fingerFamily from "@/assets/finger-painting-family.png.asset.json";
@@ -123,116 +123,7 @@ function useReveal() {
   }, []);
 }
 
-/* ---------- Announcement ---------- */
-function AnnouncementBar() {
-  return (
-    <div className="relative z-20 gradient-animate bg-[linear-gradient(90deg,#0a2647,#1e88e5,#26c6da,#0a2647)] py-2 text-center text-xs font-semibold text-white sm:text-sm">
-      <span className="mr-2 inline-block animate-pulse">✨</span>
-      Free shipping over PKR 3,000 • Cash on Delivery All Over Pakistan 🇵🇰
-    </div>
-  );
-}
-
-/* ---------- Header ---------- */
-function SiteHeader() {
-  const { qty } = useCart();
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const on = () => setScrolled(window.scrollY > 8);
-    on();
-    window.addEventListener("scroll", on, { passive: true });
-    return () => window.removeEventListener("scroll", on);
-  }, []);
-
-  const nav = [
-    { to: "/" as const, label: "Home" },
-    { to: "/shop" as const, label: "Shop" },
-    { to: "/contact" as const, label: "Contact" },
-  ];
-
-  return (
-    <header
-      className={`sticky top-0 z-40 transition-all ${
-        scrolled ? "bg-white/90 shadow-sm backdrop-blur-lg" : "bg-white/70 backdrop-blur"
-      }`}
-    >
-      <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-4 px-4 py-3 md:grid-cols-3">
-        {/* Left: nav (desktop) / burger (mobile) */}
-        <div className="flex items-center gap-1">
-          <button
-            aria-label="Menu"
-            onClick={() => setOpen((o) => !o)}
-            className="grid size-10 place-items-center rounded-full text-foreground hover:bg-muted md:hidden"
-          >
-            {open ? <X className="size-5" /> : <Menu className="size-5" />}
-          </button>
-          <nav className="hidden items-center gap-1 md:flex">
-            {nav.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                activeOptions={{ exact: true }}
-                activeProps={{ className: "text-[#0a2647] after:scale-x-100" }}
-                className="relative rounded-full px-4 py-2 text-sm font-semibold text-foreground/70 transition after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-6 after:-translate-x-1/2 after:scale-x-0 after:rounded-full after:bg-[#26c6da] after:transition-transform hover:text-[#0a2647] hover:after:scale-x-100"
-              >
-                {l.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-
-        {/* Center: logo */}
-        <Link to="/" className="flex items-center justify-center wiggle-hover md:justify-self-center">
-          <img src={logo.url} alt="Funtaleem" className="h-14 w-auto sm:h-[4.25rem]" />
-        </Link>
-
-        {/* Right: cart + WA */}
-        <div className="flex items-center justify-end gap-2">
-          <Link
-            to="/cart"
-            aria-label="Cart"
-            className="relative grid size-10 place-items-center rounded-full bg-muted text-foreground transition hover:scale-105 hover:bg-[#0a2647]/10"
-          >
-            <ShoppingCart className="size-5" />
-            {qty > 0 && (
-              <span className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-[#f39c12] text-[10px] font-bold text-white ring-2 ring-white">
-                {qty}
-              </span>
-            )}
-          </Link>
-          <a
-            href={waLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden items-center gap-1.5 rounded-full bg-[#0a2647] px-4 py-2 text-sm font-bold text-white transition hover:scale-[1.03] hover:bg-[#0f3560] sm:inline-flex"
-          >
-            <MessageCircle className="size-4" /> Chat
-          </a>
-        </div>
-      </div>
-
-      {/* Mobile nav drawer */}
-      {open && (
-        <nav className="border-t border-border bg-white px-4 py-3 md:hidden">
-          <div className="flex flex-col gap-1">
-            {nav.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                onClick={() => setOpen(false)}
-                activeProps={{ className: "bg-[#26c6da]/10 text-[#0a2647]" }}
-                className="rounded-2xl px-4 py-3 text-sm font-semibold text-foreground/80"
-              >
-                {l.label}
-              </Link>
-            ))}
-          </div>
-        </nav>
-      )}
-    </header>
-  );
-}
+/* Header + announcement bar are imported from site-chrome */
 
 /* ---------- Hero ---------- */
 function Hero() {
@@ -275,7 +166,7 @@ function Hero() {
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3 md:justify-start">
             <Link
-              to="/shop"
+              to="/" hash="products"
               className="group inline-flex items-center gap-2 rounded-full bg-[#0a2647] px-7 py-4 text-base font-bold text-white shadow-lg shadow-[#0a2647]/25 transition hover:scale-[1.03] hover:bg-[#0f3560] shine-on-hover"
             >
               Shop Collection
@@ -362,7 +253,7 @@ function Marquee() {
 /* ---------- Featured products ---------- */
 function FeaturedProducts() {
   return (
-    <section className="relative px-4 py-20 sm:py-28">
+    <section id="products" className="relative scroll-mt-24 px-4 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 text-center" data-reveal>
           <span className="inline-block rounded-full bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
@@ -440,7 +331,7 @@ function FeaturedProducts() {
         </div>
 
         <div className="mt-10 text-center" data-reveal>
-          <Link to="/shop" className="inline-flex items-center gap-2 text-sm font-bold text-[#0a2647] hover:text-[#1e88e5]">
+          <Link to="/" hash="products" className="inline-flex items-center gap-2 text-sm font-bold text-[#0a2647] hover:text-[#1e88e5]">
             View all products <ArrowRight className="size-4" />
           </Link>
         </div>
@@ -518,7 +409,7 @@ function SpotlightBanner() {
               <a href={waLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#f39c12] px-6 py-3.5 font-bold text-white shadow-lg transition hover:scale-[1.03] hover:bg-[#e08e0a] shine-on-hover">
                 <MessageCircle className="size-4" /> Pre-order on WhatsApp
               </a>
-              <Link to="/shop" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 font-bold text-foreground ring-1 ring-border transition hover:ring-[#0a2647]">
+              <Link to="/" hash="products" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 font-bold text-foreground ring-1 ring-border transition hover:ring-[#0a2647]">
                 Browse all toys
               </Link>
             </div>
@@ -549,7 +440,7 @@ function AgeCollections() {
           {cols.map((c, i) => (
             <Link
               key={c.title}
-              to="/shop"
+              to="/" hash="products"
               data-reveal
               style={{ transitionDelay: `${i * 90}ms` }}
               className={`group relative overflow-hidden rounded-3xl bg-gradient-to-br ${c.tone} p-8 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-xl`}
@@ -738,10 +629,10 @@ function Footer() {
         <div>
           <h4 className="font-bold text-[#0a2647]">Shop</h4>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li><Link to="/shop" className="hover:text-[#1e88e5]">All Products</Link></li>
+            <li><Link to="/" hash="products" className="hover:text-[#1e88e5]">All Products</Link></li>
             <li><Link to="/products/preschool-learning-cards" className="hover:text-[#1e88e5]">Learning Cards</Link></li>
-            <li><Link to="/shop" className="hover:text-[#1e88e5]">Finger Painting Kit</Link></li>
-            <li><Link to="/shop" className="hover:text-[#1e88e5]">Busy Book</Link></li>
+            <li><Link to="/products/finger-painting-kit" className="hover:text-[#1e88e5]">Finger Painting Kit</Link></li>
+            <li><Link to="/products/interactive-busy-book" className="hover:text-[#1e88e5]">Busy Book</Link></li>
           </ul>
         </div>
         <div>

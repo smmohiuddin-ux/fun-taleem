@@ -1,8 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   MessageCircle, ShoppingCart, Menu, X, Truck, ShieldCheck, RefreshCw,
   Star, Heart, MapPin, Phone, Mail, Instagram, Facebook, Music2,
+  ChevronDown,
 } from "lucide-react";
 import { useCart } from "@/lib/cart";
 import logo from "@/assets/funtaleem-logo.png.asset.json";
@@ -39,9 +40,60 @@ export function AnnouncementBar() {
   );
 }
 
+export const SHOP_PRODUCTS = [
+  { to: "/products/preschool-learning-cards" as const, label: "Reusable Preschool Learning Cards", emoji: "🔤" },
+  { to: "/products/finger-painting-kit" as const, label: "Kids Finger Painting Kit", emoji: "🎨" },
+  { to: "/products/interactive-busy-book" as const, label: "Kids Interactive Busy Book", emoji: "📖" },
+];
+
+function ShopDropdown() {
+  const [open, setOpen] = useState(false);
+  const timer = useRef<number | null>(null);
+  const openNow = () => {
+    if (timer.current) window.clearTimeout(timer.current);
+    setOpen(true);
+  };
+  const closeSoon = () => {
+    if (timer.current) window.clearTimeout(timer.current);
+    timer.current = window.setTimeout(() => setOpen(false), 140);
+  };
+  useEffect(() => () => { if (timer.current) window.clearTimeout(timer.current); }, []);
+  return (
+    <div className="relative" onMouseEnter={openNow} onMouseLeave={closeSoon} onFocus={openNow} onBlur={closeSoon}>
+      <button
+        type="button"
+        aria-haspopup="menu"
+        aria-expanded={open}
+        onClick={() => setOpen((o) => !o)}
+        className="relative inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold text-foreground/70 transition after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-6 after:-translate-x-1/2 after:rounded-full after:bg-[#26c6da] after:transition-transform hover:text-[#0a2647] hover:after:scale-x-100 aria-expanded:text-[#0a2647] aria-expanded:after:scale-x-100"
+      >
+        Shop <ChevronDown className={`size-4 transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
+      <div
+        role="menu"
+        className={`absolute left-1/2 top-full z-50 mt-2 w-80 max-w-[calc(100vw-1.5rem)] -translate-x-1/2 origin-top rounded-2xl bg-white p-2 shadow-2xl ring-1 ring-border transition ${open ? "pointer-events-auto scale-100 opacity-100" : "pointer-events-none scale-95 opacity-0"}`}
+      >
+        {SHOP_PRODUCTS.map((p) => (
+          <Link
+            key={p.to}
+            to={p.to}
+            onClick={() => setOpen(false)}
+            role="menuitem"
+            className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-foreground/80 transition hover:bg-[#eaf7fb] hover:text-[#0a2647]"
+          >
+            <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-[#eaf7fb] text-lg">{p.emoji}</span>
+            <span className="min-w-0 flex-1">{p.label}</span>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function SiteHeader() {
   const { qty } = useCart();
   const [open, setOpen] = useState(false);
+  const [shopOpen, setShopOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 8);
@@ -49,12 +101,6 @@ export function SiteHeader() {
     window.addEventListener("scroll", on, { passive: true });
     return () => window.removeEventListener("scroll", on);
   }, []);
-
-  const nav = [
-    { to: "/" as const, label: "Home" },
-    { to: "/shop" as const, label: "Shop" },
-    { to: "/contact" as const, label: "Contact" },
-  ];
 
   return (
     <header className={`sticky top-0 z-40 transition-all ${scrolled ? "bg-white/90 shadow-sm backdrop-blur-lg" : "bg-white/70 backdrop-blur"}`}>
@@ -68,17 +114,23 @@ export function SiteHeader() {
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
           <nav className="hidden items-center gap-1 md:flex">
-            {nav.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                activeOptions={{ exact: true }}
-                activeProps={{ className: "text-[#0a2647] after:scale-x-100" }}
-                className="relative rounded-full px-4 py-2 text-sm font-semibold text-foreground/70 transition after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-6 after:-translate-x-1/2 after:scale-x-0 after:rounded-full after:bg-[#26c6da] after:transition-transform hover:text-[#0a2647] hover:after:scale-x-100"
-              >
-                {l.label}
-              </Link>
-            ))}
+            <Link
+              to="/"
+              activeOptions={{ exact: true }}
+              activeProps={{ className: "text-[#0a2647] after:scale-x-100" }}
+              className="relative rounded-full px-4 py-2 text-sm font-semibold text-foreground/70 transition after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-6 after:-translate-x-1/2 after:scale-x-0 after:rounded-full after:bg-[#26c6da] after:transition-transform hover:text-[#0a2647] hover:after:scale-x-100"
+            >
+              Home
+            </Link>
+            <ShopDropdown />
+            <Link
+              to="/contact"
+              activeOptions={{ exact: true }}
+              activeProps={{ className: "text-[#0a2647] after:scale-x-100" }}
+              className="relative rounded-full px-4 py-2 text-sm font-semibold text-foreground/70 transition after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-6 after:-translate-x-1/2 after:scale-x-0 after:rounded-full after:bg-[#26c6da] after:transition-transform hover:text-[#0a2647] hover:after:scale-x-100"
+            >
+              Contact
+            </Link>
           </nav>
         </div>
 
@@ -113,17 +165,48 @@ export function SiteHeader() {
       {open && (
         <nav className="border-t border-border bg-white px-4 py-3 md:hidden">
           <div className="flex flex-col gap-1">
-            {nav.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                onClick={() => setOpen(false)}
-                activeProps={{ className: "bg-[#26c6da]/10 text-[#0a2647]" }}
-                className="rounded-2xl px-4 py-3 text-sm font-semibold text-foreground/80"
-              >
-                {l.label}
-              </Link>
-            ))}
+            <Link
+              to="/"
+              onClick={() => setOpen(false)}
+              activeProps={{ className: "bg-[#26c6da]/10 text-[#0a2647]" }}
+              className="rounded-2xl px-4 py-3 text-sm font-semibold text-foreground/80"
+            >
+              Home
+            </Link>
+
+            <button
+              type="button"
+              onClick={() => setShopOpen((s) => !s)}
+              aria-expanded={shopOpen}
+              className="flex items-center justify-between rounded-2xl px-4 py-3 text-left text-sm font-semibold text-foreground/80 hover:bg-muted"
+            >
+              <span>Shop</span>
+              <ChevronDown className={`size-4 transition-transform ${shopOpen ? "rotate-180" : ""}`} />
+            </button>
+            {shopOpen && (
+              <div className="ml-2 flex flex-col gap-1 border-l-2 border-[#26c6da]/30 pl-2">
+                {SHOP_PRODUCTS.map((p) => (
+                  <Link
+                    key={p.to}
+                    to={p.to}
+                    onClick={() => { setOpen(false); setShopOpen(false); }}
+                    className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-foreground/75 hover:bg-[#eaf7fb] hover:text-[#0a2647]"
+                  >
+                    <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-[#eaf7fb] text-base">{p.emoji}</span>
+                    <span className="min-w-0 flex-1">{p.label}</span>
+                  </Link>
+                ))}
+              </div>
+            )}
+
+            <Link
+              to="/contact"
+              onClick={() => setOpen(false)}
+              activeProps={{ className: "bg-[#26c6da]/10 text-[#0a2647]" }}
+              className="rounded-2xl px-4 py-3 text-sm font-semibold text-foreground/80"
+            >
+              Contact
+            </Link>
           </div>
         </nav>
       )}
@@ -195,10 +278,10 @@ export function SiteFooter() {
         <div>
           <h4 className="font-bold text-[#0a2647]">Shop</h4>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li><Link to="/shop" className="hover:text-[#1e88e5]">All Products</Link></li>
+            <li><Link to="/" hash="products" className="hover:text-[#1e88e5]">All Products</Link></li>
             <li><Link to="/products/preschool-learning-cards" className="hover:text-[#1e88e5]">Learning Cards</Link></li>
-            <li><Link to="/shop" className="hover:text-[#1e88e5]">Finger Painting Kit</Link></li>
-            <li><Link to="/shop" className="hover:text-[#1e88e5]">Busy Book</Link></li>
+            <li><Link to="/products/finger-painting-kit" className="hover:text-[#1e88e5]">Finger Painting Kit</Link></li>
+            <li><Link to="/products/interactive-busy-book" className="hover:text-[#1e88e5]">Busy Book</Link></li>
           </ul>
         </div>
         <div>

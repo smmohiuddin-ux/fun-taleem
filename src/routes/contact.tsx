@@ -27,7 +27,7 @@ function ContactPage() {
           </Link>
           <nav className="flex gap-1">
             <Link to="/" className="rounded-full px-4 py-2 text-sm font-semibold text-foreground/80 hover:bg-muted">Home</Link>
-            <Link to="/shop" className="rounded-full px-4 py-2 text-sm font-semibold text-foreground/80 hover:bg-muted">Shop</Link>
+            <Link to="/" hash="products" className="rounded-full px-4 py-2 text-sm font-semibold text-foreground/80 hover:bg-muted">Shop</Link>
             <Link to="/contact" activeProps={{ className: "bg-brand-green/10 text-brand-green-dark" }} className="rounded-full px-4 py-2 text-sm font-semibold">Contact</Link>
           </nav>
         </div>
