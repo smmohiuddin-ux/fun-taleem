@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   MessageCircle, Star, Truck, ShieldCheck, RefreshCw, Package, Gift,
@@ -115,6 +115,9 @@ function ProductPage() {
 /* ---------- Hero ---------- */
 function Hero() {
   const { qty, add } = useCart();
+  const navigate = useNavigate();
+  const PRODUCT_ID = "preschool-learning-cards";
+  const handleAdd = () => { add(PRODUCT_ID, count); navigate({ to: "/cart" }); };
   const [count, setCount] = useState(1);
 
   return (
@@ -194,7 +197,7 @@ function Hero() {
               </button>
             </div>
             <PrimaryCTA size="lg" />
-            <SecondaryCTA label={qty > 0 ? "Added to Cart" : "Add to Cart"} size="lg" onClick={() => add(count)} />
+            <SecondaryCTA label={qty > 0 ? "Add More · Checkout" : "Add to Cart"} size="lg" onClick={handleAdd} />
           </div>
 
           <div className="mt-6 grid grid-cols-3 gap-3 text-center text-xs font-semibold text-foreground/70">
