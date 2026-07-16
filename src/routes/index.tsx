@@ -362,7 +362,7 @@ function Marquee() {
 /* ---------- Featured products ---------- */
 function FeaturedProducts() {
   return (
-    <section className="relative px-4 py-20 sm:py-28">
+    <section id="products" className="relative scroll-mt-24 px-4 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 text-center" data-reveal>
           <span className="inline-block rounded-full bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
