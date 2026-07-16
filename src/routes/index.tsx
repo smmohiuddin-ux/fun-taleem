@@ -8,22 +8,22 @@ import {
 } from "lucide-react";
 import { useCart } from "@/lib/cart";
 import { PRODUCT, formatPKR } from "@/lib/product";
-import preschoolImg from "@/assets/preschool.jpeg.asset.json";
+import preschoolImg from "@/assets/child-learning.png.asset.json";
 import whatsInsideImg from "@/assets/whats-inside.jpeg.asset.json";
 import wipeCleanImg from "@/assets/wipe-clean.jpeg.asset.json";
 import activitiesImg from "@/assets/activities.jpeg.asset.json";
 import productFlatImg from "@/assets/product-flat.jpeg.asset.json";
 import perfectSizeImg from "@/assets/perfect-size.jpeg.asset.json";
-import earlySkillsImg from "@/assets/early-skills.jpeg.asset.json";
+import earlySkillsImg from "@/assets/child-learning.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Magic Tracing Book Pakistan | Reusable Screen-Free Learning Book for Kids 3+" },
-      { name: "description", content: "Reusable Magic Tracing Book — screen-free learning, handwriting, numbers, shapes & drawing for kids 3+. Cash on Delivery all over Pakistan. Order on WhatsApp today." },
-      { name: "keywords", content: "Reusable Magic Book Pakistan, Kids Learning Book Pakistan, Tracing Book Pakistan, Montessori Toys Pakistan, Educational Toys Pakistan, Screen Free Learning, Kids Activity Book, Handwriting Practice Book, Preschool Learning Toys" },
-      { property: "og:title", content: "Magic Tracing Book Pakistan | Screen-Free Learning for Kids" },
-      { property: "og:description", content: "Help your child learn through fun, not screens. Reusable workbook + markers. Cash on Delivery in Pakistan." },
+      { title: "Reusable Preschool Learning Cards Set with 64 Activities | Pakistan" },
+      { name: "description", content: "Reusable Preschool Learning Cards Set with 64 Activities — screen-free learning, handwriting, numbers, shapes & drawing for kids 3+. Cash on Delivery all over Pakistan. Order on WhatsApp today." },
+      { name: "keywords", content: "Preschool Learning Cards Pakistan, Reusable Activity Set Pakistan, Kids Learning Cards, Montessori Cards Pakistan, Educational Toys Pakistan, Screen Free Learning, Kids Activity Cards, Handwriting Practice, Preschool Learning Toys" },
+      { property: "og:title", content: "Reusable Preschool Learning Cards Set with 64 Activities" },
+      { property: "og:description", content: "Help your child learn through fun, not screens. 64 reusable activity cards + markers. Cash on Delivery in Pakistan." },
       { property: "og:image", content: preschoolImg.url },
       { name: "twitter:image", content: preschoolImg.url },
     ],
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/")({
 
 const WHATSAPP_NUMBER = "923042175897";
 const WA_MESSAGE = encodeURIComponent(
-  "Hi! I want to order the Reusable Magic Tracing Book.\n\nMy Name:\nCity:\nQuantity:\n\nPlease guide me."
+  "Hi! I want to order the Reusable Preschool Learning Cards Set (64 Activities).\n\nMy Name:\nCity:\nQuantity:\n\nPlease guide me."
 );
 const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${WA_MESSAGE}`;
 
@@ -128,6 +128,7 @@ function LandingPage() {
   return (
     <main className="relative overflow-hidden bg-background text-foreground">
       <UrgencyBar />
+      <SiteHeader />
       <Hero />
       <TrustBar />
       <WhyParentsLove />
@@ -196,7 +197,7 @@ function VideoModal() {
           <iframe
             className="absolute inset-0 size-full"
             src="https://www.youtube.com/embed/RhgsLEKGxEM?autoplay=1&rel=0"
-            title="Magic Tracing Book — Product Video"
+            title="Preschool Learning Cards Set — Product Video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           />
@@ -211,6 +212,76 @@ function UrgencyBar() {
     <div className="relative z-10 bg-gradient-to-r from-brand-green-dark via-primary to-brand-sky py-2.5 text-center text-sm font-semibold text-primary-foreground">
       <span className="animate-pulse">🔥</span> Limited Stock Available — Cash on Delivery All Over Pakistan 🇵🇰
     </div>
+  );
+}
+
+function SiteHeader() {
+  const { qty } = useCart();
+  return (
+    <header className="sticky top-0 z-40 border-b border-border/50 bg-white/85 backdrop-blur">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
+        <Link to="/" className="flex items-center gap-2">
+          <div className="grid size-9 place-items-center rounded-2xl bg-brand-green text-lg">📘</div>
+          <span className="font-display text-lg font-bold tracking-tight">Little Learners PK</span>
+        </Link>
+        <nav className="hidden items-center gap-1 md:flex">
+          {[
+            { to: "/" as const, label: "Home" },
+            { to: "/shop" as const, label: "Shop" },
+            { to: "/contact" as const, label: "Contact" },
+          ].map((l) => (
+            <Link
+              key={l.to}
+              to={l.to}
+              activeOptions={{ exact: true }}
+              activeProps={{ className: "bg-brand-green/10 text-brand-green-dark" }}
+              className="rounded-full px-4 py-2 text-sm font-semibold text-foreground/80 transition hover:bg-muted"
+            >
+              {l.label}
+            </Link>
+          ))}
+        </nav>
+        <div className="flex items-center gap-2">
+          <Link
+            to="/cart"
+            aria-label="View cart"
+            className="relative grid size-10 place-items-center rounded-full bg-muted text-foreground transition hover:bg-brand-green/10"
+          >
+            <ShoppingCart className="size-5" />
+            {qty > 0 && (
+              <span className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-cta text-[10px] font-bold text-primary-foreground ring-2 ring-white">
+                {qty}
+              </span>
+            )}
+          </Link>
+          <a
+            href={waLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden items-center gap-1.5 rounded-full bg-cta px-4 py-2 text-sm font-bold text-primary-foreground shadow-md transition hover:bg-cta-dark sm:inline-flex"
+          >
+            <MessageCircle className="size-4" /> Order
+          </a>
+        </div>
+      </div>
+      <nav className="flex items-center justify-center gap-1 border-t border-border/40 px-4 py-2 md:hidden">
+        {[
+          { to: "/" as const, label: "Home" },
+          { to: "/shop" as const, label: "Shop" },
+          { to: "/contact" as const, label: "Contact" },
+        ].map((l) => (
+          <Link
+            key={l.to}
+            to={l.to}
+            activeOptions={{ exact: true }}
+            activeProps={{ className: "bg-brand-green/10 text-brand-green-dark" }}
+            className="rounded-full px-4 py-1.5 text-sm font-semibold text-foreground/80"
+          >
+            {l.label}
+          </Link>
+        ))}
+      </nav>
+    </header>
   );
 }
 
@@ -290,7 +361,7 @@ function Hero() {
           <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-brand-sky/35 via-primary/20 to-cta/20 blur-2xl" />
           <TintedImage
             src={preschoolImg.url}
-            alt="Child happily using the Reusable Magic Tracing Book"
+            alt="Child happily using the Reusable Preschool Learning Cards Set"
             tint="rainbow"
             aspect="aspect-square"
             overlayOpacity={0.14}
@@ -552,7 +623,7 @@ function ComparisonSection() {
           <div className="rounded-3xl bg-gradient-to-br from-brand-sky/20 to-primary/15 p-8 ring-2 ring-primary/35 shadow-lg">
             <div className="mb-4 flex items-center gap-3">
               <div className="grid size-12 place-items-center rounded-2xl bg-brand-sky/20 text-primary text-2xl">📘</div>
-              <h3 className="text-2xl font-bold">Magic Tracing Book</h3>
+              <h3 className="text-2xl font-bold">Preschool Learning Cards Set</h3>
             </div>
             <ul className="space-y-3">
               {magic.map((m) => (
@@ -854,7 +925,7 @@ function Footer() {
           <div>
             <div className="flex items-center gap-2">
               <div className="grid size-10 place-items-center rounded-2xl bg-brand-green text-xl">📘</div>
-              <span className="font-display text-xl font-bold">Magic Tracing</span>
+              <span className="font-display text-xl font-bold">Little Learners PK</span>
             </div>
             <p className="mt-4 text-sm text-white/70">Screen-free learning toys for happy Pakistani kids. Made with love. Loved by thousands.</p>
           </div>
@@ -887,7 +958,7 @@ function Footer() {
           </div>
         </div>
         <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-white/50">
-          © {new Date().getFullYear()} Magic Tracing Pakistan. All rights reserved.
+          © {new Date().getFullYear()} Little Learners PK. All rights reserved.
         </div>
       </div>
     </footer>

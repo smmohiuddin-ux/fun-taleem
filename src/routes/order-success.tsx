@@ -9,7 +9,7 @@ export const Route = createFileRoute("/order-success")({
   validateSearch: (s) => search.parse(s),
   head: () => ({
     meta: [
-      { title: "Order Placed — Magic Tracing Book" },
+      { title: "Order Placed — Preschool Learning Cards Set" },
       { name: "robots", content: "noindex" },
     ],
   }),
