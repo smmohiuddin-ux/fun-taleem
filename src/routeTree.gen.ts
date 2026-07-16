@@ -14,6 +14,7 @@ import { Route as OrderSuccessRouteImport } from './routes/order-success'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CartRouteImport } from './routes/cart'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsPreschoolLearningCardsRouteImport } from './routes/products.preschool-learning-cards'
 
 const ShopRoute = ShopRouteImport.update({
@@ -41,6 +42,11 @@ const CartRoute = CartRouteImport.update({
   path: '/cart',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsPreschoolLearningCardsRoute =
   ProductsPreschoolLearningCardsRouteImport.update({
     id: '/products/preschool-learning-cards',
@@ -49,6 +55,7 @@ const ProductsPreschoolLearningCardsRoute =
   } as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
@@ -57,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/products/preschool-learning-cards': typeof ProductsPreschoolLearningCardsRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof IndexRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
@@ -66,6 +74,7 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
@@ -76,6 +85,7 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
     | '/cart'
     | '/checkout'
     | '/contact'
@@ -84,6 +94,7 @@ export interface FileRouteTypes {
     | '/products/preschool-learning-cards'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/'
     | '/cart'
     | '/checkout'
     | '/contact'
@@ -92,6 +103,7 @@ export interface FileRouteTypes {
     | '/products/preschool-learning-cards'
   id:
     | '__root__'
+    | '/'
     | '/cart'
     | '/checkout'
     | '/contact'
@@ -101,6 +113,7 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
   CartRoute: typeof CartRoute
   CheckoutRoute: typeof CheckoutRoute
   ContactRoute: typeof ContactRoute
@@ -146,6 +159,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CartRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/preschool-learning-cards': {
       id: '/products/preschool-learning-cards'
       path: '/products/preschool-learning-cards'
@@ -157,6 +177,7 @@ declare module '@tanstack/react-router' {
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
   CartRoute: CartRoute,
   CheckoutRoute: CheckoutRoute,
   ContactRoute: ContactRoute,

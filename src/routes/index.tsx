@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight, MessageCircle, ShoppingCart, Star, Sparkles, Truck,
   ShieldCheck, RefreshCw, Instagram, Facebook, Music2, Phone, Mail,
-  MapPin, Heart, Play, ChevronDown, Menu, X,
+  MapPin, Heart, Menu, X,
 } from "lucide-react";
 import { useCart } from "@/lib/cart";
 import { formatPKR } from "@/lib/product";
