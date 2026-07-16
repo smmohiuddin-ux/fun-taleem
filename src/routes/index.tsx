@@ -28,7 +28,7 @@ type ProductCard = {
   image: string;
   badge: string;
   badgeTone: "green" | "coral" | "purple";
-  href?: "/products/preschool-learning-cards";
+  href?: "/products/preschool-learning-cards" | "/products/finger-painting-kit";
   comingSoon?: boolean;
 };
 
@@ -51,7 +51,7 @@ const PRODUCTS: ProductCard[] = [
     image: fingerColors.url,
     badge: "New",
     badgeTone: "coral",
-    comingSoon: true,
+    href: "/products/finger-painting-kit",
   },
   {
     name: "Kids Interactive Busy Book",
