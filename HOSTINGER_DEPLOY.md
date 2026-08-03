@@ -11,19 +11,24 @@ npm install
 npm run build:hostinger
 ```
 
-The command refreshes both `dist-spa/` and the deployment files at the
-repository root:
+The command refreshes `dist-spa/`, the deployment files at the repository
+root, and a server-public copy of the compiled bundles:
 
 ```
 index.html
 site-assets/
 lov-assets/
 .htaccess
+public/site-assets/
 ```
 
 Commit the refreshed output and deploy the repository through Hostinger's
 Git integration. The deployment branch must use the repository root as the
 publish directory.
+
+The `public/site-assets/` copy is intentional. It allows the same deployment
+to work if Hostinger launches the repository as a Node application instead of
+serving it directly as a static site.
 
 ## 3. What the `.htaccess` does
 

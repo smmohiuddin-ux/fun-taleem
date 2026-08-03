@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
+    "build": "node scripts/sync-hostinger-public.mjs && vite build",
     "build:dev": "vite build --mode development",
     "build:hostinger": "vite build --config vite.spa.config.ts && node scripts/publish-hostinger.mjs",
     "preview": "vite preview",
