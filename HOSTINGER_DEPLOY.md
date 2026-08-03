@@ -44,9 +44,26 @@ The root `.htaccess` tells Apache to:
 Re-run `npm run build:hostinger`, commit the generated root files, and
 redeploy the latest commit in Hostinger.
 
-## 5. Things to know
+## 5. If Hostinger runs the site as a Node.js app
+
+Hostinger auto-detects `package.json` and may start the repository as a Node
+application instead of serving it statically. That mode is now supported:
+`npm start` runs `hostinger-server.mjs`, a zero-dependency static server that
+serves the prebuilt storefront with correct MIME types and SPA fallback, and
+never returns HTML for a missing `.js`/`.css` request.
+
+Set the Node app's **startup file / command** to `npm start` (or
+`node hostinger-server.mjs`) and redeploy.
+
+Visit `/__deploy-check` on the live site to see exactly which files reached the
+server. If `site-assets` or `lov-assets` show as `missing`, the deploy did not
+copy them and the Git deployment needs re-running (or the build output
+committed again).
+
+## 6. Things to know
 
 - The storefront is static, while checkout sends orders to the configured
   hosted backend and opens WhatsApp confirmation.
 - Hostinger free SSL via hPanel → **SSL** is recommended; the site is
   served over HTTPS automatically.
+
