@@ -81,6 +81,7 @@ const server = createServer(async (req, res) => {
 
   const ext = extname(pathname).toLowerCase();
   const file = await findFile(pathname === "/" ? "index.html" : pathname);
+  const fileExt = file ? extname(file.path).toLowerCase() : ext;
 
   if (file) {
     const cacheable = pathname.startsWith("/site-assets/") || pathname.startsWith("/lov-assets/");
