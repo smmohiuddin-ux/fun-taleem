@@ -1,14 +1,30 @@
+# Hostinger / Apache SPA + prerendered HTML fallback
 Options -MultiViews
 RewriteEngine On
+
+# Serve existing files / directories as-is
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
+
+# If a prerendered HTML exists for the path, serve it
 RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}/index.html -f
 RewriteRule ^(.*)$ /$1/index.html [L]
+
+# Fallback to root index.html (client-side routing)
 RewriteRule ^ /index.html [L]
 
+# Long cache for hashed assets
 <IfModule mod_headers.c>
   <FilesMatch "\.(js|css|woff2?|ttf|otf|eot|svg|png|jpg|jpeg|gif|webp|avif|ico)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# Gzip
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
 </IfModule>
