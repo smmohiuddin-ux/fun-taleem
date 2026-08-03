@@ -1,0 +1,32 @@
+# Hostinger + GitHub deploy: the repo root is copied into public_html, but the
+# root index.html is a Vite DEV entry (loads /src/spa-main.tsx) and will render a
+# white screen. Serve the prebuilt static app in dist-spa/ instead.
+Options -MultiViews
+RewriteEngine On
+
+# Never rewrite files that actually exist inside dist-spa
+RewriteCond %{REQUEST_URI} !^/dist-spa/
+RewriteCond %{DOCUMENT_ROOT}/dist-spa%{REQUEST_URI} -f
+RewriteRule ^(.*)$ /dist-spa/$1 [L]
+
+# Prerendered/nested index.html
+RewriteCond %{REQUEST_URI} !^/dist-spa/
+RewriteCond %{DOCUMENT_ROOT}/dist-spa%{REQUEST_URI}/index.html -f
+RewriteRule ^(.*)$ /dist-spa/$1/index.html [L]
+
+# Everything else -> SPA shell (client-side routing)
+RewriteCond %{REQUEST_URI} !^/dist-spa/
+RewriteRule ^ /dist-spa/index.html [L]
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|woff2?|ttf|otf|eot|svg|png|jpg|jpeg|gif|webp|avif|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
