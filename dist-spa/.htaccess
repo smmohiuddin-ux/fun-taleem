@@ -1,13 +1,18 @@
-Options -MultiViews
-RewriteEngine On
+<IfModule mod_negotiation.c>
+  Options -MultiViews
+</IfModule>
 
-# Serve real files and directories directly, including JS, CSS and images.
-RewriteCond %{REQUEST_FILENAME} -f [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^ - [L]
+<IfModule mod_rewrite.c>
+  RewriteEngine On
 
-# Client-side routes such as /cart and /products/... use the app shell.
-RewriteRule ^ index.html [L]
+  # Serve real files and directories directly, including JS, CSS and images.
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Client-side routes such as /cart and /products/... use the app shell.
+  RewriteRule ^ index.html [L]
+</IfModule>
 
 <IfModule mod_headers.c>
   <FilesMatch "\.(js|css|woff2?|ttf|otf|eot|svg|png|jpg|jpeg|gif|webp|avif|ico)$">
