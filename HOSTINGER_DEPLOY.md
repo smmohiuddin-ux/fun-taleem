@@ -16,7 +16,7 @@ repository root:
 
 ```
 index.html
-assets/
+site-assets/
 lov-assets/
 .htaccess
 ```
