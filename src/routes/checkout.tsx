@@ -4,6 +4,8 @@ import { ArrowLeft, Banknote, CheckCircle2, Lock, MessageCircle, Truck } from "l
 import { useCart } from "@/lib/cart";
 import { WHATSAPP_NUMBER, formatPKR } from "@/lib/product";
 import { AnnouncementBar, SiteHeader, SiteFooter } from "@/components/site-chrome";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/checkout")({
   head: () => ({
