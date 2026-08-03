@@ -10,6 +10,7 @@ export default defineConfig({
   plugins: [react(), tailwindcss(), tsconfigPaths()],
   build: {
     outDir: "dist-spa",
+    assetsDir: "site-assets",
     emptyOutDir: true,
     sourcemap: false,
     rollupOptions: {
