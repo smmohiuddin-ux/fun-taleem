@@ -10,6 +10,10 @@
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
+  # Never fall back to the app shell for missing static assets: returning
+  # index.html for a .js request triggers a strict MIME type error.
+  RewriteRule \.(js|mjs|css|map|json|png|jpg|jpeg|gif|svg|webp|avif|ico|woff2?|ttf|otf|eot|txt|xml)$ - [R=404,L]
+
   # Client-side routes such as /cart and /products/... use the app shell.
   RewriteRule ^ index.html [L]
 </IfModule>
