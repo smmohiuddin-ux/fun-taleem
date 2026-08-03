@@ -86,7 +86,7 @@ const server = createServer(async (req, res) => {
   if (file) {
     const cacheable = pathname.startsWith("/site-assets/") || pathname.startsWith("/lov-assets/");
     res.writeHead(200, {
-      "content-type": MIME[ext] || "application/octet-stream",
+      "content-type": MIME[fileExt] || "application/octet-stream",
       "content-length": file.size,
       "cache-control": cacheable ? "public, max-age=31536000, immutable" : "public, max-age=0, must-revalidate",
     });
