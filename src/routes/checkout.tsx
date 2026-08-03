@@ -4,6 +4,8 @@ import { ArrowLeft, Banknote, CheckCircle2, Lock, MessageCircle, Truck } from "l
 import { useCart } from "@/lib/cart";
 import { WHATSAPP_NUMBER, formatPKR } from "@/lib/product";
 import { AnnouncementBar, SiteHeader, SiteFooter } from "@/components/site-chrome";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/checkout")({
   head: () => ({
@@ -52,11 +54,36 @@ function CheckoutPage() {
     return Object.keys(e).length === 0;
   }
 
-  function placeOrder(e: React.FormEvent) {
+  async function placeOrder(e: React.FormEvent) {
     e.preventDefault();
     if (!validate()) return;
     setSubmitting(true);
     const orderId = "FT-" + Math.random().toString(36).slice(2, 7).toUpperCase();
+
+    const { error: saveError } = await supabase.from("orders").insert({
+      order_ref: orderId,
+      full_name: form.fullName.trim(),
+      phone: form.phone.trim(),
+      email: form.email.trim() || null,
+      address: form.address.trim(),
+      city: form.city,
+      province: form.province,
+      postal_code: form.postalCode.trim() || null,
+      notes: form.notes.trim() || null,
+      items: items.map((it) => ({ id: it.id, name: it.name, qty: it.qty, price: it.price, line_total: it.lineTotal })),
+      subtotal,
+      shipping,
+      total,
+      payment_method: "COD",
+      status: "new",
+    });
+
+    if (saveError) {
+      setSubmitting(false);
+      toast.error("Could not place your order. Please try again or message us on WhatsApp.");
+      return;
+    }
+    toast.success("Order placed! Confirming on WhatsApp…");
     const lines = items.map((it) => `• ${it.name} × ${it.qty} — ${formatPKR(it.lineTotal)}`).join("\n");
     const message =
 `Hi Funtaleem! I want to place an order (Cash on Delivery).
