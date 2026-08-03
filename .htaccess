@@ -1,22 +1,13 @@
-# Hostinger + GitHub deploy: the repo root is copied into public_html, but the
-# root index.html is a Vite DEV entry (loads /src/spa-main.tsx) and will render a
-# white screen. Serve the prebuilt static app in dist-spa/ instead.
 Options -MultiViews
 RewriteEngine On
 
-# Never rewrite files that actually exist inside dist-spa
-RewriteCond %{REQUEST_URI} !^/dist-spa/
-RewriteCond %{DOCUMENT_ROOT}/dist-spa%{REQUEST_URI} -f
-RewriteRule ^(.*)$ /dist-spa/$1 [L]
+# Serve real files and directories directly, including JS, CSS and images.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
 
-# Prerendered/nested index.html
-RewriteCond %{REQUEST_URI} !^/dist-spa/
-RewriteCond %{DOCUMENT_ROOT}/dist-spa%{REQUEST_URI}/index.html -f
-RewriteRule ^(.*)$ /dist-spa/$1/index.html [L]
-
-# Everything else -> SPA shell (client-side routing)
-RewriteCond %{REQUEST_URI} !^/dist-spa/
-RewriteRule ^ /dist-spa/index.html [L]
+# Client-side routes such as /cart and /products/... use the app shell.
+RewriteRule ^ index.html [L]
 
 <IfModule mod_headers.c>
   <FilesMatch "\.(js|css|woff2?|ttf|otf|eot|svg|png|jpg|jpeg|gif|webp|avif|ico)$">
