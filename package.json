@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "start": "node hostinger-server.mjs",
-    "build": "node scripts/sync-hostinger-public.mjs && vite build",
+    "start": "node server/index.mjs",
+    "build": "vite build --config vite.spa.config.ts && node scripts/publish-hostinger.mjs",
     "build:dev": "vite build --mode development",
     "build:hostinger": "vite build --config vite.spa.config.ts && node scripts/publish-hostinger.mjs",
     "preview": "vite preview",
