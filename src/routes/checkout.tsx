@@ -22,18 +22,19 @@ const CITIES = ["Karachi","Lahore","Islamabad","Rawalpindi","Faisalabad","Multan
 const PROVINCES = ["Sindh","Punjab","Khyber Pakhtunkhwa","Balochistan","Islamabad Capital Territory","Azad Kashmir","Gilgit-Baltistan"];
 
 function CheckoutPage() {
-  const { items, qty, subtotal, clear } = useCart();
+  const { items, qty, subtotal, clear, hydrated } = useCart();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (qty === 0) navigate({ to: "/cart" });
-  }, [qty, navigate]);
 
   const [form, setForm] = useState({
     fullName: "", phone: "", email: "", address: "", city: "Karachi", province: "Sindh", postalCode: "", notes: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
+  const [placed, setPlaced] = useState(false);
+
+  useEffect(() => {
+    if (hydrated && qty === 0 && !placed) navigate({ to: "/cart" });
+  }, [hydrated, qty, placed, navigate]);
 
   const shipping = useMemo(() => (subtotal >= 3000 ? 0 : 200), [subtotal]);
   const total = subtotal + shipping;
@@ -104,11 +105,14 @@ ${form.notes ? `Notes: ${form.notes}` : ""}
 Please confirm my order. Thank you!`;
     const wa = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     try { window.open(wa, "_blank", "noopener,noreferrer"); } catch { /* ignore */ }
+    setPlaced(true);
     clear();
+    setSubmitting(false);
     navigate({ to: "/order-success", search: { id: orderId } });
   }
 
-  if (qty === 0) return null;
+  if (!hydrated || (qty === 0 && !placed)) return null;
+
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#eaf7fb] via-white to-white pb-24">
