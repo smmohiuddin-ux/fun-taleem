@@ -8,7 +8,7 @@ export const PRODUCT = {
   image: "/og.png",
 } as const;
 
-export const WHATSAPP_NUMBER = "923042175897";
+export const WHATSAPP_NUMBER = "923022060216";
 
 export function formatPKR(n: number) {
   return `PKR ${n.toLocaleString("en-PK")}`;

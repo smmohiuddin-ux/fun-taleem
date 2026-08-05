@@ -21,7 +21,7 @@ import preschoolImg from "@/assets/plc-preschool.jpg.asset.json";
 const WA_ORDER = encodeURIComponent(
   "Hi! I want to order the Reusable Preschool Learning Cards Set (64 Activities).\n\nMy Name:\nCity:\nQuantity:\n\nPlease guide me."
 );
-const waOrderLink = `https://wa.me/923042175897?text=${WA_ORDER}`;
+const waOrderLink = `https://wa.me/923022060216?text=${WA_ORDER}`;
 
 export const Route = createFileRoute("/products/preschool-learning-cards")({
   head: () => ({

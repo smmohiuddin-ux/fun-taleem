@@ -25,7 +25,7 @@ const COMPARE = 2499;
 const WA_ORDER = encodeURIComponent(
   "Hi! I want to order the Kids Interactive Busy Book (4 themes, hands-on activities).\n\nMy Name:\nCity:\nQuantity:\n\nPlease guide me."
 );
-const waOrderLink = `https://wa.me/923042175897?text=${WA_ORDER}`;
+const waOrderLink = `https://wa.me/923022060216?text=${WA_ORDER}`;
 
 export const Route = createFileRoute("/products/interactive-busy-book")({
   head: () => ({

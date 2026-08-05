@@ -8,7 +8,7 @@ import {
 import { useCart } from "@/lib/cart";
 import logo from "@/assets/funtaleem-logo.png.asset.json";
 
-export const WHATSAPP_NUMBER = "923042175897";
+export const WHATSAPP_NUMBER = "923022060216";
 export const WA_HELLO = encodeURIComponent("Hi Funtaleem! I'd like to know more about your learning toys.");
 export const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${WA_HELLO}`;
 
@@ -295,7 +295,7 @@ export function SiteFooter() {
         <div>
           <h4 className="font-bold text-[#0a2647]">Get in touch</h4>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li className="flex items-center gap-2"><Phone className="size-4 text-[#1e88e5]"/> <a href="tel:+923042175897" className="hover:text-[#0a2647]">+92 304 2175897</a></li>
+            <li className="flex items-center gap-2"><Phone className="size-4 text-[#1e88e5]"/> <a href="tel:+923022060216" className="hover:text-[#0a2647]">+92 302 2060216</a></li>
             <li className="flex items-center gap-2"><Mail className="size-4 text-[#1e88e5]"/> hello@funtaleem.pk</li>
             <li className="flex items-center gap-2"><MapPin className="size-4 text-[#1e88e5]"/> Karachi, Pakistan</li>
           </ul>
