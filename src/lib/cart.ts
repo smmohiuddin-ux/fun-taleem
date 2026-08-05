@@ -55,8 +55,10 @@ function derive(map: CartMap): { items: CartLine[]; qty: number; subtotal: numbe
 
 export function useCart() {
   const [map, setMap] = useState<CartMap>({});
+  const [hydrated, setHydrated] = useState(false);
   useEffect(() => {
     setMap(read());
+    setHydrated(true);
     const onChange = () => setMap(read());
     window.addEventListener(EVT, onChange);
     window.addEventListener("storage", onChange);
