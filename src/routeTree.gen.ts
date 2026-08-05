@@ -17,6 +17,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsPreschoolLearningCardsRouteImport } from './routes/products.preschool-learning-cards'
 import { Route as ProductsInteractiveBusyBookRouteImport } from './routes/products.interactive-busy-book'
 import { Route as ProductsFingerPaintingKitRouteImport } from './routes/products.finger-painting-kit'
+import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 
 const OrderSuccessRoute = OrderSuccessRouteImport.update({
   id: '/order-success',
@@ -61,6 +62,12 @@ const ProductsFingerPaintingKitRoute =
     path: '/products/finger-painting-kit',
     getParentRoute: () => rootRouteImport,
   } as any)
+const LovableEmailQueueProcessRoute =
+  LovableEmailQueueProcessRouteImport.update({
+    id: '/lovable/email/queue/process',
+    path: '/lovable/email/queue/process',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -71,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/products/finger-painting-kit': typeof ProductsFingerPaintingKitRoute
   '/products/interactive-busy-book': typeof ProductsInteractiveBusyBookRoute
   '/products/preschool-learning-cards': typeof ProductsPreschoolLearningCardsRoute
+  '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -81,6 +89,7 @@ export interface FileRoutesByTo {
   '/products/finger-painting-kit': typeof ProductsFingerPaintingKitRoute
   '/products/interactive-busy-book': typeof ProductsInteractiveBusyBookRoute
   '/products/preschool-learning-cards': typeof ProductsPreschoolLearningCardsRoute
+  '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -92,6 +101,7 @@ export interface FileRoutesById {
   '/products/finger-painting-kit': typeof ProductsFingerPaintingKitRoute
   '/products/interactive-busy-book': typeof ProductsInteractiveBusyBookRoute
   '/products/preschool-learning-cards': typeof ProductsPreschoolLearningCardsRoute
+  '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -104,6 +114,7 @@ export interface FileRouteTypes {
     | '/products/finger-painting-kit'
     | '/products/interactive-busy-book'
     | '/products/preschool-learning-cards'
+    | '/lovable/email/queue/process'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -114,6 +125,7 @@ export interface FileRouteTypes {
     | '/products/finger-painting-kit'
     | '/products/interactive-busy-book'
     | '/products/preschool-learning-cards'
+    | '/lovable/email/queue/process'
   id:
     | '__root__'
     | '/'
@@ -124,6 +136,7 @@ export interface FileRouteTypes {
     | '/products/finger-painting-kit'
     | '/products/interactive-busy-book'
     | '/products/preschool-learning-cards'
+    | '/lovable/email/queue/process'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -135,6 +148,7 @@ export interface RootRouteChildren {
   ProductsFingerPaintingKitRoute: typeof ProductsFingerPaintingKitRoute
   ProductsInteractiveBusyBookRoute: typeof ProductsInteractiveBusyBookRoute
   ProductsPreschoolLearningCardsRoute: typeof ProductsPreschoolLearningCardsRoute
+  LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -195,6 +209,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsFingerPaintingKitRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lovable/email/queue/process': {
+      id: '/lovable/email/queue/process'
+      path: '/lovable/email/queue/process'
+      fullPath: '/lovable/email/queue/process'
+      preLoaderRoute: typeof LovableEmailQueueProcessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -207,7 +228,18 @@ const rootRouteChildren: RootRouteChildren = {
   ProductsFingerPaintingKitRoute: ProductsFingerPaintingKitRoute,
   ProductsInteractiveBusyBookRoute: ProductsInteractiveBusyBookRoute,
   ProductsPreschoolLearningCardsRoute: ProductsPreschoolLearningCardsRoute,
+  LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
