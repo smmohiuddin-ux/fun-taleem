@@ -84,7 +84,31 @@ function CheckoutPage() {
       toast.error("Could not place your order. Please try again or message us on WhatsApp.");
       return;
     }
+    try {
+      await fetch("/api/public/order-notify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          orderId,
+          placedAt: new Date().toLocaleString("en-PK"),
+          fullName: form.fullName.trim(),
+          phone: form.phone.trim(),
+          email: form.email.trim() || null,
+          address: form.address.trim(),
+          city: form.city,
+          province: form.province,
+          postalCode: form.postalCode.trim() || null,
+          notes: form.notes.trim() || null,
+          items: items.map((it) => ({ name: it.name, qty: it.qty, price: it.price, lineTotal: it.lineTotal })),
+          subtotal,
+          shipping,
+          total,
+          paymentMethod: "Cash on Delivery",
+        }),
+      });
+    } catch { /* notification failure must not block the order */ }
     toast.success("Order placed! Confirming on WhatsApp…");
+
     const lines = items.map((it) => `• ${it.name} × ${it.qty} — ${formatPKR(it.lineTotal)}`).join("\n");
     const message =
 `Hi Funtaleem! I want to place an order (Cash on Delivery).

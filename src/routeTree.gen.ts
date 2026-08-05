@@ -19,6 +19,7 @@ import { Route as ProductsInteractiveBusyBookRouteImport } from './routes/produc
 import { Route as ProductsFingerPaintingKitRouteImport } from './routes/products.finger-painting-kit'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
+import { Route as ApiPublicOrderNotifyRouteImport } from './routes/api/public/order-notify'
 import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
@@ -76,6 +77,11 @@ const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
   path: '/lovable/email/suppression',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicOrderNotifyRoute = ApiPublicOrderNotifyRouteImport.update({
+  id: '/api/public/order-notify',
+  path: '/api/public/order-notify',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LovableEmailTransactionalSendRoute =
   LovableEmailTransactionalSendRouteImport.update({
     id: '/lovable/email/transactional/send',
@@ -105,6 +111,7 @@ export interface FileRoutesByFullPath {
   '/products/finger-painting-kit': typeof ProductsFingerPaintingKitRoute
   '/products/interactive-busy-book': typeof ProductsInteractiveBusyBookRoute
   '/products/preschool-learning-cards': typeof ProductsPreschoolLearningCardsRoute
+  '/api/public/order-notify': typeof ApiPublicOrderNotifyRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -120,6 +127,7 @@ export interface FileRoutesByTo {
   '/products/finger-painting-kit': typeof ProductsFingerPaintingKitRoute
   '/products/interactive-busy-book': typeof ProductsInteractiveBusyBookRoute
   '/products/preschool-learning-cards': typeof ProductsPreschoolLearningCardsRoute
+  '/api/public/order-notify': typeof ApiPublicOrderNotifyRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -136,6 +144,7 @@ export interface FileRoutesById {
   '/products/finger-painting-kit': typeof ProductsFingerPaintingKitRoute
   '/products/interactive-busy-book': typeof ProductsInteractiveBusyBookRoute
   '/products/preschool-learning-cards': typeof ProductsPreschoolLearningCardsRoute
+  '/api/public/order-notify': typeof ApiPublicOrderNotifyRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -153,6 +162,7 @@ export interface FileRouteTypes {
     | '/products/finger-painting-kit'
     | '/products/interactive-busy-book'
     | '/products/preschool-learning-cards'
+    | '/api/public/order-notify'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
@@ -168,6 +178,7 @@ export interface FileRouteTypes {
     | '/products/finger-painting-kit'
     | '/products/interactive-busy-book'
     | '/products/preschool-learning-cards'
+    | '/api/public/order-notify'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
@@ -183,6 +194,7 @@ export interface FileRouteTypes {
     | '/products/finger-painting-kit'
     | '/products/interactive-busy-book'
     | '/products/preschool-learning-cards'
+    | '/api/public/order-notify'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
@@ -199,6 +211,7 @@ export interface RootRouteChildren {
   ProductsFingerPaintingKitRoute: typeof ProductsFingerPaintingKitRoute
   ProductsInteractiveBusyBookRoute: typeof ProductsInteractiveBusyBookRoute
   ProductsPreschoolLearningCardsRoute: typeof ProductsPreschoolLearningCardsRoute
+  ApiPublicOrderNotifyRoute: typeof ApiPublicOrderNotifyRoute
   LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
   LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
   LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
@@ -277,6 +290,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LovableEmailSuppressionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/order-notify': {
+      id: '/api/public/order-notify'
+      path: '/api/public/order-notify'
+      fullPath: '/api/public/order-notify'
+      preLoaderRoute: typeof ApiPublicOrderNotifyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/transactional/send': {
       id: '/lovable/email/transactional/send'
       path: '/lovable/email/transactional/send'
@@ -311,6 +331,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProductsFingerPaintingKitRoute: ProductsFingerPaintingKitRoute,
   ProductsInteractiveBusyBookRoute: ProductsInteractiveBusyBookRoute,
   ProductsPreschoolLearningCardsRoute: ProductsPreschoolLearningCardsRoute,
+  ApiPublicOrderNotifyRoute: ApiPublicOrderNotifyRoute,
   LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
   LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
   LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
