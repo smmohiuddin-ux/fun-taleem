@@ -97,5 +97,5 @@ export function useCart() {
   const clear = useCallback(() => write({}), []);
 
   const { items, qty, subtotal, compareTotal } = derive(map);
-  return { items, qty, subtotal, compareTotal, add, set, increment, decrement, remove, clear };
+  return { items, qty, subtotal, compareTotal, hydrated, add, set, increment, decrement, remove, clear };
 }
