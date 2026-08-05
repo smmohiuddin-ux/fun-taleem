@@ -26,8 +26,8 @@ function CheckoutPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (hydrated && qty === 0) navigate({ to: "/cart" });
-  }, [hydrated, qty, navigate]);
+    if (hydrated && qty === 0 && !placed) navigate({ to: "/cart" });
+  }, [hydrated, qty, placed, navigate]);
 
   const [form, setForm] = useState({
     fullName: "", phone: "", email: "", address: "", city: "Karachi", province: "Sindh", postalCode: "", notes: "",
