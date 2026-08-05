@@ -19,7 +19,7 @@ import engagedImg from "@/assets/bb-engaged.jpg.asset.json";
 import interactiveImg from "@/assets/bb-interactive.jpg.asset.json";
 import skillsImg from "@/assets/bb-skills.jpg.asset.json";
 
-const PRICE = 1499;
+const PRICE = 2061;
 const COMPARE = 2499;
 
 const WA_ORDER = encodeURIComponent(

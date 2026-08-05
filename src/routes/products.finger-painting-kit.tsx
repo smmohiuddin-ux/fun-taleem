@@ -19,7 +19,7 @@ import familyImg from "@/assets/fpk-family.jpg.asset.json";
 import completeImg from "@/assets/fpk-complete.jpg.asset.json";
 import cardsImg from "@/assets/fpk-cards.jpg.asset.json";
 
-const PRICE = 1499;
+const PRICE = 2220;
 const COMPARE = 2499;
 
 const WA_ORDER = encodeURIComponent(
