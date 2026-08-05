@@ -1,4 +1,6 @@
 import type { ComponentType } from 'react'
+import { template as orderNotificationTemplate } from './order-notification'
+
 
 export interface TemplateEntry {
   component: ComponentType<any>
