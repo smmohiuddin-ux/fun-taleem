@@ -22,12 +22,12 @@ const CITIES = ["Karachi","Lahore","Islamabad","Rawalpindi","Faisalabad","Multan
 const PROVINCES = ["Sindh","Punjab","Khyber Pakhtunkhwa","Balochistan","Islamabad Capital Territory","Azad Kashmir","Gilgit-Baltistan"];
 
 function CheckoutPage() {
-  const { items, qty, subtotal, clear } = useCart();
+  const { items, qty, subtotal, clear, hydrated } = useCart();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (qty === 0) navigate({ to: "/cart" });
-  }, [qty, navigate]);
+    if (hydrated && qty === 0) navigate({ to: "/cart" });
+  }, [hydrated, qty, navigate]);
 
   const [form, setForm] = useState({
     fullName: "", phone: "", email: "", address: "", city: "Karachi", province: "Sindh", postalCode: "", notes: "",
