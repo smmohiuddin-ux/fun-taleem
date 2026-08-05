@@ -25,16 +25,16 @@ function CheckoutPage() {
   const { items, qty, subtotal, clear, hydrated } = useCart();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (hydrated && qty === 0 && !placed) navigate({ to: "/cart" });
-  }, [hydrated, qty, placed, navigate]);
-
   const [form, setForm] = useState({
     fullName: "", phone: "", email: "", address: "", city: "Karachi", province: "Sindh", postalCode: "", notes: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [placed, setPlaced] = useState(false);
+
+  useEffect(() => {
+    if (hydrated && qty === 0 && !placed) navigate({ to: "/cart" });
+  }, [hydrated, qty, placed, navigate]);
 
   const shipping = useMemo(() => (subtotal >= 3000 ? 0 : 200), [subtotal]);
   const total = subtotal + shipping;
