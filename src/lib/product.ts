@@ -1,8 +1,8 @@
 export const PRODUCT = {
   id: "preschool-learning-cards",
-  name: "Reusable Preschool Learning Cards Set with 64 Activities",
+  name: "Magical Tracing Book - Reusable Preschool Learning Cards Set with 64 Activities",
   subtitle: "Screen-Free Learning Activity Set for Ages 3+",
-  price: 1499,
+  price: 1450,
   compareAt: 2499,
   currency: "PKR",
   image: "/og.png",

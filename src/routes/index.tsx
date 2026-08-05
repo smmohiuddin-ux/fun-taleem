@@ -34,9 +34,9 @@ type ProductCard = {
 
 const PRODUCTS: ProductCard[] = [
   {
-    name: "Reusable Preschool Learning Cards",
+    name: "Magical Tracing Book",
     tagline: "64 wipe-clean activities • Ages 3+",
-    price: 1499,
+    price: 1450,
     compare: 2499,
     image: activityCards.url,
     badge: "Bestseller",
@@ -46,7 +46,7 @@ const PRODUCTS: ProductCard[] = [
   {
     name: "Kids Finger Painting Kit",
     tagline: "12 colors • 30 art cards • Ages 3+",
-    price: 1499,
+    price: 2220,
     compare: 2499,
     image: fingerColors.url,
     badge: "New",
@@ -56,7 +56,7 @@ const PRODUCTS: ProductCard[] = [
   {
     name: "Kids Interactive Busy Book",
     tagline: "Hands-on montessori activities",
-    price: 1499,
+    price: 2061,
     compare: 2499,
     image: busyBookCollection.url,
     badge: "New",
