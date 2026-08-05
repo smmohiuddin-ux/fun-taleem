@@ -104,11 +104,14 @@ ${form.notes ? `Notes: ${form.notes}` : ""}
 Please confirm my order. Thank you!`;
     const wa = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     try { window.open(wa, "_blank", "noopener,noreferrer"); } catch { /* ignore */ }
+    setPlaced(true);
     clear();
+    setSubmitting(false);
     navigate({ to: "/order-success", search: { id: orderId } });
   }
 
-  if (qty === 0) return null;
+  if (!hydrated || (qty === 0 && !placed)) return null;
+
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#eaf7fb] via-white to-white pb-24">
