@@ -34,6 +34,7 @@ function CheckoutPage() {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
+  const [placed, setPlaced] = useState(false);
 
   const shipping = useMemo(() => (subtotal >= 3000 ? 0 : 200), [subtotal]);
   const total = subtotal + shipping;
