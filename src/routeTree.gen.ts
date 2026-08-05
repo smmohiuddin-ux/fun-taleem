@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UnsubscribeRouteImport } from './routes/unsubscribe'
 import { Route as OrderSuccessRouteImport } from './routes/order-success'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CheckoutRouteImport } from './routes/checkout'
@@ -24,6 +25,11 @@ import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lova
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 
+const UnsubscribeRoute = UnsubscribeRouteImport.update({
+  id: '/unsubscribe',
+  path: '/unsubscribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OrderSuccessRoute = OrderSuccessRouteImport.update({
   id: '/order-success',
   path: '/order-success',
@@ -107,6 +113,7 @@ export interface FileRoutesByFullPath {
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/order-success': typeof OrderSuccessRoute
+  '/unsubscribe': typeof UnsubscribeRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/products/finger-painting-kit': typeof ProductsFingerPaintingKitRoute
   '/products/interactive-busy-book': typeof ProductsInteractiveBusyBookRoute
@@ -123,6 +130,7 @@ export interface FileRoutesByTo {
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/order-success': typeof OrderSuccessRoute
+  '/unsubscribe': typeof UnsubscribeRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/products/finger-painting-kit': typeof ProductsFingerPaintingKitRoute
   '/products/interactive-busy-book': typeof ProductsInteractiveBusyBookRoute
@@ -140,6 +148,7 @@ export interface FileRoutesById {
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/order-success': typeof OrderSuccessRoute
+  '/unsubscribe': typeof UnsubscribeRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/products/finger-painting-kit': typeof ProductsFingerPaintingKitRoute
   '/products/interactive-busy-book': typeof ProductsInteractiveBusyBookRoute
@@ -158,6 +167,7 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/contact'
     | '/order-success'
+    | '/unsubscribe'
     | '/email/unsubscribe'
     | '/products/finger-painting-kit'
     | '/products/interactive-busy-book'
@@ -174,6 +184,7 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/contact'
     | '/order-success'
+    | '/unsubscribe'
     | '/email/unsubscribe'
     | '/products/finger-painting-kit'
     | '/products/interactive-busy-book'
@@ -190,6 +201,7 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/contact'
     | '/order-success'
+    | '/unsubscribe'
     | '/email/unsubscribe'
     | '/products/finger-painting-kit'
     | '/products/interactive-busy-book'
@@ -207,6 +219,7 @@ export interface RootRouteChildren {
   CheckoutRoute: typeof CheckoutRoute
   ContactRoute: typeof ContactRoute
   OrderSuccessRoute: typeof OrderSuccessRoute
+  UnsubscribeRoute: typeof UnsubscribeRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
   ProductsFingerPaintingKitRoute: typeof ProductsFingerPaintingKitRoute
   ProductsInteractiveBusyBookRoute: typeof ProductsInteractiveBusyBookRoute
@@ -220,6 +233,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/unsubscribe': {
+      id: '/unsubscribe'
+      path: '/unsubscribe'
+      fullPath: '/unsubscribe'
+      preLoaderRoute: typeof UnsubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/order-success': {
       id: '/order-success'
       path: '/order-success'
@@ -327,6 +347,7 @@ const rootRouteChildren: RootRouteChildren = {
   CheckoutRoute: CheckoutRoute,
   ContactRoute: ContactRoute,
   OrderSuccessRoute: OrderSuccessRoute,
+  UnsubscribeRoute: UnsubscribeRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
   ProductsFingerPaintingKitRoute: ProductsFingerPaintingKitRoute,
   ProductsInteractiveBusyBookRoute: ProductsInteractiveBusyBookRoute,
@@ -340,13 +361,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
