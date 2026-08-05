@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { MessageCircle, Phone, Mail, MapPin, Instagram, Facebook } from "lucide-react";
 
-const WHATSAPP_NUMBER = "923042175897";
+const WHATSAPP_NUMBER = "923022060216";
 const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hi! I have a question.")}`;
 
 export const Route = createFileRoute("/contact")({
@@ -58,7 +58,7 @@ function ContactPage() {
               <div className="text-sm text-muted-foreground">Tap to chat and order</div>
             </div>
           </a>
-          <a href="tel:+923042175897" className="group flex items-center gap-4 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-border transition hover:-translate-y-0.5 hover:shadow-md">
+          <a href="tel:+923022060216" className="group flex items-center gap-4 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-border transition hover:-translate-y-0.5 hover:shadow-md">
             <div className="grid size-14 place-items-center rounded-2xl bg-brand-green text-white"><Phone className="size-7" /></div>
             <div>
               <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Call</div>

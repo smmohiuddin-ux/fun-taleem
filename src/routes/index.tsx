@@ -16,7 +16,7 @@ import busyBookHands from "@/assets/busy-book-hands.jpg.asset.json";
 import busyBookInteractive from "@/assets/busy-book-interactive.jpg.asset.json";
 import busyBookCollection from "@/assets/busy-book-collection.jpg.asset.json";
 
-const WHATSAPP_NUMBER = "923042175897";
+const WHATSAPP_NUMBER = "923022060216";
 const waMsg = encodeURIComponent("Hi Funtaleem! I'd like to know more about your learning toys.");
 const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${waMsg}`;
 
@@ -646,7 +646,7 @@ function Footer() {
         <div>
           <h4 className="font-bold text-[#0a2647]">Get in touch</h4>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li className="flex items-center gap-2"><Phone className="size-4 text-[#1e88e5]"/> <a href="tel:+923042175897" className="hover:text-[#0a2647]">+92 304 2175897</a></li>
+            <li className="flex items-center gap-2"><Phone className="size-4 text-[#1e88e5]"/> <a href="tel:+923022060216" className="hover:text-[#0a2647]">+92 302 2060216</a></li>
             <li className="flex items-center gap-2"><Mail className="size-4 text-[#1e88e5]"/> hello@funtaleem.pk</li>
             <li className="flex items-center gap-2"><MapPin className="size-4 text-[#1e88e5]"/> Karachi, Pakistan</li>
           </ul>
