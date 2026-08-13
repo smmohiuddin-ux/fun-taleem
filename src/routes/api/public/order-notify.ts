@@ -9,7 +9,7 @@ const SITE_NAME = 'Funtaleem'
 const SENDER_DOMAIN = 'notify.funtaleem.pk'
 const FROM_DOMAIN = 'notify.funtaleem.pk'
 
-const ADMIN_RECIPIENTS = ['smmohiuddin@gmail.com', 'rehanmuhammad.2020@gmail.com']
+const ADMIN_RECIPIENTS = ['sales@funtaleem.pk']
 
 const itemSchema = z.object({
   name: z.string().max(200).optional(),
