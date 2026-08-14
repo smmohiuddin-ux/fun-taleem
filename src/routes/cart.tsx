@@ -1,5 +1,5 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { ArrowLeft, Minus, Plus, ShoppingBag, Trash2, Truck, ShieldCheck, RefreshCw } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowLeft, Loader2, Minus, Plus, ShoppingBag, Trash2, Truck, ShieldCheck, RefreshCw } from "lucide-react";
 import { useCart } from "@/lib/cart";
 import { formatPKR } from "@/lib/product";
 import { AnnouncementBar, SiteHeader, SiteFooter } from "@/components/site-chrome";
@@ -16,8 +16,7 @@ export const Route = createFileRoute("/cart")({
 });
 
 function CartPage() {
-  const { items, qty, subtotal, compareTotal, increment, decrement, set, remove } = useCart();
-  const navigate = useNavigate();
+  const { items, qty, subtotal, compareTotal, increment, decrement, set, remove, isLoading, checkoutUrl, openCheckout } = useCart();
   const savings = Math.max(0, compareTotal - subtotal);
 
   return (
@@ -106,10 +105,11 @@ function CartPage() {
               </div>
 
               <button
-                onClick={() => navigate({ to: "/checkout" })}
-                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#f39c12] px-6 py-4 text-base font-bold text-white shadow-lg shadow-[#f39c12]/30 transition hover:scale-[1.02] hover:bg-[#e67e22]"
+                onClick={openCheckout}
+                disabled={isLoading || !checkoutUrl}
+                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#f39c12] px-6 py-4 text-base font-bold text-white shadow-lg shadow-[#f39c12]/30 transition hover:scale-[1.02] hover:bg-[#e67e22] disabled:cursor-not-allowed disabled:opacity-60"
               >
-                <ShoppingBag className="size-5" /> Proceed to Checkout
+                {isLoading ? <Loader2 className="size-5 animate-spin" /> : <ShoppingBag className="size-5" />} Proceed to Checkout
               </button>
               <p className="mt-3 text-center text-xs text-muted-foreground">Pay on delivery — no advance payment</p>
             </aside>
