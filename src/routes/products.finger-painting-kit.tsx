@@ -6,6 +6,7 @@ import {
   Palette, Hand, Users, Brain, Heart, Smile, Droplet,
 } from "lucide-react";
 import { useCart } from "@/lib/cart";
+import { useShopifyProduct } from "@/hooks/useShopifyProducts";
 import { formatPKR } from "@/lib/product";
 import {
   AnnouncementBar, SiteHeader, TrustMarquee, Newsletter, SiteFooter,
@@ -120,6 +121,9 @@ function ProductPage() {
 /* ---------- Hero ---------- */
 function Hero() {
   const { qty, add } = useCart();
+  const { product: shopifyProduct } = useShopifyProduct("finger-painting-kit");
+  const livePrice = shopifyProduct?.price ?? 2220;
+  const liveCompare = shopifyProduct?.compareAt ?? 2499;
   const navigate = useNavigate();
   const PRODUCT_ID = "finger-painting-kit";
   const handleAdd = () => { add(PRODUCT_ID, count); navigate({ to: "/cart" }); };
@@ -171,8 +175,8 @@ function Hero() {
           <p className="mt-3 text-lg font-semibold text-[#0a2647]/80">12 washable colors + 30 activity cards for endless creative play</p>
 
           <div className="mt-6 flex items-baseline gap-3">
-            <span className="font-display text-4xl font-black text-[#0a2647]">{formatPKR(PRICE)}</span>
-            <span className="text-lg text-muted-foreground line-through">{formatPKR(COMPARE)}</span>
+            <span className="font-display text-4xl font-black text-[#0a2647]">{formatPKR(livePrice)}</span>
+            <span className="text-lg text-muted-foreground line-through">{formatPKR(liveCompare)}</span>
             <span className="rounded-full bg-[#f39c12]/15 px-2.5 py-1 text-xs font-bold text-[#f39c12]">Save 40%</span>
           </div>
 
