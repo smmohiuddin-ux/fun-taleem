@@ -6,6 +6,7 @@ import {
   MapPin, Heart,
 } from "lucide-react";
 import { formatPKR } from "@/lib/product";
+import { useShopifyProducts } from "@/hooks/useShopifyProducts";
 import { AnnouncementBar, SiteHeader } from "@/components/site-chrome";
 import logo from "@/assets/funtaleem-logo.png.asset.json";
 import childLearning from "@/assets/child-learning.png.asset.json";
@@ -28,6 +29,7 @@ type ProductCard = {
   image: string;
   badge: string;
   badgeTone: "green" | "coral" | "purple";
+  slug?: string;
   href?: "/products/preschool-learning-cards" | "/products/finger-painting-kit" | "/products/interactive-busy-book";
   comingSoon?: boolean;
 };
@@ -41,6 +43,7 @@ const PRODUCTS: ProductCard[] = [
     image: activityCards.url,
     badge: "Bestseller",
     badgeTone: "green",
+    slug: "preschool-learning-cards",
     href: "/products/preschool-learning-cards",
   },
   {
@@ -51,6 +54,7 @@ const PRODUCTS: ProductCard[] = [
     image: fingerColors.url,
     badge: "New",
     badgeTone: "coral",
+    slug: "finger-painting-kit",
     href: "/products/finger-painting-kit",
   },
   {
@@ -61,6 +65,7 @@ const PRODUCTS: ProductCard[] = [
     image: busyBookCollection.url,
     badge: "New",
     badgeTone: "purple",
+    slug: "interactive-busy-book",
     href: "/products/interactive-busy-book",
   },
 ];
@@ -252,6 +257,7 @@ function Marquee() {
 
 /* ---------- Featured products ---------- */
 function FeaturedProducts() {
+  const { bySlug } = useShopifyProducts();
   return (
     <section id="products" className="relative scroll-mt-24 px-4 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl">
@@ -304,8 +310,8 @@ function FeaturedProducts() {
                 <h3 className="text-base font-bold leading-snug">{p.name}</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{p.tagline}</p>
                 <div className="mt-3 flex items-baseline gap-2">
-                  <span className="text-lg font-extrabold">{formatPKR(p.price)}</span>
-                  <span className="text-sm text-muted-foreground line-through">{formatPKR(p.compare)}</span>
+                  <span className="text-lg font-extrabold">{formatPKR((p.slug && bySlug[p.slug]?.price) || p.price)}</span>
+                  <span className="text-sm text-muted-foreground line-through">{formatPKR((p.slug && bySlug[p.slug]?.compareAt) || p.compare)}</span>
                 </div>
                 <div className="mt-5 flex-1" />
                 {p.href ? (

@@ -6,6 +6,7 @@ import {
   Pencil, Eraser, Repeat, Eye, Hand, Puzzle, Brain, Type, Hash,
 } from "lucide-react";
 import { useCart } from "@/lib/cart";
+import { useShopifyProduct } from "@/hooks/useShopifyProducts";
 import { PRODUCT, formatPKR } from "@/lib/product";
 import {
   AnnouncementBar, SiteHeader, TrustMarquee, Newsletter, SiteFooter,
@@ -115,6 +116,9 @@ function ProductPage() {
 /* ---------- Hero ---------- */
 function Hero() {
   const { qty, add } = useCart();
+  const { product: shopifyProduct } = useShopifyProduct("preschool-learning-cards");
+  const livePrice = shopifyProduct?.price ?? 1450;
+  const liveCompare = shopifyProduct?.compareAt ?? 2499;
   const navigate = useNavigate();
   const PRODUCT_ID = "preschool-learning-cards";
   const handleAdd = () => { add(PRODUCT_ID, count); navigate({ to: "/cart" }); };
@@ -166,8 +170,8 @@ function Hero() {
           <p className="mt-3 text-lg font-semibold text-[#0a2647]/80">64 wipe-clean activities that grow with your child</p>
 
           <div className="mt-6 flex items-baseline gap-3">
-            <span className="font-display text-4xl font-black text-[#0a2647]">{formatPKR(PRODUCT.price)}</span>
-            <span className="text-lg text-muted-foreground line-through">{formatPKR(PRODUCT.compareAt)}</span>
+            <span className="font-display text-4xl font-black text-[#0a2647]">{formatPKR(livePrice)}</span>
+            <span className="text-lg text-muted-foreground line-through">{formatPKR(liveCompare)}</span>
             <span className="rounded-full bg-[#f39c12]/15 px-2.5 py-1 text-xs font-bold text-[#f39c12]">Save 40%</span>
           </div>
 

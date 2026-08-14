@@ -1,101 +1,121 @@
-import { useEffect, useState, useCallback } from "react";
-import { CATALOG, type CatalogItem } from "@/lib/catalog";
+import { useCallback, useEffect, useState } from "react";
+import { useCartStore, cartTotals } from "@/stores/cartStore";
+import { PRODUCT_META } from "@/lib/catalog";
+import { toAmount } from "@/lib/shopify";
 
-const KEY = "funtaleem_cart_v2";
-const EVT = "funtaleem-cart-changed";
-
-type CartMap = Record<string, number>;
-
-export type CartLine = CatalogItem & { qty: number; lineTotal: number; lineCompare: number };
-
-function read(): CartMap {
-  if (typeof window === "undefined") return {};
-  try {
-    const raw = window.localStorage.getItem(KEY);
-    if (!raw) return {};
-    const parsed = JSON.parse(raw);
-    if (parsed && typeof parsed === "object") {
-      const out: CartMap = {};
-      for (const [k, v] of Object.entries(parsed)) {
-        const n = typeof v === "number" ? v : parseInt(String(v), 10);
-        if (CATALOG[k] && Number.isFinite(n) && n > 0) out[k] = Math.min(99, Math.floor(n));
-      }
-      return out;
-    }
-  } catch { /* ignore */ }
-  return {};
-}
-
-function write(next: CartMap) {
-  if (typeof window === "undefined") return;
-  const clean: CartMap = {};
-  for (const [k, v] of Object.entries(next)) {
-    if (CATALOG[k] && v > 0) clean[k] = Math.min(99, Math.floor(v));
-  }
-  if (Object.keys(clean).length === 0) window.localStorage.removeItem(KEY);
-  else window.localStorage.setItem(KEY, JSON.stringify(clean));
-  window.dispatchEvent(new CustomEvent(EVT));
-}
-
-function derive(map: CartMap): { items: CartLine[]; qty: number; subtotal: number; compareTotal: number } {
-  const items: CartLine[] = [];
-  let qty = 0;
-  let subtotal = 0;
-  let compareTotal = 0;
-  for (const [id, n] of Object.entries(map)) {
-    const item = CATALOG[id];
-    if (!item) continue;
-    items.push({ ...item, qty: n, lineTotal: item.price * n, lineCompare: item.compareAt * n });
-    qty += n;
-    subtotal += item.price * n;
-    compareTotal += item.compareAt * n;
-  }
-  return { items, qty, subtotal, compareTotal };
-}
+/**
+ * Adapter that keeps the existing Fun Taleem UI API (`useCart()`), while the
+ * real cart lives in Shopify via the Storefront API.
+ */
+export type CartLine = {
+  id: string;
+  variantId: string;
+  name: string;
+  subtitle: string;
+  image: string;
+  href: string;
+  price: number;
+  compareAt: number;
+  qty: number;
+  lineTotal: number;
+  lineCompare: number;
+};
 
 export function useCart() {
-  const [map, setMap] = useState<CartMap>({});
+  const storeItems = useCartStore((s) => s.items);
+  const isLoading = useCartStore((s) => s.isLoading);
+  const addBySlug = useCartStore((s) => s.addBySlug);
+  const updateQuantity = useCartStore((s) => s.updateQuantity);
+  const removeItem = useCartStore((s) => s.removeItem);
+  const clearCart = useCartStore((s) => s.clearCart);
+  const checkoutUrl = useCartStore((s) => s.checkoutUrl);
+
+  // zustand/persist rehydrates on the client only; avoid SSR mismatch.
   const [hydrated, setHydrated] = useState(false);
-  useEffect(() => {
-    setMap(read());
-    setHydrated(true);
-    const onChange = () => setMap(read());
-    window.addEventListener(EVT, onChange);
-    window.addEventListener("storage", onChange);
-    return () => {
-      window.removeEventListener(EVT, onChange);
-      window.removeEventListener("storage", onChange);
-    };
-  }, []);
+  useEffect(() => setHydrated(true), []);
 
-  const add = useCallback((id: string, n = 1) => {
-    const cur = read();
-    cur[id] = (cur[id] ?? 0) + n;
-    write(cur);
-  }, []);
-  const set = useCallback((id: string, n: number) => {
-    const cur = read();
-    if (n <= 0) delete cur[id]; else cur[id] = n;
-    write(cur);
-  }, []);
-  const increment = useCallback((id: string) => {
-    const cur = read();
-    cur[id] = (cur[id] ?? 0) + 1;
-    write(cur);
-  }, []);
-  const decrement = useCallback((id: string) => {
-    const cur = read();
-    const next = (cur[id] ?? 0) - 1;
-    if (next <= 0) delete cur[id]; else cur[id] = next;
-    write(cur);
-  }, []);
-  const remove = useCallback((id: string) => {
-    const cur = read();
-    delete cur[id];
-    write(cur);
-  }, []);
-  const clear = useCallback(() => write({}), []);
+  const items: CartLine[] = hydrated
+    ? storeItems.map((it) => {
+        const meta = PRODUCT_META[it.slug];
+        const price = toAmount(it.price);
+        const compareAt = it.compareAtPrice ? toAmount(it.compareAtPrice) : price;
+        return {
+          id: it.slug,
+          variantId: it.variantId,
+          name: it.title,
+          subtitle: meta?.subtitle ?? "",
+          image: it.image ?? meta?.image ?? "",
+          href: meta?.href ?? "/",
+          price,
+          compareAt,
+          qty: it.quantity,
+          lineTotal: price * it.quantity,
+          lineCompare: compareAt * it.quantity,
+        };
+      })
+    : [];
 
-  const { items, qty, subtotal, compareTotal } = derive(map);
-  return { items, qty, subtotal, compareTotal, hydrated, add, set, increment, decrement, remove, clear };
+  const totals = cartTotals(hydrated ? storeItems : []);
+
+  const findVariant = useCallback(
+    (slug: string) => storeItems.find((i) => i.slug === slug),
+    [storeItems],
+  );
+
+  const add = useCallback((slug: string, n = 1) => void addBySlug(slug, n), [addBySlug]);
+
+  const set = useCallback(
+    (slug: string, n: number) => {
+      const line = findVariant(slug);
+      if (line) void updateQuantity(line.variantId, n);
+    },
+    [findVariant, updateQuantity],
+  );
+
+  const increment = useCallback(
+    (slug: string) => {
+      const line = findVariant(slug);
+      if (line) void updateQuantity(line.variantId, line.quantity + 1);
+    },
+    [findVariant, updateQuantity],
+  );
+
+  const decrement = useCallback(
+    (slug: string) => {
+      const line = findVariant(slug);
+      if (line) void updateQuantity(line.variantId, line.quantity - 1);
+    },
+    [findVariant, updateQuantity],
+  );
+
+  const remove = useCallback(
+    (slug: string) => {
+      const line = findVariant(slug);
+      if (line) void removeItem(line.variantId);
+    },
+    [findVariant, removeItem],
+  );
+
+  const clear = useCallback(() => clearCart(), [clearCart]);
+
+  const openCheckout = useCallback(() => {
+    if (checkoutUrl) window.open(checkoutUrl, "_blank");
+  }, [checkoutUrl]);
+
+  return {
+    items,
+    qty: totals.qty,
+    subtotal: totals.subtotal,
+    compareTotal: totals.compareTotal,
+    hydrated,
+    isLoading,
+    checkoutUrl,
+    openCheckout,
+    add,
+    set,
+    increment,
+    decrement,
+    remove,
+    clear,
+  };
 }
