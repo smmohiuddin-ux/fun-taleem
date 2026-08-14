@@ -257,6 +257,7 @@ function Marquee() {
 
 /* ---------- Featured products ---------- */
 function FeaturedProducts() {
+  const { bySlug } = useShopifyProducts();
   return (
     <section id="products" className="relative scroll-mt-24 px-4 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl">
