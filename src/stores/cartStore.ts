@@ -93,9 +93,14 @@ const CART_LINES_REMOVE_MUTATION = `
   }
 `;
 
+const SHOPIFY_CHECKOUT_DOMAIN =
+  import.meta.env?.VITE_SHOPIFY_CHECKOUT_DOMAIN ?? "checkout.funtaleem.pk";
+
 function formatCheckoutUrl(checkoutUrl: string): string {
   try {
     const url = new URL(checkoutUrl);
+    url.protocol = "https:";
+    url.host = SHOPIFY_CHECKOUT_DOMAIN;
     url.searchParams.set("channel", "online_store");
     return url.toString();
   } catch {
