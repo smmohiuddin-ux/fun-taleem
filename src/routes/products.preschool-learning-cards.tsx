@@ -62,7 +62,7 @@ function SecondaryCTA({ label, size = "md", onClick }: { label: string; size?: "
   return (
     <button
       onClick={onClick}
-      className={`inline-flex items-center justify-center gap-2 rounded-full bg-[#0a2647] font-bold text-white shadow-lg shadow-[#0a2647]/25 transition hover:scale-[1.03] hover:bg-[#0f3560] ${cls}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-none bg-[#0a2647] font-bold text-white shadow-lg shadow-[#0a2647]/25 transition hover:scale-[1.03] hover:bg-[#0f3560] ${cls}`}
     >
       <ShoppingCart className="size-5" />
       {label}
