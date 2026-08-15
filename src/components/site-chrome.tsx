@@ -302,7 +302,7 @@ export function SiteFooter() {
           </ul>
           <div className="mt-4 flex gap-2">
             {[Instagram, Facebook, Music2, MessageCircle].map((I, i) => (
-              <a key={i} href={i === 3 ? waLink : "#"} target={i === 3 ? "_blank" : undefined} rel="noopener noreferrer" className="grid size-10 place-items-center rounded-full bg-[#eaf7fb] text-[#0a2647] transition hover:scale-110 hover:bg-[#26c6da] hover:text-white">
+              <a key={i} href={i === 3 ? waLink : "#"} target={i === 3 ? "_blank" : undefined} rel="noopener noreferrer" className="grid size-10 place-items-center rounded-none bg-[#eaf7fb] text-[#0a2647] transition hover:scale-110 hover:bg-[#26c6da] hover:text-white">
                 <I className="size-4" />
               </a>
             ))}
