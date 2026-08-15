@@ -130,38 +130,16 @@ function Hero() {
   const [count, setCount] = useState(1);
 
   return (
-    <section className="relative isolate overflow-hidden bg-gradient-to-b from-[#eaf7fb] via-white to-white px-4 pb-20 pt-10 sm:pt-16">
-      <div className="blob -left-24 top-10 size-[420px] bg-[#26c6da]/40" />
-      <div className="blob -right-32 top-32 size-[460px] bg-[#f39c12]/25" />
-      <div className="pointer-events-none absolute left-[6%] top-24 text-5xl floaty">📖</div>
-      <div className="pointer-events-none absolute right-[8%] top-32 text-5xl floaty" style={{ animationDelay: "-1.5s" }}>🦕</div>
-      <div className="pointer-events-none absolute left-[18%] bottom-10 text-4xl floaty" style={{ animationDelay: "-3s" }}>🦁</div>
-
-      <div className="relative mx-auto grid max-w-7xl items-center gap-10 md:grid-cols-2">
-        {/* Product image */}
-        <div className="relative order-1 mx-auto w-full max-w-lg md:order-none">
-          <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/40 via-[#1e88e5]/20 to-[#f39c12]/25 blur-2xl" />
-          <div className="relative aspect-square overflow-hidden rounded-[2.5rem] bg-white shadow-2xl ring-1 ring-white tilt-hover group cursor-default">
-            <img src={mainImg.url} alt="Kids Interactive Busy Book with 4 themes and peel-and-stick pieces" className="size-full object-contain p-4 transition duration-700 hover:scale-105" />
-          </div>
-
-          <div className="absolute -top-4 -left-4 flex items-center gap-3 rounded-2xl bg-white p-3 shadow-xl ring-1 ring-border floaty">
-            <div className="grid size-11 place-items-center rounded-xl bg-[#26c6da]/20 text-2xl">📚</div>
-            <div>
-              <div className="text-xs font-bold text-muted-foreground">4 fun</div>
-              <div className="text-sm font-bold">Themes</div>
-            </div>
-          </div>
-          <div className="absolute -bottom-6 -right-4 flex items-center gap-3 rounded-2xl bg-white p-3 shadow-xl ring-1 ring-border floaty" style={{ animationDelay: "-2s" }}>
-            <div className="grid size-11 place-items-center rounded-xl bg-[#f39c12]/20 text-2xl">✋</div>
-            <div>
-              <div className="text-xs font-bold text-muted-foreground">Peel & stick</div>
-              <div className="text-sm font-bold">Hands-on Play</div>
-            </div>
-          </div>
+    <section className="relative overflow-hidden bg-white text-[#0a2647] pb-20 pt-10 sm:pt-16">
+      {/* Banner image instead of box */}
+      <div className="mx-auto max-w-7xl px-4">
+        <div className="relative overflow-hidden w-full">
+          <img src={mainImg.url} alt="Kids Interactive Busy Book" className="w-full h-auto object-cover rounded-none" />
         </div>
-
-        {/* Info */}
+      </div>
+      
+      {/* Info section below banner */}
+      <div className="mx-auto mt-10 max-w-7xl px-4 grid gap-10 md:grid-cols-2 items-center">
         <div className="rise-in">
           <div className="flex items-center gap-3">
             <Eyebrow>New · Ages 2+</Eyebrow>
@@ -171,14 +149,14 @@ function Hero() {
             </div>
           </div>
           <h1 className="mt-4 font-display text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
-            Interactive <span className="bg-gradient-to-r from-[#0a2647] via-[#1e88e5] to-[#26c6da] bg-clip-text text-transparent">Busy Book</span>
+            Interactive Busy Book
           </h1>
           <p className="mt-3 text-lg font-semibold text-[#0a2647]/80">4 themed books with peel-and-stick pieces to match, play and learn</p>
 
           <div className="mt-6 flex items-baseline gap-3">
             <span className="font-display text-4xl font-black text-[#0a2647]">{formatPKR(livePrice)}</span>
             <span className="text-lg text-muted-foreground line-through">{formatPKR(liveCompare)}</span>
-            <span className="rounded-full bg-[#f39c12]/15 px-2.5 py-1 text-xs font-bold text-[#f39c12]">Save 40%</span>
+            <span className="rounded-none bg-[#f39c12]/15 px-2.5 py-1 text-xs font-bold text-[#f39c12]">Save 40%</span>
           </div>
 
           <ul className="mt-6 space-y-2 text-sm font-medium text-foreground/85">
@@ -189,7 +167,7 @@ function Hero() {
               "Easy-flip binder rings - a full library in one compact set",
             ].map((f) => (
               <li key={f} className="flex items-start gap-2.5">
-                <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-[#26c6da] text-white text-[10px] font-black">✓</span>
+                <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-none bg-[#26c6da] text-white text-[10px] font-black">✓</span>
                 {f}
               </li>
             ))}
@@ -197,29 +175,17 @@ function Hero() {
 
           {/* Qty + CTA */}
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <div className="inline-flex items-center gap-1 rounded-full bg-white p-1 shadow ring-1 ring-border">
-              <button aria-label="Decrease" onClick={() => setCount((c) => Math.max(1, c - 1))} className="grid size-10 place-items-center rounded-full text-foreground/70 hover:bg-muted">
+            <div className="inline-flex items-center gap-1 rounded-none bg-white p-1 shadow ring-1 ring-border">
+              <button aria-label="Decrease" onClick={() => setCount((c) => Math.max(1, c - 1))} className="grid size-10 place-items-center rounded-none text-foreground/70 hover:bg-muted">
                 <Minus className="size-4" />
               </button>
               <span className="w-8 text-center font-bold">{count}</span>
-              <button aria-label="Increase" onClick={() => setCount((c) => Math.min(10, c + 1))} className="grid size-10 place-items-center rounded-full text-foreground/70 hover:bg-muted">
+              <button aria-label="Increase" onClick={() => setCount((c) => Math.min(10, c + 1))} className="grid size-10 place-items-center rounded-none text-foreground/70 hover:bg-muted">
                 <Plus className="size-4" />
               </button>
             </div>
             <PrimaryCTA size="lg" />
             <SecondaryCTA label={qty > 0 ? "Add More · Checkout" : "Add to Cart"} size="lg" onClick={handleAdd} />
-          </div>
-
-          <div className="mt-6 grid grid-cols-3 gap-3 text-center text-xs font-semibold text-foreground/70">
-            <div className="rounded-2xl bg-white p-3 shadow-sm ring-1 ring-border">
-              <Truck className="mx-auto mb-1 size-5 text-[#1e88e5]" /> Cash on Delivery
-            </div>
-            <div className="rounded-2xl bg-white p-3 shadow-sm ring-1 ring-border">
-              <ShieldCheck className="mx-auto mb-1 size-5 text-[#1e88e5]" /> Non-toxic Safe
-            </div>
-            <div className="rounded-2xl bg-white p-3 shadow-sm ring-1 ring-border">
-              <BookOpen className="mx-auto mb-1 size-5 text-[#1e88e5]" /> 4 Themes in 1
-            </div>
           </div>
         </div>
       </div>
