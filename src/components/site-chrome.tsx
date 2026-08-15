@@ -135,7 +135,7 @@ export function SiteHeader() {
         </div>
 
         <Link to="/" className="flex items-center justify-center wiggle-hover md:justify-self-center">
-          <img src={logo.url} alt="Funtaleem" className="h-14 w-auto sm:h-[4.25rem]" />
+          <img src={logo.url} alt="Funtaleem" className="h-12 w-auto sm:h-14" />
         </Link>
 
         <div className="flex items-center justify-end gap-2">
