@@ -207,9 +207,10 @@ function Hero() {
         {/* Hero image collage */}
         <div className="relative mx-auto w-full max-w-lg">
           <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/40 via-[#1e88e5]/20 to-[#f39c12]/25 blur-2xl" />
-          <Link to="/products/interactive-busy-book" className="relative block aspect-square overflow-hidden rounded-[2.5rem] bg-white shadow-2xl ring-1 ring-white tilt-hover transition duration-300 hover:shadow-primary/20">
+          <Link to="/products/interactive-busy-book" className="relative block aspect-square overflow-hidden rounded-none bg-white shadow-2xl ring-1 ring-white tilt-hover transition duration-300 hover:shadow-primary/20">
             <img src={busyBookHands.url} alt="Interactive busy book made for little hands" className="size-full object-contain p-4 transition duration-700 hover:scale-105" />
           </Link>
+
 
           {/* small floating cards */}
           <div className="absolute -bottom-6 -left-6 flex items-center gap-3 rounded-2xl bg-white p-3 shadow-xl ring-1 ring-border floaty">
