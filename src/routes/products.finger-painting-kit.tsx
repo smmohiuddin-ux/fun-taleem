@@ -180,7 +180,7 @@ function Hero() {
           <div className="mt-6 flex items-baseline gap-3">
             <span className="font-display text-4xl font-black text-[#0a2647]">{formatPKR(livePrice)}</span>
             <span className="text-lg text-muted-foreground line-through">{formatPKR(liveCompare)}</span>
-            <span className="rounded-full bg-[#f39c12]/15 px-2.5 py-1 text-xs font-bold text-[#f39c12]">Save 40%</span>
+            <span className="rounded-none bg-[#f39c12]/15 px-2.5 py-1 text-xs font-bold text-[#f39c12]">Save 40%</span>
           </div>
 
           <ul className="mt-6 space-y-2 text-sm font-medium text-foreground/85">
