@@ -553,7 +553,7 @@ function Specs() {
     <section className="relative bg-[#eaf7fb]/40 px-4 py-20 sm:py-28">
       <div className="mx-auto max-w-5xl">
         <SectionTitle eyebrow="Product Specs" title={<>Every detail, thought through</>} />
-        <div className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-border" data-reveal>
+        <div className="overflow-hidden rounded-none bg-white shadow-sm ring-1 ring-border" data-reveal>
           <dl className="grid grid-cols-1 divide-y divide-border sm:grid-cols-2 sm:divide-x">
             {specs.map((s, i) => (
               <div key={s.k} className={`flex items-baseline justify-between gap-4 p-5 ${i >= 2 ? "sm:border-t sm:border-border" : ""}`}>
@@ -572,7 +572,7 @@ function Specs() {
 function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-border transition hover:shadow-md" data-reveal>
+    <div className="overflow-hidden rounded-none bg-white shadow-sm ring-1 ring-border transition hover:shadow-md" data-reveal>
       <button onClick={() => setOpen((o) => !o)} className="flex w-full items-center justify-between gap-4 p-5 text-left">
         <span className="font-display text-lg font-bold text-[#0a2647]">{q}</span>
         <ChevronDown className={`size-5 shrink-0 text-[#1e88e5] transition-transform ${open ? "rotate-180" : ""}`} />
@@ -616,10 +616,11 @@ function FinalCTA() {
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <PrimaryCTA size="lg" label="Order Now on WhatsApp" />
-          <Link to="/cart" className="inline-flex items-center gap-2 rounded-full bg-white/10 px-8 py-4 text-base font-bold text-white ring-1 ring-white/40 backdrop-blur transition hover:scale-[1.03] hover:bg-white/20">
+          <Link to="/cart" className="inline-flex items-center gap-2 rounded-none bg-white/10 px-8 py-4 text-base font-bold text-white ring-1 ring-white/40 backdrop-blur transition hover:scale-[1.03] hover:bg-white/20">
             <ShoppingCart className="size-5" /> View Cart
           </Link>
         </div>
+
         <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-sm font-semibold text-white/80">
           <span className="flex items-center gap-1.5"><Check className="size-4 text-[#26c6da]" /> Cash on Delivery</span>
           <span className="flex items-center gap-1.5"><Check className="size-4 text-[#26c6da]" /> 2-4 day shipping</span>
