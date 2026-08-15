@@ -620,6 +620,7 @@ function FinalCTA() {
             <ShoppingCart className="size-5" /> View Cart
           </Link>
 
+
         </div>
 
         <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-sm font-semibold text-white/80">
