@@ -72,7 +72,7 @@ function SecondaryCTA({ label, size = "md", onClick }: { label: string; size?: "
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-block rounded-full bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
+    <span className="inline-block rounded-none bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
       {children}
     </span>
   );
