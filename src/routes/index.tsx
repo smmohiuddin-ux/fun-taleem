@@ -461,9 +461,10 @@ function AgeCollections() {
     <section className="relative bg-[#eaf7fb]/40 px-4 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 text-center" data-reveal>
-          <span className="inline-block rounded-full bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647] shadow-sm">
+          <span className="inline-block rounded-none bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647] shadow-sm">
             Shop by Age
           </span>
+
           <h2 className="mt-3 font-display text-4xl font-bold sm:text-5xl">Perfect toys, at every stage</h2>
         </div>
         <div className="grid gap-6 md:grid-cols-3">
