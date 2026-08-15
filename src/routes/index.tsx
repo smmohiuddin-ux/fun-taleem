@@ -474,7 +474,7 @@ function AgeCollections() {
               to="/" hash="products"
               data-reveal
               style={{ transitionDelay: `${i * 90}ms` }}
-              className={`group relative overflow-hidden rounded-3xl bg-gradient-to-br ${c.tone} p-8 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-xl`}
+              className={`group relative overflow-hidden rounded-none bg-gradient-to-br ${c.tone} p-8 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-xl`}
             >
               <div className="text-6xl transition-transform group-hover:scale-125 group-hover:-rotate-6">{c.emoji}</div>
               <div className="mt-6 text-xs font-bold uppercase tracking-wider text-[#26c6da]">{c.age}</div>
