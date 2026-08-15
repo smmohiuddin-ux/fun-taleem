@@ -362,9 +362,10 @@ function WipeReuse() {
                 key={s.n}
                 data-reveal
                 style={{ transitionDelay: `${i * 100}ms` }}
-                className="group flex items-start gap-5 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+                className="group flex items-start gap-5 rounded-none bg-white p-6 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <div className="grid size-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-[#0a2647] to-[#1e88e5] font-display text-2xl font-black text-white shadow transition group-hover:scale-110 group-hover:rotate-3">
+                <div className="grid size-14 shrink-0 place-items-center rounded-none bg-gradient-to-br from-[#0a2647] to-[#1e88e5] font-display text-2xl font-black text-white shadow transition group-hover:scale-110 group-hover:rotate-3">
+
                   {s.n}
                 </div>
                 <div className="flex-1">
