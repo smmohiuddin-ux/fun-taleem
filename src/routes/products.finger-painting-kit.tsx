@@ -549,7 +549,7 @@ function Specs() {
     <section className="relative px-4 py-20 sm:py-28">
       <div className="mx-auto max-w-5xl">
         <SectionTitle eyebrow="Product Specs" title={<>Every detail, thought through</>} />
-        <div className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-border" data-reveal>
+        <div className="overflow-hidden rounded-none bg-white shadow-sm ring-1 ring-border" data-reveal>
           <dl className="grid grid-cols-1 divide-y divide-border sm:grid-cols-2 sm:divide-x">
             {specs.map((s, i) => (
               <div key={s.k} className={`flex items-baseline justify-between gap-4 p-5 ${i >= 2 ? "sm:border-t sm:border-border" : ""}`}>
