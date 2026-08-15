@@ -590,9 +590,10 @@ function InstagramGrid() {
     <section className="relative px-4 py-20 sm:py-24">
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 text-center" data-reveal>
-          <span className="inline-block rounded-full bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
+          <span className="inline-block rounded-none bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
             @funtaleem.pk
           </span>
+
           <h2 className="mt-3 font-display text-4xl font-bold sm:text-5xl">Real kids. Real moments.</h2>
         </div>
         <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
