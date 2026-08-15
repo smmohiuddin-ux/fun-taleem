@@ -48,7 +48,7 @@ function PrimaryCTA({ label = "Order on WhatsApp", size = "md" }: { label?: stri
       href={waOrderLink}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group inline-flex items-center justify-center gap-2 rounded-full bg-[#f39c12] font-bold text-white shadow-lg shadow-[#f39c12]/30 transition hover:scale-[1.03] hover:bg-[#e08e0a] shine-on-hover btn-pulse ${cls}`}
+      className={`group inline-flex items-center justify-center gap-2 rounded-none bg-[#f39c12] font-bold text-white shadow-lg shadow-[#f39c12]/30 transition hover:scale-[1.03] hover:bg-[#e08e0a] shine-on-hover btn-pulse ${cls}`}
     >
       <MessageCircle className="size-5" strokeWidth={2.5} />
       {label}
