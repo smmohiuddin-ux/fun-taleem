@@ -43,43 +43,107 @@ export const Route = createFileRoute("/products/interactive-busy-book")({
 
 /* ---------- Reusable bits ---------- */
 
-function FullWidthBanner() {
+function Hero() {
   const { qty, add } = useCart();
   const { product: shopifyProduct } = useShopifyProduct("interactive-busy-book");
   const livePrice = shopifyProduct?.price ?? 2061;
+  const liveCompare = shopifyProduct?.compareAt ?? 3499;
   const navigate = useNavigate();
   const PRODUCT_ID = "interactive-busy-book";
-  const handleAdd = () => { add(PRODUCT_ID, 1); navigate({ to: "/cart" }); };
+  const handleAdd = () => { add(PRODUCT_ID, count); navigate({ to: "/cart" }); };
+  const [count, setCount] = useState(1);
 
   return (
-    <section className="relative w-full overflow-hidden rise-in" data-reveal>
-      <div className="relative aspect-[21/9] w-full min-h-[450px] md:min-h-[600px]">
-        <img 
-          src={bannerImg.url} 
-          alt="Kids Interactive Busy Book Banner" 
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/10 flex flex-col justify-center px-4 sm:px-12 md:px-24">
-          <div className="max-w-2xl text-[#0a2647] drop-shadow-sm">
+    <section className="relative isolate overflow-hidden bg-gradient-to-b from-[#eaf7fb] via-white to-white px-4 pb-20 pt-10 sm:pt-16">
+      <div className="blob -left-24 top-10 size-[420px] bg-[#26c6da]/40" />
+      <div className="blob -right-32 top-32 size-[460px] bg-[#f39c12]/25" />
+      <div className="pointer-events-none absolute left-[6%] top-24 text-5xl floaty">🦖</div>
+      <div className="pointer-events-none absolute right-[8%] top-32 text-5xl floaty" style={{ animationDelay: "-1.5s" }}>🚒</div>
+      <div className="pointer-events-none absolute left-[18%] bottom-10 text-4xl floaty" style={{ animationDelay: "-3s" }}>🦒</div>
+
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 md:grid-cols-2">
+        {/* Product image */}
+        <div className="relative order-1 mx-auto w-full max-w-lg md:order-none">
+          <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/40 via-[#1e88e5]/20 to-[#f39c12]/25 blur-2xl" />
+          <div className="relative aspect-square overflow-hidden rounded-3xl bg-white shadow-2xl ring-1 ring-white tilt-hover group cursor-default">
+            <img src={mainImg.url} alt="Kids Interactive Busy Book - 4 Themes" className="size-full object-contain p-4 transition duration-700 hover:scale-105" />
+          </div>
+
+          <div className="absolute -top-4 -left-4 flex items-center gap-3 rounded-3xl bg-white p-3 shadow-xl ring-1 ring-border floaty">
+            <div className="grid size-11 place-items-center rounded-3xl bg-[#26c6da]/20 text-2xl">🧩</div>
+            <div>
+              <div className="text-xs font-bold text-muted-foreground">Match & Stick</div>
+              <div className="text-sm font-bold">Reusable</div>
+            </div>
+          </div>
+          <div className="absolute -bottom-6 -right-4 flex items-center gap-3 rounded-3xl bg-white p-3 shadow-xl ring-1 ring-border floaty" style={{ animationDelay: "-2s" }}>
+            <div className="grid size-11 place-items-center rounded-3xl bg-[#f39c12]/20 text-2xl">📚</div>
+            <div>
+              <div className="text-xs font-bold text-muted-foreground">4 Themes</div>
+              <div className="text-sm font-bold">Dino, Cars...</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Info */}
+        <div className="rise-in">
+          <div className="flex items-center gap-3">
             <Eyebrow>Bestseller · Ages 2+</Eyebrow>
-            <h1 className="mt-4 font-display text-4xl font-bold sm:text-6xl md:text-7xl text-[#0a2647] tracking-tight">
-              Interactive <br className="hidden sm:block" /> Busy Book
-            </h1>
-            <p className="mt-6 text-xl sm:text-2xl font-bold max-w-lg text-[#0a2647]/90 leading-snug">
-              4 themed books with reusable peel-and-stick pieces to match, play and learn.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-6">
-              <span className="font-display text-5xl font-black text-[#0a2647]">{formatPKR(livePrice)}</span>
-              <div className="flex items-center gap-3">
-                <PrimaryCTA label="Shop Now" size="lg" />
-                <button 
-                  onClick={handleAdd}
-                  className="inline-flex items-center justify-center gap-2 rounded-3xl bg-[#0a2647] px-8 py-4 text-base font-bold text-white shadow-lg shadow-[#0a2647]/25 transition hover:scale-[1.03] hover:bg-[#0f3560]"
-                >
-                  <ShoppingCart className="size-5" />
-                  {qty > 0 ? "Add More" : "Add to Cart"}
-                </button>
-              </div>
+            <div className="flex items-center gap-1 text-[#f39c12]">
+              {[...Array(5)].map((_, i) => <Star key={i} className="size-4 fill-current" />)}
+              <span className="ml-1 text-xs font-semibold text-muted-foreground">(980+ parents)</span>
+            </div>
+          </div>
+          <h1 className="mt-4 font-display text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
+            Interactive <span className="bg-gradient-to-r from-[#0a2647] via-[#1e88e5] to-[#26c6da] bg-clip-text text-transparent">Busy Book</span>
+          </h1>
+          <p className="mt-3 text-lg font-semibold text-[#0a2647]/80">4 themed books to match, play and learn hands-on</p>
+
+          <div className="mt-6 flex items-baseline gap-3">
+            <span className="font-display text-4xl font-black text-[#0a2647]">{formatPKR(livePrice)}</span>
+            <span className="text-lg text-muted-foreground line-through">{formatPKR(liveCompare)}</span>
+            <span className="rounded-3xl bg-[#f39c12]/15 px-2.5 py-1 text-xs font-bold text-[#f39c12]">Save 40%</span>
+          </div>
+
+          <ul className="mt-6 space-y-2 text-sm font-medium text-foreground/85">
+            {[
+              "4 fun themes: Dinosaurs, Vehicles, Animals and Weather",
+              "Dozens of reusable peel-and-stick matching pieces",
+              "Thick, high-quality board pages with rounded safe corners",
+              "Helps develop fine motor skills & vocabulary screen-free",
+            ].map((f) => (
+              <li key={f} className="flex items-start gap-2.5">
+                <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-3xl bg-[#26c6da] text-white text-[10px] font-black">✓</span>
+                {f}
+              </li>
+            ))}
+          </ul>
+
+          {/* Qty + CTA */}
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="inline-flex items-center gap-1 rounded-3xl bg-white p-1 shadow ring-1 ring-border">
+              <button aria-label="Decrease" onClick={() => setCount((c) => Math.max(1, c - 1))} className="grid size-10 place-items-center rounded-3xl text-foreground/70 hover:bg-muted">
+                <Minus className="size-4" />
+              </button>
+              <span className="w-8 text-center font-bold">{count}</span>
+              <button aria-label="Increase" onClick={() => setCount((c) => Math.min(10, c + 1))} className="grid size-10 place-items-center rounded-3xl text-foreground/70 hover:bg-muted">
+                <Plus className="size-4" />
+              </button>
+            </div>
+
+            <PrimaryCTA size="lg" />
+            <SecondaryCTA label={qty > 0 ? "Add More · Checkout" : "Add to Cart"} size="lg" onClick={handleAdd} />
+          </div>
+
+          <div className="mt-6 grid grid-cols-3 gap-3 text-center text-xs font-semibold text-foreground/70">
+            <div className="rounded-3xl bg-white p-3 shadow-sm ring-1 ring-border">
+              <Truck className="mx-auto mb-1 size-5 text-[#1e88e5]" /> Cash on Delivery
+            </div>
+            <div className="rounded-3xl bg-white p-3 shadow-sm ring-1 ring-border">
+              <ShieldCheck className="mx-auto mb-1 size-5 text-[#1e88e5]" /> Non-toxic Safe
+            </div>
+            <div className="rounded-3xl bg-white p-3 shadow-sm ring-1 ring-border">
+              <BookOpen className="mx-auto mb-1 size-5 text-[#1e88e5]" /> Durable Pages
             </div>
           </div>
         </div>
