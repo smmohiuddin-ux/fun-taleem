@@ -147,9 +147,10 @@ function Hero() {
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-10 md:grid-cols-2">
         <div className="rise-in text-center md:text-left">
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/90 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647] shadow-sm ring-1 ring-[#26c6da]/40">
+          <span className="inline-flex items-center gap-2 rounded-none bg-white/90 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647] shadow-sm ring-1 ring-[#26c6da]/40">
             <Sparkles className="size-4 text-[#f39c12]" /> Premium Learning Toys for Kids
           </span>
+
           <h1 className="mt-5 font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl md:text-7xl">
             Learning through{" "}
             <span className="relative inline-block">
