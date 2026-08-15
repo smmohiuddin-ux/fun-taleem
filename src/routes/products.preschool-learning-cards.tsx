@@ -148,8 +148,9 @@ function Hero() {
               <div className="text-sm font-bold">Forever</div>
             </div>
           </div>
-          <div className="absolute -bottom-6 -right-4 flex items-center gap-3 rounded-2xl bg-white p-3 shadow-xl ring-1 ring-border floaty" style={{ animationDelay: "-2s" }}>
-            <div className="grid size-11 place-items-center rounded-xl bg-[#f39c12]/20 text-2xl">🎁</div>
+          <div className="absolute -bottom-6 -right-4 flex items-center gap-3 rounded-none bg-white p-3 shadow-xl ring-1 ring-border floaty" style={{ animationDelay: "-2s" }}>
+            <div className="grid size-11 place-items-center rounded-none bg-[#f39c12]/20 text-2xl">🎁</div>
+
             <div>
               <div className="text-xs font-bold text-muted-foreground">Perfect</div>
               <div className="text-sm font-bold">Learning Gift</div>
