@@ -307,7 +307,7 @@ function TwelveColors() {
                 <div
                   key={c}
                   style={{ background: c, transitionDelay: `${i * 40}ms` }}
-                  className="aspect-square rounded-2xl shadow-md ring-2 ring-white transition hover:-translate-y-1 hover:scale-110 hover:rotate-3"
+                  className="aspect-square rounded-none shadow-md ring-2 ring-white transition hover:-translate-y-1 hover:scale-110 hover:rotate-3"
                 />
               ))}
             </div>
