@@ -330,7 +330,6 @@ function PeekInside() {
 }
 
 
-/* ---------- Interactive Play ---------- */
 function InteractivePlay() {
   const bits = [
     { emoji: "🧩", label: "Match Pieces" },
@@ -348,8 +347,7 @@ function InteractivePlay() {
         />
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div className="relative" data-reveal>
-            <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#f39c12]/25 to-[#26c6da]/25 blur-2xl" />
-            <div className="relative overflow-hidden rounded-[2.5rem] bg-white shadow-xl ring-1 ring-border tilt-hover">
+            <div className="relative overflow-hidden rounded-none bg-white shadow-xl ring-1 ring-border tilt-hover">
               <img src={interactiveImg.url} alt="Interactive busy book with peel and stick pieces" className="w-full object-contain p-4" />
             </div>
           </div>
@@ -359,7 +357,7 @@ function InteractivePlay() {
                 key={b.label}
                 data-reveal
                 style={{ transitionDelay: `${i * 80}ms` }}
-                className="group rounded-3xl bg-white p-6 text-center shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+                className="group rounded-none bg-white p-6 text-center shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
               >
                 <div className="text-5xl transition group-hover:scale-125 group-hover:-rotate-6">{b.emoji}</div>
                 <div className="mt-3 font-display text-base font-bold">{b.label}</div>
@@ -394,8 +392,7 @@ function LittleHands() {
         />
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div className="relative" data-reveal>
-            <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/25 to-[#0a2647]/15 blur-2xl" />
-            <div className="relative overflow-hidden rounded-[2.5rem] bg-white shadow-xl ring-1 ring-border tilt-hover">
+            <div className="relative overflow-hidden rounded-none bg-white shadow-xl ring-1 ring-border tilt-hover">
               <img src={littleHandsImg.url} alt="Busy book with rounded corners, thick pages and easy-flip rings" className="w-full object-contain p-4" />
             </div>
           </div>
@@ -406,7 +403,7 @@ function LittleHands() {
                   key={f.label}
                   data-reveal
                   style={{ transitionDelay: `${i * 80}ms` }}
-                  className="rounded-3xl bg-white p-5 text-center shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+                  className="rounded-none bg-white p-5 text-center shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
                 >
                   <div className="font-display text-3xl font-black text-[#0a2647]">
                     {f.n}<span className="text-base font-bold text-muted-foreground">{f.u}</span>
@@ -421,9 +418,9 @@ function LittleHands() {
                   key={h.title}
                   data-reveal
                   style={{ transitionDelay: `${i * 100}ms` }}
-                  className="group flex items-start gap-4 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+                  className="group flex items-start gap-4 rounded-none bg-white p-5 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
                 >
-                  <div className="grid size-12 shrink-0 place-items-center rounded-2xl bg-[#26c6da]/15 text-[#0a2647] transition group-hover:scale-110 group-hover:rotate-6">
+                  <div className="grid size-12 shrink-0 place-items-center rounded-none bg-[#26c6da]/15 text-[#0a2647] transition group-hover:scale-110 group-hover:rotate-6">
                     <h.icon className="size-5" />
                   </div>
                   <div>
@@ -439,6 +436,7 @@ function LittleHands() {
     </section>
   );
 }
+
 
 /* ---------- Everyday Skills ---------- */
 function EverydaySkills() {
