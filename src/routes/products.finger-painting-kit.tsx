@@ -311,9 +311,10 @@ function TwelveColors() {
                 />
               ))}
             </div>
-            <div className="mt-6 rounded-3xl bg-gradient-to-br from-[#0a2647] to-[#1e88e5] p-5 text-white shadow-lg" data-reveal>
+            <div className="mt-6 rounded-none bg-gradient-to-br from-[#0a2647] to-[#1e88e5] p-5 text-white shadow-lg" data-reveal>
               <div className="flex items-center gap-3">
-                <div className="grid size-12 place-items-center rounded-2xl bg-white/15 text-2xl">💧</div>
+                <div className="grid size-12 place-items-center rounded-none bg-white/15 text-2xl">💧</div>
+
                 <div>
                   <div className="font-display text-lg font-bold">Washable & non-toxic</div>
                   <div className="text-sm text-white/80">Wipes off skin and clothes with water, so play stays worry-free.</div>
