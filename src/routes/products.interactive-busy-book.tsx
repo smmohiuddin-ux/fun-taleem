@@ -44,33 +44,42 @@ export const Route = createFileRoute("/products/interactive-busy-book")({
 /* ---------- Reusable bits ---------- */
 
 function FullWidthBanner() {
+  const { qty, add } = useCart();
   const { product: shopifyProduct } = useShopifyProduct("interactive-busy-book");
   const livePrice = shopifyProduct?.price ?? 2061;
+  const navigate = useNavigate();
+  const PRODUCT_ID = "interactive-busy-book";
+  const handleAdd = () => { add(PRODUCT_ID, 1); navigate({ to: "/cart" }); };
 
   return (
     <section className="relative w-full overflow-hidden rise-in" data-reveal>
-      <div className="relative aspect-[21/9] w-full min-h-[400px]">
+      <div className="relative aspect-[21/9] w-full min-h-[450px] md:min-h-[600px]">
         <img 
           src={bannerImg.url} 
-          alt="Reusable Learning Fun for Little Explorers" 
+          alt="Kids Interactive Busy Book Banner" 
           className="absolute inset-0 w-full h-full object-cover"
         />
-        {/* Overlay for visibility if needed, but the image has text. 
-            However, we want the product title/price visible too as requested. 
-            The image already has text, so we'll place our info carefully.
-        */}
-        <div className="absolute inset-0 bg-black/5 flex flex-col justify-center px-4 sm:px-12 md:px-20">
-          <div className="max-w-2xl text-[#0a2647]">
-            <Eyebrow>Featured Product</Eyebrow>
-            <h2 className="mt-4 font-display text-4xl font-bold sm:text-5xl md:text-6xl text-[#0a2647]">
-              Interactive Busy Book
-            </h2>
-            <p className="mt-6 text-lg sm:text-xl font-semibold max-w-lg">
-              Hands-on screen-free learning with 4 fun themes and reusable peel-and-stick pieces.
+        <div className="absolute inset-0 bg-black/10 flex flex-col justify-center px-4 sm:px-12 md:px-24">
+          <div className="max-w-2xl text-[#0a2647] drop-shadow-sm">
+            <Eyebrow>Bestseller · Ages 2+</Eyebrow>
+            <h1 className="mt-4 font-display text-4xl font-bold sm:text-6xl md:text-7xl text-[#0a2647] tracking-tight">
+              Interactive <br className="hidden sm:block" /> Busy Book
+            </h1>
+            <p className="mt-6 text-xl sm:text-2xl font-bold max-w-lg text-[#0a2647]/90 leading-snug">
+              4 themed books with reusable peel-and-stick pieces to match, play and learn.
             </p>
-            <div className="mt-8 flex items-center gap-6">
-              <span className="font-display text-4xl font-black">{formatPKR(livePrice)}</span>
-              <PrimaryCTA label="Shop Now" />
+            <div className="mt-8 flex flex-wrap items-center gap-6">
+              <span className="font-display text-5xl font-black text-[#0a2647]">{formatPKR(livePrice)}</span>
+              <div className="flex items-center gap-3">
+                <PrimaryCTA label="Shop Now" size="lg" />
+                <button 
+                  onClick={handleAdd}
+                  className="inline-flex items-center justify-center gap-2 rounded-none bg-[#0a2647] px-8 py-4 text-base font-bold text-white shadow-lg shadow-[#0a2647]/25 transition hover:scale-[1.03] hover:bg-[#0f3560]"
+                >
+                  <ShoppingCart className="size-5" />
+                  {qty > 0 ? "Add More" : "Add to Cart"}
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -78,6 +87,7 @@ function FullWidthBanner() {
     </section>
   );
 }
+
 
 
 function PrimaryCTA({ label = "Order on WhatsApp", size = "md" }: { label?: string; size?: "md" | "lg" }) {
