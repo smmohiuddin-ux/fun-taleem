@@ -209,15 +209,16 @@ function Hero() {
           </div>
 
           <div className="mt-6 grid grid-cols-3 gap-3 text-center text-xs font-semibold text-foreground/70">
-            <div className="rounded-2xl bg-white p-3 shadow-sm ring-1 ring-border">
+            <div className="rounded-none bg-white p-3 shadow-sm ring-1 ring-border">
               <Truck className="mx-auto mb-1 size-5 text-[#1e88e5]" /> Cash on Delivery
             </div>
-            <div className="rounded-2xl bg-white p-3 shadow-sm ring-1 ring-border">
+            <div className="rounded-none bg-white p-3 shadow-sm ring-1 ring-border">
               <ShieldCheck className="mx-auto mb-1 size-5 text-[#1e88e5]" /> Non-toxic Safe
             </div>
-            <div className="rounded-2xl bg-white p-3 shadow-sm ring-1 ring-border">
+            <div className="rounded-none bg-white p-3 shadow-sm ring-1 ring-border">
               <RefreshCw className="mx-auto mb-1 size-5 text-[#1e88e5]" /> Reusable Forever
             </div>
+
           </div>
         </div>
       </div>
