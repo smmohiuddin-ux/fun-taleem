@@ -506,9 +506,10 @@ function BrandStory() {
           </div>
         </div>
         <div data-reveal>
-          <span className="inline-block rounded-full bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
+          <span className="inline-block rounded-none bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
             Our Story
           </span>
+
           <h2 className="mt-3 font-display text-4xl font-bold sm:text-5xl">
             We believe every child deserves
             <span className="block bg-gradient-to-r from-[#0a2647] to-[#26c6da] bg-clip-text text-transparent">joyful learning.</span>
