@@ -1,8 +1,9 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   MessageCircle, Star, ShoppingCart, Plus, Minus, ArrowRight,
   Hand, Brain, Heart, Eye, Puzzle, BookOpen, Target, Sparkles, Package,
+  Truck, ShieldCheck, Users, Gift, Check, ChevronDown,
 } from "lucide-react";
 import { useCart } from "@/lib/cart";
 import { useShopifyProduct } from "@/hooks/useShopifyProducts";
@@ -16,6 +17,9 @@ import themesImg from "@/assets/bb-themes.jpg.asset.json";
 import peekInsideImg from "@/assets/bb-peek-inside.jpg.asset.json";
 import interactiveImg from "@/assets/bb-interactive.jpg.asset.json";
 import bannerImg from "@/assets/busy-book-banner.png.asset.json";
+import littleHandsImg from "@/assets/bb-little-hands.jpg.asset.json";
+import skillsImg from "@/assets/bb-skills.jpg.asset.json";
+import engagedImg from "@/assets/bb-engaged.jpg.asset.json";
 
 const WA_ORDER = encodeURIComponent(
   "Hi! I want to order the Kids Interactive Busy Book (4 themes, hands-on activities).\n\nMy Name:\nCity:\nQuantity:\n\nPlease guide me."
@@ -38,6 +42,43 @@ export const Route = createFileRoute("/products/interactive-busy-book")({
 });
 
 /* ---------- Reusable bits ---------- */
+
+function FullWidthBanner() {
+  const { product: shopifyProduct } = useShopifyProduct("interactive-busy-book");
+  const livePrice = shopifyProduct?.price ?? 2061;
+
+  return (
+    <section className="relative w-full overflow-hidden rise-in" data-reveal>
+      <div className="relative aspect-[21/9] w-full min-h-[400px]">
+        <img 
+          src={bannerImg.url} 
+          alt="Reusable Learning Fun for Little Explorers" 
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        {/* Overlay for visibility if needed, but the image has text. 
+            However, we want the product title/price visible too as requested. 
+            The image already has text, so we'll place our info carefully.
+        */}
+        <div className="absolute inset-0 bg-black/5 flex flex-col justify-center px-4 sm:px-12 md:px-20">
+          <div className="max-w-2xl text-[#0a2647]">
+            <Eyebrow>Featured Product</Eyebrow>
+            <h2 className="mt-4 font-display text-4xl font-bold sm:text-5xl md:text-6xl text-[#0a2647]">
+              Interactive Busy Book
+            </h2>
+            <p className="mt-6 text-lg sm:text-xl font-semibold max-w-lg">
+              Hands-on screen-free learning with 4 fun themes and reusable peel-and-stick pieces.
+            </p>
+            <div className="mt-8 flex items-center gap-6">
+              <span className="font-display text-4xl font-black">{formatPKR(livePrice)}</span>
+              <PrimaryCTA label="Shop Now" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 
 function PrimaryCTA({ label = "Order on WhatsApp", size = "md" }: { label?: string; size?: "md" | "lg" }) {
   const cls = size === "lg" ? "px-8 py-4 text-base" : "px-6 py-3.5 text-sm";
