@@ -213,20 +213,21 @@ function Hero() {
 
 
           {/* small floating cards */}
-          <div className="absolute -bottom-6 -left-6 flex items-center gap-3 rounded-2xl bg-white p-3 shadow-xl ring-1 ring-border floaty">
-            <div className="grid size-11 place-items-center rounded-xl bg-[#26c6da]/20 text-2xl">🎨</div>
+          <div className="absolute -bottom-6 -left-6 flex items-center gap-3 rounded-none bg-white p-3 shadow-xl ring-1 ring-border floaty">
+            <div className="grid size-11 place-items-center rounded-none bg-[#26c6da]/20 text-2xl">🎨</div>
             <div>
               <div className="text-xs font-bold text-muted-foreground">Creativity</div>
               <div className="text-sm font-bold">+12 skills</div>
             </div>
           </div>
-          <div className="absolute -top-4 -right-4 flex items-center gap-3 rounded-2xl bg-white p-3 shadow-xl ring-1 ring-border floaty" style={{ animationDelay: "-2s" }}>
-            <div className="grid size-11 place-items-center rounded-xl bg-[#f39c12]/20 text-2xl">🏆</div>
+          <div className="absolute -top-4 -right-4 flex items-center gap-3 rounded-none bg-white p-3 shadow-xl ring-1 ring-border floaty" style={{ animationDelay: "-2s" }}>
+            <div className="grid size-11 place-items-center rounded-none bg-[#f39c12]/20 text-2xl">🏆</div>
             <div>
               <div className="text-xs font-bold text-muted-foreground">Rated</div>
               <div className="flex items-center gap-0.5 text-[#f39c12]">{[...Array(5)].map((_,i)=><Star key={i} className="size-3 fill-current"/>)}</div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
