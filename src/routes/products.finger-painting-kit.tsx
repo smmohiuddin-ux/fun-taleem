@@ -52,7 +52,7 @@ function PrimaryCTA({ label = "Order on WhatsApp", size = "md" }: { label?: stri
       href={waOrderLink}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group inline-flex items-center justify-center gap-2 rounded-3xl bg-[#f39c12] font-bold text-white shadow-lg shadow-[#f39c12]/30 transition hover:scale-[1.03] hover:bg-[#e08e0a] shine-on-hover btn-pulse ${cls}`}
+      className={`group inline-flex items-center justify-center gap-2 rounded-full bg-[#f39c12] font-bold text-white shadow-lg shadow-[#f39c12]/30 transition hover:scale-[1.03] hover:bg-[#e08e0a] shine-on-hover btn-pulse ${cls}`}
     >
       <MessageCircle className="size-5" strokeWidth={2.5} />
       {label}
@@ -66,7 +66,7 @@ function SecondaryCTA({ label, size = "md", onClick }: { label: string; size?: "
   return (
     <button
       onClick={onClick}
-      className={`inline-flex items-center justify-center gap-2 rounded-3xl bg-[#0a2647] font-bold text-white shadow-lg shadow-[#0a2647]/25 transition hover:scale-[1.03] hover:bg-[#0f3560] ${cls}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-full bg-[#0a2647] font-bold text-white shadow-lg shadow-[#0a2647]/25 transition hover:scale-[1.03] hover:bg-[#0f3560] ${cls}`}
     >
       <ShoppingCart className="size-5" />
       {label}
@@ -154,7 +154,7 @@ function Hero() {
             </div>
           </div>
           <div className="absolute -bottom-6 -right-4 flex items-center gap-3 rounded-3xl bg-white p-3 shadow-xl ring-1 ring-border floaty" style={{ animationDelay: "-2s" }}>
-            <div className="grid size-11 place-items-center rounded-3xl bg-[#f39c12]/20 text-2xl">🖐️</div>
+            <div className="grid size-11 place-items-center rounded-full bg-[#f39c12]/20 text-2xl">🖐️</div>
 
             <div>
               <div className="text-xs font-bold text-muted-foreground">Mess-free</div>
@@ -180,7 +180,7 @@ function Hero() {
           <div className="mt-6 flex items-baseline gap-3">
             <span className="font-display text-4xl font-black text-[#0a2647]">{formatPKR(livePrice)}</span>
             <span className="text-lg text-muted-foreground line-through">{formatPKR(liveCompare)}</span>
-            <span className="rounded-3xl bg-[#f39c12]/15 px-2.5 py-1 text-xs font-bold text-[#f39c12]">Save 40%</span>
+            <span className="rounded-full bg-[#f39c12]/15 px-2.5 py-1 text-xs font-bold text-[#f39c12]">Save 40%</span>
           </div>
 
           <ul className="mt-6 space-y-2 text-sm font-medium text-foreground/85">
