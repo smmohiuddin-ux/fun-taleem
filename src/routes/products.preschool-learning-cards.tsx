@@ -256,9 +256,10 @@ function WhatsInside() {
                 key={it.label}
                 data-reveal
                 style={{ transitionDelay: `${i * 80}ms` }}
-                className="group rounded-3xl bg-white p-6 text-center shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+                className="group rounded-none bg-white p-6 text-center shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <div className="mx-auto grid size-14 place-items-center rounded-2xl bg-[#26c6da]/15 text-[#0a2647] transition group-hover:scale-110 group-hover:rotate-6">
+                <div className="mx-auto grid size-14 place-items-center rounded-none bg-[#26c6da]/15 text-[#0a2647] transition group-hover:scale-110 group-hover:rotate-6">
+
                   <it.icon className="size-6" />
                 </div>
                 <div className="mt-4 font-display text-3xl font-black text-[#0a2647]">{it.count}</div>
