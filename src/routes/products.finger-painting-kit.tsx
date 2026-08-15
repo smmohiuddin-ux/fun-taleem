@@ -505,7 +505,7 @@ function Compact() {
                   key={f.label}
                   data-reveal
                   style={{ transitionDelay: `${i * 80}ms` }}
-                  className="rounded-3xl bg-white p-5 text-center shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+                  className="rounded-none bg-white p-5 text-center shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
                 >
                   <div className="font-display text-3xl font-black text-[#0a2647]">
                     {f.n}<span className="text-base font-bold text-muted-foreground">{f.u}</span>
