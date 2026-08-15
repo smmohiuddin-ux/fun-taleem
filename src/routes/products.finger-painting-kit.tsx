@@ -494,7 +494,7 @@ function Compact() {
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div className="relative" data-reveal>
             <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/25 to-[#0a2647]/15 blur-2xl" />
-            <div className="relative overflow-hidden rounded-[2.5rem] bg-white shadow-xl ring-1 ring-border tilt-hover">
+            <div className="relative overflow-hidden rounded-none bg-white shadow-xl ring-1 ring-border tilt-hover">
               <img src={compactImg.url} alt="Compact travel box with dimensions" className="w-full object-contain p-4" />
             </div>
           </div>
