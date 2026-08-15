@@ -308,13 +308,14 @@ function FeaturedProducts() {
                 )}
 
                 <span
-                  className={`absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-bold text-white shadow ${
+                  className={`absolute left-4 top-4 rounded-none px-3 py-1 text-xs font-bold text-white shadow ${
                     p.badgeTone === "green" ? "bg-[#0a2647]" :
                     p.badgeTone === "coral" ? "bg-[#f39c12]" : "bg-[#26c6da]"
                   }`}
                 >
                   {p.badge}
                 </span>
+
                 {/* quick-view floating action */}
                 {p.href && (
                   <Link
