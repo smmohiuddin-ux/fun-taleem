@@ -267,9 +267,10 @@ function FeaturedProducts() {
     <section id="products" className="relative scroll-mt-24 px-4 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 text-center" data-reveal>
-          <span className="inline-block rounded-full bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
+          <span className="inline-block rounded-none bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
             Our Toys
           </span>
+
           <h2 className="mt-3 font-display text-4xl font-bold sm:text-5xl">
             Made to spark <span className="text-[#26c6da]">tiny imaginations</span>
           </h2>
