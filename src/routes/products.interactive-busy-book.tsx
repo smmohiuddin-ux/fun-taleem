@@ -1,9 +1,8 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import {
-  MessageCircle, Star, Truck, ShieldCheck, Package, Gift,
-  Sparkles, Check, ShoppingCart, Plus, Minus, ChevronDown, ArrowRight,
-  Hand, Users, Brain, Heart, Eye, Puzzle, BookOpen, Target,
+  MessageCircle, Star, ShoppingCart, Plus, Minus, ArrowRight,
+  Hand, Brain, Heart, Eye, Puzzle, BookOpen, Target, Sparkles, Package,
 } from "lucide-react";
 import { useCart } from "@/lib/cart";
 import { useShopifyProduct } from "@/hooks/useShopifyProducts";
@@ -13,15 +12,10 @@ import {
   FloatingWhatsApp, useReveal,
 } from "@/components/site-chrome";
 import mainImg from "@/assets/bb-main.jpg.asset.json";
-import littleHandsImg from "@/assets/bb-little-hands.jpg.asset.json";
-import peekInsideImg from "@/assets/bb-peek-inside.jpg.asset.json";
 import themesImg from "@/assets/bb-themes.jpg.asset.json";
-import engagedImg from "@/assets/bb-engaged.jpg.asset.json";
+import peekInsideImg from "@/assets/bb-peek-inside.jpg.asset.json";
 import interactiveImg from "@/assets/bb-interactive.jpg.asset.json";
-import skillsImg from "@/assets/bb-skills.jpg.asset.json";
-
-const PRICE = 2061;
-const COMPARE = 2499;
+import bannerImg from "@/assets/busy-book-banner.png.asset.json";
 
 const WA_ORDER = encodeURIComponent(
   "Hi! I want to order the Kids Interactive Busy Book (4 themes, hands-on activities).\n\nMy Name:\nCity:\nQuantity:\n\nPlease guide me."
@@ -52,7 +46,7 @@ function PrimaryCTA({ label = "Order on WhatsApp", size = "md" }: { label?: stri
       href={waOrderLink}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group inline-flex items-center justify-center gap-2 rounded-full bg-[#f39c12] font-bold text-white shadow-lg shadow-[#f39c12]/30 transition hover:scale-[1.03] hover:bg-[#e08e0a] shine-on-hover btn-pulse ${cls}`}
+      className={`group inline-flex items-center justify-center gap-2 rounded-none bg-[#f39c12] font-bold text-white shadow-lg shadow-[#f39c12]/30 transition hover:scale-[1.03] hover:bg-[#e08e0a] shine-on-hover btn-pulse ${cls}`}
     >
       <MessageCircle className="size-5" strokeWidth={2.5} />
       {label}
@@ -66,7 +60,7 @@ function SecondaryCTA({ label, size = "md", onClick }: { label: string; size?: "
   return (
     <button
       onClick={onClick}
-      className={`inline-flex items-center justify-center gap-2 rounded-full bg-[#0a2647] font-bold text-white shadow-lg shadow-[#0a2647]/25 transition hover:scale-[1.03] hover:bg-[#0f3560] ${cls}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-none bg-[#0a2647] font-bold text-white shadow-lg shadow-[#0a2647]/25 transition hover:scale-[1.03] hover:bg-[#0f3560] ${cls}`}
     >
       <ShoppingCart className="size-5" />
       {label}
@@ -76,7 +70,7 @@ function SecondaryCTA({ label, size = "md", onClick }: { label: string; size?: "
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-block rounded-full bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
+    <span className="inline-block rounded-none bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
       {children}
     </span>
   );
@@ -102,10 +96,10 @@ function ProductPage() {
       <SiteHeader />
       <Hero />
       <TrustMarquee />
+      <FullWidthBanner />
       <FourThemes />
       <PeekInside />
       <InteractivePlay />
-      <LittleHands />
       <EverydaySkills />
       <KeepEngaged />
       <Specs />
@@ -128,6 +122,7 @@ function Hero() {
   const PRODUCT_ID = "interactive-busy-book";
   const handleAdd = () => { add(PRODUCT_ID, count); navigate({ to: "/cart" }); };
   const [count, setCount] = useState(1);
+
 
   return (
     <section className="relative overflow-hidden bg-white text-[#0a2647] pb-20 pt-10 sm:pt-16">
