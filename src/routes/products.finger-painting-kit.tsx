@@ -145,8 +145,9 @@ function Hero() {
             <img src={mainImg.url} alt="Kids Finger Painting Kit with 12 colors and 30 activity cards" className="size-full object-contain p-4 transition duration-700 hover:scale-105" />
           </div>
 
-          <div className="absolute -top-4 -left-4 flex items-center gap-3 rounded-2xl bg-white p-3 shadow-xl ring-1 ring-border floaty">
-            <div className="grid size-11 place-items-center rounded-xl bg-[#26c6da]/20 text-2xl">🎨</div>
+          <div className="absolute -top-4 -left-4 flex items-center gap-3 rounded-none bg-white p-3 shadow-xl ring-1 ring-border floaty">
+            <div className="grid size-11 place-items-center rounded-none bg-[#26c6da]/20 text-2xl">🎨</div>
+
             <div>
               <div className="text-xs font-bold text-muted-foreground">12 washable</div>
               <div className="text-sm font-bold">Colors</div>
