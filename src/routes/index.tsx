@@ -528,7 +528,7 @@ function BrandStory() {
               { n: "3", l: "Products & growing" },
               { n: "100%", l: "COD nationwide" },
             ].map((s) => (
-              <div key={s.l} className="rounded-2xl bg-white p-4 text-center shadow-sm ring-1 ring-border">
+              <div key={s.l} className="rounded-none bg-white p-4 text-center shadow-sm ring-1 ring-border">
                 <div className="font-display text-2xl font-black text-[#0a2647]">{s.n}</div>
                 <div className="mt-1 text-xs text-muted-foreground">{s.l}</div>
               </div>
