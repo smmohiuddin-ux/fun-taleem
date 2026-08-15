@@ -293,8 +293,9 @@ function FunActivities() {
         <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_1fr]">
           <div className="relative" data-reveal>
             <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/25 to-[#f39c12]/25 blur-2xl" />
-            <div className="relative overflow-hidden rounded-[2.5rem] bg-white shadow-xl ring-1 ring-border tilt-hover">
+            <div className="relative overflow-hidden rounded-none bg-white shadow-xl ring-1 ring-border tilt-hover">
               <img src={activitiesImg.url} alt="64 learning activities across letters, numbers, shapes, tracing and matching" className="w-full object-contain p-4" />
+
             </div>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
