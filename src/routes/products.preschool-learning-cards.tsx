@@ -478,7 +478,7 @@ function PreschoolLearning() {
             ))}
             <div className="flex flex-wrap gap-3 pt-2">
               <PrimaryCTA />
-              <Link to="/" hash="products" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-bold text-[#0a2647] ring-1 ring-border transition hover:ring-[#0a2647]">
+              <Link to="/" hash="products" className="inline-flex items-center gap-2 rounded-none bg-white px-6 py-3.5 text-sm font-bold text-[#0a2647] ring-1 ring-border transition hover:ring-[#0a2647]">
                 Browse all toys <ArrowRight className="size-4" />
               </Link>
             </div>
