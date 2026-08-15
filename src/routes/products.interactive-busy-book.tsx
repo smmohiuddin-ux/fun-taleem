@@ -619,6 +619,7 @@ function FinalCTA() {
           <Link to="/cart" className="inline-flex items-center gap-2 rounded-none bg-white/10 px-8 py-4 text-base font-bold text-white ring-1 ring-white/40 backdrop-blur transition hover:scale-[1.03] hover:bg-white/20">
             <ShoppingCart className="size-5" /> View Cart
           </Link>
+
         </div>
 
         <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-sm font-semibold text-white/80">
