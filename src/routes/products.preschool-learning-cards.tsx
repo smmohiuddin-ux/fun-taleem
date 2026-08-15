@@ -524,7 +524,7 @@ function Specs() {
 function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-border transition hover:shadow-md" data-reveal>
+    <div className="overflow-hidden rounded-none bg-white shadow-sm ring-1 ring-border transition hover:shadow-md" data-reveal>
       <button onClick={() => setOpen((o) => !o)} className="flex w-full items-center justify-between gap-4 p-5 text-left">
         <span className="font-display text-lg font-bold text-[#0a2647]">{q}</span>
         <ChevronDown className={`size-5 shrink-0 text-[#1e88e5] transition-transform ${open ? "rotate-180" : ""}`} />
