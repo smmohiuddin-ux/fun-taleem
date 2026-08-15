@@ -562,7 +562,7 @@ function Testimonials() {
               key={t.name}
               data-reveal
               style={{ transitionDelay: `${i * 90}ms` }}
-              className="rounded-3xl bg-gradient-to-br from-[#eaf7fb] to-white p-6 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+              className="rounded-none bg-gradient-to-br from-[#eaf7fb] to-white p-6 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
             >
               <div className="flex items-center gap-1 text-[#f39c12]">
                 {[...Array(5)].map((_,i)=><Star key={i} className="size-4 fill-current"/>)}
