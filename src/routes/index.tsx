@@ -147,7 +147,7 @@ function Hero() {
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-10 md:grid-cols-2">
         <div className="rise-in text-center md:text-left">
-          <span className="inline-flex items-center gap-2 rounded-none bg-white/90 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647] shadow-sm ring-1 ring-[#26c6da]/40">
+          <span className="inline-flex items-center gap-2 rounded-3xl bg-white/90 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647] shadow-sm ring-1 ring-[#26c6da]/40">
             <Sparkles className="size-4 text-[#f39c12]" /> Premium Learning Toys for Kids
           </span>
 
@@ -173,7 +173,7 @@ function Hero() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3 md:justify-start">
             <Link
               to="/" hash="products"
-              className="group inline-flex items-center gap-2 rounded-none bg-[#0a2647] px-7 py-4 text-base font-bold text-white shadow-lg shadow-[#0a2647]/25 transition hover:scale-[1.03] hover:bg-[#0f3560] shine-on-hover"
+              className="group inline-flex items-center gap-2 rounded-full bg-[#0a2647] px-7 py-4 text-base font-bold text-white shadow-lg shadow-[#0a2647]/25 transition hover:scale-[1.03] hover:bg-[#0f3560] shine-on-hover"
             >
               Shop Collection
               <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
@@ -182,7 +182,7 @@ function Hero() {
               href={waLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-none bg-white px-6 py-4 text-base font-semibold text-foreground shadow ring-1 ring-border transition hover:scale-[1.03] hover:ring-[#26c6da]"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-4 text-base font-semibold text-foreground shadow ring-1 ring-border transition hover:scale-[1.03] hover:ring-[#26c6da]"
             >
               <MessageCircle className="size-5 text-[#f39c12]" /> Chat on WhatsApp
             </a>
@@ -207,21 +207,21 @@ function Hero() {
         {/* Hero image collage */}
         <div className="relative mx-auto w-full max-w-lg">
           <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/40 via-[#1e88e5]/20 to-[#f39c12]/25 blur-2xl" />
-          <Link to="/products/interactive-busy-book" className="relative block aspect-square overflow-hidden rounded-none bg-white shadow-2xl ring-1 ring-white tilt-hover transition duration-300 hover:shadow-primary/20">
+          <Link to="/products/interactive-busy-book" className="relative block aspect-square overflow-hidden rounded-3xl bg-white shadow-2xl ring-1 ring-white tilt-hover transition duration-300 hover:shadow-primary/20">
             <img src={busyBookHands.url} alt="Interactive busy book made for little hands" className="size-full object-contain p-4 transition duration-700 hover:scale-105" />
           </Link>
 
 
           {/* small floating cards */}
-          <div className="absolute -bottom-6 -left-6 flex items-center gap-3 rounded-none bg-white p-3 shadow-xl ring-1 ring-border floaty">
-            <div className="grid size-11 place-items-center rounded-none bg-[#26c6da]/20 text-2xl">🎨</div>
+          <div className="absolute -bottom-6 -left-6 flex items-center gap-3 rounded-2xl bg-white p-3 shadow-xl ring-1 ring-border floaty">
+            <div className="grid size-11 place-items-center rounded-3xl bg-[#26c6da]/20 text-2xl">🎨</div>
             <div>
               <div className="text-xs font-bold text-muted-foreground">Creativity</div>
               <div className="text-sm font-bold">+12 skills</div>
             </div>
           </div>
-          <div className="absolute -top-4 -right-4 flex items-center gap-3 rounded-none bg-white p-3 shadow-xl ring-1 ring-border floaty" style={{ animationDelay: "-2s" }}>
-            <div className="grid size-11 place-items-center rounded-none bg-[#f39c12]/20 text-2xl">🏆</div>
+          <div className="absolute -top-4 -right-4 flex items-center gap-3 rounded-2xl bg-white p-3 shadow-xl ring-1 ring-border floaty" style={{ animationDelay: "-2s" }}>
+            <div className="grid size-11 place-items-center rounded-full bg-[#f39c12]/20 text-2xl">🏆</div>
             <div>
               <div className="text-xs font-bold text-muted-foreground">Rated</div>
               <div className="flex items-center gap-0.5 text-[#f39c12]">{[...Array(5)].map((_,i)=><Star key={i} className="size-3 fill-current"/>)}</div>
@@ -267,7 +267,7 @@ function FeaturedProducts() {
     <section id="products" className="relative scroll-mt-24 px-4 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 text-center" data-reveal>
-          <span className="inline-block rounded-none bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
+          <span className="inline-block rounded-3xl bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
             Our Toys
           </span>
 
@@ -285,7 +285,7 @@ function FeaturedProducts() {
               key={p.name}
               data-reveal
               style={{ transitionDelay: `${i * 90}ms` }}
-              className="group relative flex flex-col overflow-hidden rounded-none bg-white shadow-sm ring-1 ring-border tilt-hover"
+              className="group relative flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-border tilt-hover"
 
             >
               <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-[#eaf7fb] to-white">
@@ -308,7 +308,7 @@ function FeaturedProducts() {
                 )}
 
                 <span
-                  className={`absolute left-4 top-4 rounded-none px-3 py-1 text-xs font-bold text-white shadow ${
+                  className={`absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-bold text-white shadow ${
                     p.badgeTone === "green" ? "bg-[#0a2647]" :
                     p.badgeTone === "coral" ? "bg-[#f39c12]" : "bg-[#26c6da]"
                   }`}
@@ -320,7 +320,7 @@ function FeaturedProducts() {
                 {p.href && (
                   <Link
                     to={p.href}
-                    className="absolute bottom-4 right-4 inline-flex items-center gap-1.5 rounded-none bg-white px-3.5 py-2 text-xs font-bold text-[#0a2647] opacity-0 shadow-lg transition group-hover:opacity-100"
+                    className="absolute bottom-4 right-4 inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-2 text-xs font-bold text-[#0a2647] opacity-0 shadow-lg transition group-hover:opacity-100"
                   >
                     Quick view <ArrowRight className="size-3.5" />
                   </Link>
@@ -338,7 +338,7 @@ function FeaturedProducts() {
                 {p.href ? (
                   <Link
                     to={p.href}
-                    className="inline-flex items-center justify-center gap-2 rounded-none bg-[#0a2647] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#0f3560]"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0a2647] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#0f3560]"
                   >
                     Shop Now <ArrowRight className="size-4" />
                   </Link>
@@ -415,10 +415,10 @@ function SpotlightBanner() {
         <div className="grid overflow-hidden bg-gradient-to-br from-[#eaf7fb] via-white to-[#fff6e5] shadow-xl md:grid-cols-2" data-reveal>
           <div className="relative min-h-[380px] overflow-hidden bg-white">
             <img src={fingerColors.url} alt="Finger painting kit with 12 colors and stamp cards" className="absolute inset-0 size-full object-contain p-6 transition duration-700 hover:scale-105" />
-            <span className="absolute left-5 top-5 rounded-none bg-white/95 px-3 py-1 text-xs font-bold text-[#0a2647] shadow">Coming Soon</span>
+            <span className="absolute left-5 top-5 rounded-3xl bg-white/95 px-3 py-1 text-xs font-bold text-[#0a2647] shadow">Coming Soon</span>
           </div>
           <div className="flex flex-col justify-center p-8 sm:p-12">
-            <span className="inline-block w-fit rounded-none bg-[#f39c12]/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#f39c12]">
+            <span className="inline-block w-fit rounded-full bg-[#f39c12]/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#f39c12]">
               Spotlight
             </span>
 
@@ -429,16 +429,16 @@ function SpotlightBanner() {
             <ul className="mt-5 space-y-2 text-sm">
               {["Non-toxic washable inks","30 cute themed art cards","Perfect for gifts","Ages 3+"].map((f) => (
                 <li key={f} className="flex items-center gap-2 font-medium">
-                  <span className="grid size-5 place-items-center rounded-none bg-[#26c6da] text-white text-[10px] font-black">✓</span>
+                  <span className="grid size-5 place-items-center rounded-3xl bg-[#26c6da] text-white text-[10px] font-black">✓</span>
                   {f}
                 </li>
               ))}
             </ul>
             <div className="mt-7 flex flex-wrap gap-3">
-              <a href={waLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-none bg-[#f39c12] px-6 py-3.5 font-bold text-white shadow-lg transition hover:scale-[1.03] hover:bg-[#e08e0a] shine-on-hover">
+              <a href={waLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#f39c12] px-6 py-3.5 font-bold text-white shadow-lg transition hover:scale-[1.03] hover:bg-[#e08e0a] shine-on-hover">
                 <MessageCircle className="size-4" /> Pre-order on WhatsApp
               </a>
-              <Link to="/" hash="products" className="inline-flex items-center gap-2 rounded-none bg-white px-6 py-3.5 font-bold text-foreground ring-1 ring-border transition hover:ring-[#0a2647]">
+              <Link to="/" hash="products" className="inline-flex items-center gap-2 rounded-3xl bg-white px-6 py-3.5 font-bold text-foreground ring-1 ring-border transition hover:ring-[#0a2647]">
                 Browse all toys
               </Link>
             </div>
@@ -461,7 +461,7 @@ function AgeCollections() {
     <section className="relative bg-[#eaf7fb]/40 px-4 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 text-center" data-reveal>
-          <span className="inline-block rounded-none bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647] shadow-sm">
+          <span className="inline-block rounded-3xl bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647] shadow-sm">
             Shop by Age
           </span>
 
@@ -474,7 +474,7 @@ function AgeCollections() {
               to="/" hash="products"
               data-reveal
               style={{ transitionDelay: `${i * 90}ms` }}
-              className={`group relative overflow-hidden rounded-none bg-gradient-to-br ${c.tone} p-8 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-xl`}
+              className={`group relative overflow-hidden rounded-3xl bg-gradient-to-br ${c.tone} p-8 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-xl`}
             >
               <div className="text-6xl transition-transform group-hover:scale-125 group-hover:-rotate-6">{c.emoji}</div>
               <div className="mt-6 text-xs font-bold uppercase tracking-wider text-[#26c6da]">{c.age}</div>
@@ -506,7 +506,7 @@ function BrandStory() {
           </div>
         </div>
         <div data-reveal>
-          <span className="inline-block rounded-none bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
+          <span className="inline-block rounded-3xl bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
             Our Story
           </span>
 
@@ -528,7 +528,7 @@ function BrandStory() {
               { n: "3", l: "Products & growing" },
               { n: "100%", l: "COD nationwide" },
             ].map((s) => (
-              <div key={s.l} className="rounded-none bg-white p-4 text-center shadow-sm ring-1 ring-border">
+              <div key={s.l} className="rounded-3xl bg-white p-4 text-center shadow-sm ring-1 ring-border">
                 <div className="font-display text-2xl font-black text-[#0a2647]">{s.n}</div>
                 <div className="mt-1 text-xs text-muted-foreground">{s.l}</div>
               </div>
@@ -562,7 +562,7 @@ function Testimonials() {
               key={t.name}
               data-reveal
               style={{ transitionDelay: `${i * 90}ms` }}
-              className="rounded-none bg-gradient-to-br from-[#eaf7fb] to-white p-6 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+              className="rounded-3xl bg-gradient-to-br from-[#eaf7fb] to-white p-6 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
             >
               <div className="flex items-center gap-1 text-[#f39c12]">
                 {[...Array(5)].map((_,i)=><Star key={i} className="size-4 fill-current"/>)}
@@ -590,7 +590,7 @@ function InstagramGrid() {
     <section className="relative px-4 py-20 sm:py-24">
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 text-center" data-reveal>
-          <span className="inline-block rounded-none bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
+          <span className="inline-block rounded-3xl bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
             @funtaleem.pk
           </span>
 
@@ -634,11 +634,11 @@ function Newsletter() {
         >
           <input
             type="email" required placeholder="your@email.com"
-            className="flex-1 rounded-none bg-white/95 px-5 py-3.5 text-sm font-medium text-foreground outline-none ring-2 ring-transparent focus:ring-[#f39c12]"
+            className="flex-1 rounded-full bg-white/95 px-5 py-3.5 text-sm font-medium text-foreground outline-none ring-2 ring-transparent focus:ring-[#f39c12]"
           />
           <button
             type="submit"
-            className="rounded-none bg-[#f39c12] px-6 py-3.5 text-sm font-bold text-white shadow-lg transition hover:scale-[1.03] hover:bg-[#e08e0a]"
+            className="rounded-full bg-[#f39c12] px-6 py-3.5 text-sm font-bold text-white shadow-lg transition hover:scale-[1.03] hover:bg-[#e08e0a]"
           >
             Subscribe
           </button>
@@ -707,7 +707,7 @@ function FloatingWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
-      className="fixed bottom-5 right-5 z-50 grid size-16 place-items-center rounded-none bg-[#25D366] text-white shadow-2xl transition hover:scale-110 btn-pulse"
+      className="fixed bottom-5 right-5 z-50 grid size-16 place-items-center rounded-full bg-[#25D366] text-white shadow-2xl transition hover:scale-110 btn-pulse"
     >
       <MessageCircle className="size-8" strokeWidth={2.5} />
     </a>
