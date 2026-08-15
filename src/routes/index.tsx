@@ -173,7 +173,7 @@ function Hero() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3 md:justify-start">
             <Link
               to="/" hash="products"
-              className="group inline-flex items-center gap-2 rounded-full bg-[#0a2647] px-7 py-4 text-base font-bold text-white shadow-lg shadow-[#0a2647]/25 transition hover:scale-[1.03] hover:bg-[#0f3560] shine-on-hover"
+              className="group inline-flex items-center gap-2 rounded-none bg-[#0a2647] px-7 py-4 text-base font-bold text-white shadow-lg shadow-[#0a2647]/25 transition hover:scale-[1.03] hover:bg-[#0f3560] shine-on-hover"
             >
               Shop Collection
               <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
@@ -182,11 +182,12 @@ function Hero() {
               href={waLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-4 text-base font-semibold text-foreground shadow ring-1 ring-border transition hover:scale-[1.03] hover:ring-[#26c6da]"
+              className="inline-flex items-center gap-2 rounded-none bg-white px-6 py-4 text-base font-semibold text-foreground shadow ring-1 ring-border transition hover:scale-[1.03] hover:ring-[#26c6da]"
             >
               <MessageCircle className="size-5 text-[#f39c12]" /> Chat on WhatsApp
             </a>
           </div>
+
 
           <div className="mt-8 flex items-center justify-center gap-6 text-sm text-muted-foreground md:justify-start">
             <div className="flex -space-x-2">
