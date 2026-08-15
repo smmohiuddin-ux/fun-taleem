@@ -638,7 +638,7 @@ function Newsletter() {
           />
           <button
             type="submit"
-            className="rounded-full bg-[#f39c12] px-6 py-3.5 text-sm font-bold text-white shadow-lg transition hover:scale-[1.03] hover:bg-[#e08e0a]"
+            className="rounded-none bg-[#f39c12] px-6 py-3.5 text-sm font-bold text-white shadow-lg transition hover:scale-[1.03] hover:bg-[#e08e0a]"
           >
             Subscribe
           </button>
