@@ -135,7 +135,7 @@ export function SiteHeader() {
         </div>
 
         <Link to="/" className="flex items-center justify-center wiggle-hover md:justify-self-center">
-          <img src={logo.url} alt="Funtaleem" className="h-14 w-auto sm:h-[4.25rem]" />
+          <img src={logo.url} alt="Funtaleem" className="h-12 w-auto sm:h-14" />
         </Link>
 
         <div className="flex items-center justify-end gap-2">
@@ -270,7 +270,7 @@ export function SiteFooter() {
     <footer className="relative bg-white px-4 pt-16 pb-8 text-foreground">
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-4">
         <div>
-          <img src={logo.url} alt="Funtaleem" className="h-16 w-auto" />
+          <img src={logo.url} alt="Funtaleem" className="h-12 w-auto" />
           <p className="mt-4 text-sm text-muted-foreground">
             Premium screen-free learning toys for Pakistani kids. Made with love. Delivered nationwide.
           </p>
