@@ -48,7 +48,7 @@ function PrimaryCTA({ label = "Order on WhatsApp", size = "md" }: { label?: stri
       href={waOrderLink}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group inline-flex items-center justify-center gap-2 rounded-full bg-[#f39c12] font-bold text-white shadow-lg shadow-[#f39c12]/30 transition hover:scale-[1.03] hover:bg-[#e08e0a] shine-on-hover btn-pulse ${cls}`}
+      className={`group inline-flex items-center justify-center gap-2 rounded-none bg-[#f39c12] font-bold text-white shadow-lg shadow-[#f39c12]/30 transition hover:scale-[1.03] hover:bg-[#e08e0a] shine-on-hover btn-pulse ${cls}`}
     >
       <MessageCircle className="size-5" strokeWidth={2.5} />
       {label}
@@ -62,7 +62,7 @@ function SecondaryCTA({ label, size = "md", onClick }: { label: string; size?: "
   return (
     <button
       onClick={onClick}
-      className={`inline-flex items-center justify-center gap-2 rounded-full bg-[#0a2647] font-bold text-white shadow-lg shadow-[#0a2647]/25 transition hover:scale-[1.03] hover:bg-[#0f3560] ${cls}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-none bg-[#0a2647] font-bold text-white shadow-lg shadow-[#0a2647]/25 transition hover:scale-[1.03] hover:bg-[#0f3560] ${cls}`}
     >
       <ShoppingCart className="size-5" />
       {label}
@@ -72,7 +72,7 @@ function SecondaryCTA({ label, size = "md", onClick }: { label: string; size?: "
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-block rounded-full bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
+    <span className="inline-block rounded-none bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
       {children}
     </span>
   );
@@ -136,19 +136,21 @@ function Hero() {
         {/* Product image */}
         <div className="relative order-1 mx-auto w-full max-w-lg md:order-none">
           <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/40 via-[#1e88e5]/20 to-[#f39c12]/25 blur-2xl" />
-          <div className="relative aspect-square overflow-hidden rounded-[2.5rem] bg-white shadow-2xl ring-1 ring-white tilt-hover group cursor-default">
+          <div className="relative aspect-square overflow-hidden rounded-none bg-white shadow-2xl ring-1 ring-white tilt-hover group cursor-default">
             <img src={mainImg.url} alt="Reusable Preschool Learning Cards Set with 64 Activities" className="size-full object-contain p-4 transition duration-700 hover:scale-105" />
           </div>
 
-          <div className="absolute -top-4 -left-4 flex items-center gap-3 rounded-2xl bg-white p-3 shadow-xl ring-1 ring-border floaty">
-            <div className="grid size-11 place-items-center rounded-xl bg-[#26c6da]/20 text-2xl">🔁</div>
+          <div className="absolute -top-4 -left-4 flex items-center gap-3 rounded-none bg-white p-3 shadow-xl ring-1 ring-border floaty">
+            <div className="grid size-11 place-items-center rounded-none bg-[#26c6da]/20 text-2xl">🔁</div>
+
             <div>
               <div className="text-xs font-bold text-muted-foreground">Wipe & reuse</div>
               <div className="text-sm font-bold">Forever</div>
             </div>
           </div>
-          <div className="absolute -bottom-6 -right-4 flex items-center gap-3 rounded-2xl bg-white p-3 shadow-xl ring-1 ring-border floaty" style={{ animationDelay: "-2s" }}>
-            <div className="grid size-11 place-items-center rounded-xl bg-[#f39c12]/20 text-2xl">🎁</div>
+          <div className="absolute -bottom-6 -right-4 flex items-center gap-3 rounded-none bg-white p-3 shadow-xl ring-1 ring-border floaty" style={{ animationDelay: "-2s" }}>
+            <div className="grid size-11 place-items-center rounded-none bg-[#f39c12]/20 text-2xl">🎁</div>
+
             <div>
               <div className="text-xs font-bold text-muted-foreground">Perfect</div>
               <div className="text-sm font-bold">Learning Gift</div>
@@ -173,7 +175,7 @@ function Hero() {
           <div className="mt-6 flex items-baseline gap-3">
             <span className="font-display text-4xl font-black text-[#0a2647]">{formatPKR(livePrice)}</span>
             <span className="text-lg text-muted-foreground line-through">{formatPKR(liveCompare)}</span>
-            <span className="rounded-full bg-[#f39c12]/15 px-2.5 py-1 text-xs font-bold text-[#f39c12]">Save 40%</span>
+            <span className="rounded-none bg-[#f39c12]/15 px-2.5 py-1 text-xs font-bold text-[#f39c12]">Save 40%</span>
           </div>
 
           <ul className="mt-6 space-y-2 text-sm font-medium text-foreground/85">
@@ -184,7 +186,7 @@ function Hero() {
               "Compact travel size for car, school bag or grandma's house",
             ].map((f) => (
               <li key={f} className="flex items-start gap-2.5">
-                <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-[#26c6da] text-white text-[10px] font-black">✓</span>
+                <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-none bg-[#26c6da] text-white text-[10px] font-black">✓</span>
                 {f}
               </li>
             ))}
@@ -192,29 +194,31 @@ function Hero() {
 
           {/* Qty + CTA */}
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <div className="inline-flex items-center gap-1 rounded-full bg-white p-1 shadow ring-1 ring-border">
-              <button aria-label="Decrease" onClick={() => setCount((c) => Math.max(1, c - 1))} className="grid size-10 place-items-center rounded-full text-foreground/70 hover:bg-muted">
+            <div className="inline-flex items-center gap-1 rounded-none bg-white p-1 shadow ring-1 ring-border">
+              <button aria-label="Decrease" onClick={() => setCount((c) => Math.max(1, c - 1))} className="grid size-10 place-items-center rounded-none text-foreground/70 hover:bg-muted">
                 <Minus className="size-4" />
               </button>
               <span className="w-8 text-center font-bold">{count}</span>
-              <button aria-label="Increase" onClick={() => setCount((c) => Math.min(10, c + 1))} className="grid size-10 place-items-center rounded-full text-foreground/70 hover:bg-muted">
+              <button aria-label="Increase" onClick={() => setCount((c) => Math.min(10, c + 1))} className="grid size-10 place-items-center rounded-none text-foreground/70 hover:bg-muted">
                 <Plus className="size-4" />
               </button>
             </div>
+
             <PrimaryCTA size="lg" />
             <SecondaryCTA label={qty > 0 ? "Add More · Checkout" : "Add to Cart"} size="lg" onClick={handleAdd} />
           </div>
 
           <div className="mt-6 grid grid-cols-3 gap-3 text-center text-xs font-semibold text-foreground/70">
-            <div className="rounded-2xl bg-white p-3 shadow-sm ring-1 ring-border">
+            <div className="rounded-none bg-white p-3 shadow-sm ring-1 ring-border">
               <Truck className="mx-auto mb-1 size-5 text-[#1e88e5]" /> Cash on Delivery
             </div>
-            <div className="rounded-2xl bg-white p-3 shadow-sm ring-1 ring-border">
+            <div className="rounded-none bg-white p-3 shadow-sm ring-1 ring-border">
               <ShieldCheck className="mx-auto mb-1 size-5 text-[#1e88e5]" /> Non-toxic Safe
             </div>
-            <div className="rounded-2xl bg-white p-3 shadow-sm ring-1 ring-border">
+            <div className="rounded-none bg-white p-3 shadow-sm ring-1 ring-border">
               <RefreshCw className="mx-auto mb-1 size-5 text-[#1e88e5]" /> Reusable Forever
             </div>
+
           </div>
         </div>
       </div>
@@ -241,8 +245,9 @@ function WhatsInside() {
         <div className="grid items-center gap-10 md:grid-cols-2">
           <div className="relative" data-reveal>
             <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/25 to-[#f39c12]/20 blur-2xl" />
-            <div className="relative aspect-square overflow-hidden rounded-[2.5rem] bg-white shadow-xl ring-1 ring-border tilt-hover">
+            <div className="relative aspect-square overflow-hidden rounded-none bg-white shadow-xl ring-1 ring-border tilt-hover">
               <img src={whatsInsideImg.url} alt="What's inside the learning cards set" className="size-full object-contain p-4" />
+
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
@@ -251,9 +256,10 @@ function WhatsInside() {
                 key={it.label}
                 data-reveal
                 style={{ transitionDelay: `${i * 80}ms` }}
-                className="group rounded-3xl bg-white p-6 text-center shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+                className="group rounded-none bg-white p-6 text-center shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <div className="mx-auto grid size-14 place-items-center rounded-2xl bg-[#26c6da]/15 text-[#0a2647] transition group-hover:scale-110 group-hover:rotate-6">
+                <div className="mx-auto grid size-14 place-items-center rounded-none bg-[#26c6da]/15 text-[#0a2647] transition group-hover:scale-110 group-hover:rotate-6">
+
                   <it.icon className="size-6" />
                 </div>
                 <div className="mt-4 font-display text-3xl font-black text-[#0a2647]">{it.count}</div>
@@ -287,8 +293,9 @@ function FunActivities() {
         <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_1fr]">
           <div className="relative" data-reveal>
             <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/25 to-[#f39c12]/25 blur-2xl" />
-            <div className="relative overflow-hidden rounded-[2.5rem] bg-white shadow-xl ring-1 ring-border tilt-hover">
+            <div className="relative overflow-hidden rounded-none bg-white shadow-xl ring-1 ring-border tilt-hover">
               <img src={activitiesImg.url} alt="64 learning activities across letters, numbers, shapes, tracing and matching" className="w-full object-contain p-4" />
+
             </div>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -297,9 +304,10 @@ function FunActivities() {
                 key={c.label}
                 data-reveal
                 style={{ transitionDelay: `${i * 70}ms` }}
-                className="group flex items-center gap-4 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+                className="group flex items-center gap-4 rounded-none bg-white p-5 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <div className={`grid size-12 shrink-0 place-items-center rounded-2xl ${c.color} transition group-hover:scale-110 group-hover:rotate-6`}>
+                <div className={`grid size-12 shrink-0 place-items-center rounded-none ${c.color} transition group-hover:scale-110 group-hover:rotate-6`}>
+
                   <c.icon className="size-6" />
                 </div>
                 <div>
@@ -308,9 +316,10 @@ function FunActivities() {
                 </div>
               </div>
             ))}
-            <div className="rounded-3xl bg-gradient-to-br from-[#0a2647] to-[#1e88e5] p-5 text-white shadow-lg sm:col-span-2" data-reveal>
+            <div className="rounded-none bg-gradient-to-br from-[#0a2647] to-[#1e88e5] p-5 text-white shadow-lg sm:col-span-2" data-reveal>
               <div className="flex items-center gap-3">
-                <div className="grid size-12 place-items-center rounded-2xl bg-white/15 text-2xl">🎯</div>
+                <div className="grid size-12 place-items-center rounded-none bg-white/15 text-2xl">🎯</div>
+
                 <div>
                   <div className="font-display text-lg font-bold">Ages 2+ ready</div>
                   <div className="text-sm text-white/80">Progressive difficulty from first strokes to full letters and numbers.</div>
@@ -342,8 +351,9 @@ function WipeReuse() {
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div className="relative" data-reveal>
             <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/25 to-[#0a2647]/15 blur-2xl" />
-            <div className="relative overflow-hidden rounded-[2.5rem] bg-white shadow-xl ring-1 ring-border tilt-hover">
+            <div className="relative overflow-hidden rounded-none bg-white shadow-xl ring-1 ring-border tilt-hover">
               <img src={wipeCleanImg.url} alt="Child writing and wiping the reusable learning card" className="w-full object-contain p-4" />
+
             </div>
           </div>
           <div className="space-y-4">
@@ -352,9 +362,10 @@ function WipeReuse() {
                 key={s.n}
                 data-reveal
                 style={{ transitionDelay: `${i * 100}ms` }}
-                className="group flex items-start gap-5 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+                className="group flex items-start gap-5 rounded-none bg-white p-6 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <div className="grid size-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-[#0a2647] to-[#1e88e5] font-display text-2xl font-black text-white shadow transition group-hover:scale-110 group-hover:rotate-3">
+                <div className="grid size-14 shrink-0 place-items-center rounded-none bg-gradient-to-br from-[#0a2647] to-[#1e88e5] font-display text-2xl font-black text-white shadow transition group-hover:scale-110 group-hover:rotate-3">
+
                   {s.n}
                 </div>
                 <div className="flex-1">
@@ -391,7 +402,7 @@ function EarlySkills() {
       <div className="pointer-events-none absolute inset-0 opacity-30" style={{ background: "radial-gradient(circle at 20% 20%, rgba(38,198,218,0.4), transparent 50%), radial-gradient(circle at 80% 80%, rgba(243,156,18,0.35), transparent 50%)" }} />
       <div className="relative mx-auto max-w-7xl">
         <div className="mb-12 text-center" data-reveal>
-          <span className="inline-block rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#26c6da]">
+          <span className="inline-block rounded-none bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#26c6da]">
             Builds Early Learning Skills
           </span>
           <h2 className="mt-3 font-display text-4xl font-bold sm:text-5xl">A playful way to support <br className="hidden sm:block" /> preschool development</h2>
@@ -403,9 +414,10 @@ function EarlySkills() {
                 key={s.label}
                 data-reveal
                 style={{ transitionDelay: `${i * 70}ms` }}
-                className="group rounded-3xl bg-white/5 p-5 ring-1 ring-white/10 backdrop-blur transition hover:-translate-y-1 hover:bg-white/10 hover:ring-[#26c6da]/60"
+                className="group rounded-none bg-white/5 p-5 ring-1 ring-white/10 backdrop-blur transition hover:-translate-y-1 hover:bg-white/10 hover:ring-[#26c6da]/60"
               >
-                <div className="grid size-12 place-items-center rounded-2xl bg-[#26c6da]/20 text-[#26c6da] transition group-hover:scale-110 group-hover:rotate-6">
+                <div className="grid size-12 place-items-center rounded-none bg-[#26c6da]/20 text-[#26c6da] transition group-hover:scale-110 group-hover:rotate-6">
+
                   <s.icon className="size-6" />
                 </div>
                 <h3 className="mt-3 font-display text-base font-bold">{s.label}</h3>
@@ -414,7 +426,7 @@ function EarlySkills() {
           </div>
           <div className="relative" data-reveal>
             <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/40 to-[#f39c12]/25 blur-2xl" />
-            <div className="relative overflow-hidden rounded-[2.5rem] bg-white shadow-2xl ring-1 ring-white tilt-hover">
+            <div className="relative overflow-hidden rounded-none bg-white shadow-2xl ring-1 ring-white tilt-hover">
               <img src={skillsImg.url} alt="Six early learning skills built by the card set" className="w-full object-contain p-4" />
             </div>
           </div>
@@ -442,7 +454,7 @@ function PreschoolLearning() {
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div className="relative" data-reveal>
             <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#f39c12]/25 to-[#26c6da]/25 blur-2xl" />
-            <div className="relative overflow-hidden rounded-[2.5rem] bg-white shadow-xl ring-1 ring-border tilt-hover">
+            <div className="relative overflow-hidden rounded-none bg-white shadow-xl ring-1 ring-border tilt-hover">
               <img src={preschoolImg.url} alt="Child using the reusable preschool learning cards" className="w-full object-contain p-4" />
             </div>
           </div>
@@ -452,9 +464,10 @@ function PreschoolLearning() {
                 key={h.title}
                 data-reveal
                 style={{ transitionDelay: `${i * 100}ms` }}
-                className="group flex items-start gap-4 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+                className="group flex items-start gap-4 rounded-none bg-white p-6 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <div className="grid size-14 shrink-0 place-items-center rounded-2xl bg-[#26c6da]/15 text-[#0a2647] transition group-hover:scale-110 group-hover:rotate-6">
+                <div className="grid size-14 shrink-0 place-items-center rounded-none bg-[#26c6da]/15 text-[#0a2647] transition group-hover:scale-110 group-hover:rotate-6">
+
                   <h.icon className="size-6" />
                 </div>
                 <div>
@@ -465,7 +478,7 @@ function PreschoolLearning() {
             ))}
             <div className="flex flex-wrap gap-3 pt-2">
               <PrimaryCTA />
-              <Link to="/" hash="products" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-bold text-[#0a2647] ring-1 ring-border transition hover:ring-[#0a2647]">
+              <Link to="/" hash="products" className="inline-flex items-center gap-2 rounded-none bg-white px-6 py-3.5 text-sm font-bold text-[#0a2647] ring-1 ring-border transition hover:ring-[#0a2647]">
                 Browse all toys <ArrowRight className="size-4" />
               </Link>
             </div>
@@ -492,7 +505,7 @@ function Specs() {
     <section className="relative bg-[#eaf7fb]/40 px-4 py-20 sm:py-28">
       <div className="mx-auto max-w-5xl">
         <SectionTitle eyebrow="Product Specs" title={<>Every detail, thought through</>} />
-        <div className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-border" data-reveal>
+        <div className="overflow-hidden rounded-none bg-white shadow-sm ring-1 ring-border" data-reveal>
           <dl className="grid grid-cols-1 divide-y divide-border sm:grid-cols-2 sm:divide-x">
             {specs.map((s, i) => (
               <div key={s.k} className={`flex items-baseline justify-between gap-4 p-5 ${i >= 2 ? "sm:border-t sm:border-border" : ""}`}>
@@ -511,7 +524,7 @@ function Specs() {
 function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-border transition hover:shadow-md" data-reveal>
+    <div className="overflow-hidden rounded-none bg-white shadow-sm ring-1 ring-border transition hover:shadow-md" data-reveal>
       <button onClick={() => setOpen((o) => !o)} className="flex w-full items-center justify-between gap-4 p-5 text-left">
         <span className="font-display text-lg font-bold text-[#0a2647]">{q}</span>
         <ChevronDown className={`size-5 shrink-0 text-[#1e88e5] transition-transform ${open ? "rotate-180" : ""}`} />
@@ -555,7 +568,7 @@ function FinalCTA() {
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <PrimaryCTA size="lg" label="Order Now on WhatsApp" />
-          <Link to="/cart" className="inline-flex items-center gap-2 rounded-full bg-white/10 px-8 py-4 text-base font-bold text-white ring-1 ring-white/40 backdrop-blur transition hover:scale-[1.03] hover:bg-white/20">
+          <Link to="/cart" className="inline-flex items-center gap-2 rounded-none bg-white/10 px-8 py-4 text-base font-bold text-white ring-1 ring-white/40 backdrop-blur transition hover:scale-[1.03] hover:bg-white/20">
             <ShoppingCart className="size-5" /> View Cart
           </Link>
         </div>
