@@ -353,7 +353,7 @@ function ActivityCards() {
                 key={t.label}
                 data-reveal
                 style={{ transitionDelay: `${i * 70}ms` }}
-                className="group flex flex-col items-center justify-center rounded-3xl bg-white p-5 text-center shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+                className="group flex flex-col items-center justify-center rounded-none bg-white p-5 text-center shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
               >
                 <div className="text-4xl transition group-hover:scale-125 group-hover:-rotate-6">{t.emoji}</div>
                 <div className="mt-2 font-display text-sm font-bold">{t.label}</div>
