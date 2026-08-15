@@ -451,9 +451,10 @@ function FamilyFun() {
                 key={h.title}
                 data-reveal
                 style={{ transitionDelay: `${i * 100}ms` }}
-                className="group flex items-start gap-4 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+                className="group flex items-start gap-4 rounded-none bg-white p-6 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <div className="grid size-14 shrink-0 place-items-center rounded-2xl bg-[#26c6da]/15 text-[#0a2647] transition group-hover:scale-110 group-hover:rotate-6">
+                <div className="grid size-14 shrink-0 place-items-center rounded-none bg-[#26c6da]/15 text-[#0a2647] transition group-hover:scale-110 group-hover:rotate-6">
+
                   <h.icon className="size-6" />
                 </div>
                 <div>
