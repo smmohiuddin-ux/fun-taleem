@@ -453,7 +453,7 @@ function EverydaySkills() {
       <div className="pointer-events-none absolute inset-0 opacity-30" style={{ background: "radial-gradient(circle at 20% 20%, rgba(38,198,218,0.4), transparent 50%), radial-gradient(circle at 80% 80%, rgba(243,156,18,0.35), transparent 50%)" }} />
       <div className="relative mx-auto max-w-7xl">
         <div className="mb-12 text-center" data-reveal>
-          <span className="inline-block rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#26c6da]">
+          <span className="inline-block rounded-none bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#26c6da]">
             Build Everyday Skills
           </span>
           <h2 className="mt-3 font-display text-4xl font-bold sm:text-5xl">A playful path to <br className="hidden sm:block" /> early learning wins</h2>
@@ -465,9 +465,9 @@ function EverydaySkills() {
                 key={s.label}
                 data-reveal
                 style={{ transitionDelay: `${i * 70}ms` }}
-                className="group rounded-3xl bg-white/5 p-5 ring-1 ring-white/10 backdrop-blur transition hover:-translate-y-1 hover:bg-white/10 hover:ring-[#26c6da]/60"
+                className="group rounded-none bg-white/5 p-5 ring-1 ring-white/10 backdrop-blur transition hover:-translate-y-1 hover:bg-white/10 hover:ring-[#26c6da]/60"
               >
-                <div className="grid size-12 place-items-center rounded-2xl bg-[#26c6da]/20 text-[#26c6da] transition group-hover:scale-110 group-hover:rotate-6">
+                <div className="grid size-12 place-items-center rounded-none bg-[#26c6da]/20 text-[#26c6da] transition group-hover:scale-110 group-hover:rotate-6">
                   <s.icon className="size-6" />
                 </div>
                 <h3 className="mt-3 font-display text-base font-bold">{s.label}</h3>
@@ -475,8 +475,7 @@ function EverydaySkills() {
             ))}
           </div>
           <div className="relative" data-reveal>
-            <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/40 to-[#f39c12]/25 blur-2xl" />
-            <div className="relative overflow-hidden rounded-[2.5rem] bg-white shadow-2xl ring-1 ring-white tilt-hover">
+            <div className="relative overflow-hidden rounded-none bg-white shadow-2xl ring-1 ring-white tilt-hover">
               <img src={skillsImg.url} alt="Skills the busy book builds - fine motor, matching, focus, hand-eye" className="w-full object-contain p-4" />
             </div>
           </div>
@@ -503,8 +502,7 @@ function KeepEngaged() {
         />
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div className="relative" data-reveal>
-            <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#f39c12]/25 to-[#26c6da]/25 blur-2xl" />
-            <div className="relative overflow-hidden rounded-[2.5rem] bg-white shadow-xl ring-1 ring-border tilt-hover">
+            <div className="relative overflow-hidden rounded-none bg-white shadow-xl ring-1 ring-border tilt-hover">
               <img src={engagedImg.url} alt="Child happily engaged with the interactive busy book" className="w-full object-contain p-4" />
             </div>
           </div>
@@ -514,9 +512,9 @@ function KeepEngaged() {
                 key={h.title}
                 data-reveal
                 style={{ transitionDelay: `${i * 100}ms` }}
-                className="group flex items-start gap-4 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+                className="group flex items-start gap-4 rounded-none bg-white p-6 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <div className="grid size-14 shrink-0 place-items-center rounded-2xl bg-[#26c6da]/15 text-[#0a2647] transition group-hover:scale-110 group-hover:rotate-6">
+                <div className="grid size-14 shrink-0 place-items-center rounded-none bg-[#26c6da]/15 text-[#0a2647] transition group-hover:scale-110 group-hover:rotate-6">
                   <h.icon className="size-6" />
                 </div>
                 <div>
@@ -527,7 +525,7 @@ function KeepEngaged() {
             ))}
             <div className="flex flex-wrap gap-3 pt-2">
               <PrimaryCTA />
-              <Link to="/" hash="products" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-bold text-[#0a2647] ring-1 ring-border transition hover:ring-[#0a2647]">
+              <Link to="/" hash="products" className="inline-flex items-center gap-2 rounded-none bg-white px-6 py-3.5 text-sm font-bold text-[#0a2647] ring-1 ring-border transition hover:ring-[#0a2647]">
                 Browse all toys <ArrowRight className="size-4" />
               </Link>
             </div>
@@ -537,6 +535,7 @@ function KeepEngaged() {
     </section>
   );
 }
+
 
 /* ---------- Specs ---------- */
 function Specs() {
