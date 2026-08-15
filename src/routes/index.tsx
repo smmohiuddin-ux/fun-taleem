@@ -173,7 +173,7 @@ function Hero() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3 md:justify-start">
             <Link
               to="/" hash="products"
-              className="group inline-flex items-center gap-2 rounded-3xl bg-[#0a2647] px-7 py-4 text-base font-bold text-white shadow-lg shadow-[#0a2647]/25 transition hover:scale-[1.03] hover:bg-[#0f3560] shine-on-hover"
+              className="group inline-flex items-center gap-2 rounded-full bg-[#0a2647] px-7 py-4 text-base font-bold text-white shadow-lg shadow-[#0a2647]/25 transition hover:scale-[1.03] hover:bg-[#0f3560] shine-on-hover"
             >
               Shop Collection
               <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
@@ -221,7 +221,7 @@ function Hero() {
             </div>
           </div>
           <div className="absolute -top-4 -right-4 flex items-center gap-3 rounded-2xl bg-white p-3 shadow-xl ring-1 ring-border floaty" style={{ animationDelay: "-2s" }}>
-            <div className="grid size-11 place-items-center rounded-3xl bg-[#f39c12]/20 text-2xl">🏆</div>
+            <div className="grid size-11 place-items-center rounded-full bg-[#f39c12]/20 text-2xl">🏆</div>
             <div>
               <div className="text-xs font-bold text-muted-foreground">Rated</div>
               <div className="flex items-center gap-0.5 text-[#f39c12]">{[...Array(5)].map((_,i)=><Star key={i} className="size-3 fill-current"/>)}</div>
@@ -338,7 +338,7 @@ function FeaturedProducts() {
                 {p.href ? (
                   <Link
                     to={p.href}
-                    className="inline-flex items-center justify-center gap-2 rounded-3xl bg-[#0a2647] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#0f3560]"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0a2647] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#0f3560]"
                   >
                     Shop Now <ArrowRight className="size-4" />
                   </Link>
@@ -418,7 +418,7 @@ function SpotlightBanner() {
             <span className="absolute left-5 top-5 rounded-3xl bg-white/95 px-3 py-1 text-xs font-bold text-[#0a2647] shadow">Coming Soon</span>
           </div>
           <div className="flex flex-col justify-center p-8 sm:p-12">
-            <span className="inline-block w-fit rounded-3xl bg-[#f39c12]/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#f39c12]">
+            <span className="inline-block w-fit rounded-full bg-[#f39c12]/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#f39c12]">
               Spotlight
             </span>
 
@@ -435,7 +435,7 @@ function SpotlightBanner() {
               ))}
             </ul>
             <div className="mt-7 flex flex-wrap gap-3">
-              <a href={waLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-3xl bg-[#f39c12] px-6 py-3.5 font-bold text-white shadow-lg transition hover:scale-[1.03] hover:bg-[#e08e0a] shine-on-hover">
+              <a href={waLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#f39c12] px-6 py-3.5 font-bold text-white shadow-lg transition hover:scale-[1.03] hover:bg-[#e08e0a] shine-on-hover">
                 <MessageCircle className="size-4" /> Pre-order on WhatsApp
               </a>
               <Link to="/" hash="products" className="inline-flex items-center gap-2 rounded-3xl bg-white px-6 py-3.5 font-bold text-foreground ring-1 ring-border transition hover:ring-[#0a2647]">
