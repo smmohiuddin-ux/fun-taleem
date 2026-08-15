@@ -338,10 +338,11 @@ function FeaturedProducts() {
                 {p.href ? (
                   <Link
                     to={p.href}
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0a2647] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#0f3560]"
+                    className="inline-flex items-center justify-center gap-2 rounded-none bg-[#0a2647] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#0f3560]"
                   >
                     Shop Now <ArrowRight className="size-4" />
                   </Link>
+
                 ) : (
                   <a
                     href={waLink}
