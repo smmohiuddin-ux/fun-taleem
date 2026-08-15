@@ -194,15 +194,16 @@ function Hero() {
 
           {/* Qty + CTA */}
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <div className="inline-flex items-center gap-1 rounded-full bg-white p-1 shadow ring-1 ring-border">
-              <button aria-label="Decrease" onClick={() => setCount((c) => Math.max(1, c - 1))} className="grid size-10 place-items-center rounded-full text-foreground/70 hover:bg-muted">
+            <div className="inline-flex items-center gap-1 rounded-none bg-white p-1 shadow ring-1 ring-border">
+              <button aria-label="Decrease" onClick={() => setCount((c) => Math.max(1, c - 1))} className="grid size-10 place-items-center rounded-none text-foreground/70 hover:bg-muted">
                 <Minus className="size-4" />
               </button>
               <span className="w-8 text-center font-bold">{count}</span>
-              <button aria-label="Increase" onClick={() => setCount((c) => Math.min(10, c + 1))} className="grid size-10 place-items-center rounded-full text-foreground/70 hover:bg-muted">
+              <button aria-label="Increase" onClick={() => setCount((c) => Math.min(10, c + 1))} className="grid size-10 place-items-center rounded-none text-foreground/70 hover:bg-muted">
                 <Plus className="size-4" />
               </button>
             </div>
+
             <PrimaryCTA size="lg" />
             <SecondaryCTA label={qty > 0 ? "Add More · Checkout" : "Add to Cart"} size="lg" onClick={handleAdd} />
           </div>
