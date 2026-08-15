@@ -415,12 +415,13 @@ function SpotlightBanner() {
         <div className="grid overflow-hidden bg-gradient-to-br from-[#eaf7fb] via-white to-[#fff6e5] shadow-xl md:grid-cols-2" data-reveal>
           <div className="relative min-h-[380px] overflow-hidden bg-white">
             <img src={fingerColors.url} alt="Finger painting kit with 12 colors and stamp cards" className="absolute inset-0 size-full object-contain p-6 transition duration-700 hover:scale-105" />
-            <span className="absolute left-5 top-5 rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-[#0a2647] shadow">Coming Soon</span>
+            <span className="absolute left-5 top-5 rounded-none bg-white/95 px-3 py-1 text-xs font-bold text-[#0a2647] shadow">Coming Soon</span>
           </div>
           <div className="flex flex-col justify-center p-8 sm:p-12">
-            <span className="inline-block w-fit rounded-full bg-[#f39c12]/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#f39c12]">
+            <span className="inline-block w-fit rounded-none bg-[#f39c12]/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#f39c12]">
               Spotlight
             </span>
+
             <h2 className="mt-3 font-display text-4xl font-bold sm:text-5xl">Finger Painting Kit</h2>
             <p className="mt-3 text-lg text-muted-foreground">
               12 washable colors, 30 pre-printed art cards, and endless family bonding. Mess-free, mind-full creativity for ages 3+.
