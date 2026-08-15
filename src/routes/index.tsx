@@ -320,11 +320,12 @@ function FeaturedProducts() {
                 {p.href && (
                   <Link
                     to={p.href}
-                    className="absolute bottom-4 right-4 inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-2 text-xs font-bold text-[#0a2647] opacity-0 shadow-lg transition group-hover:opacity-100"
+                    className="absolute bottom-4 right-4 inline-flex items-center gap-1.5 rounded-none bg-white px-3.5 py-2 text-xs font-bold text-[#0a2647] opacity-0 shadow-lg transition group-hover:opacity-100"
                   >
                     Quick view <ArrowRight className="size-3.5" />
                   </Link>
                 )}
+
               </div>
               <div className="flex flex-1 flex-col p-5">
                 <h3 className="text-base font-bold leading-snug">{p.name}</h3>
