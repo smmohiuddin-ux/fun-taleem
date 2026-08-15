@@ -634,7 +634,7 @@ function Newsletter() {
         >
           <input
             type="email" required placeholder="your@email.com"
-            className="flex-1 rounded-full bg-white/95 px-5 py-3.5 text-sm font-medium text-foreground outline-none ring-2 ring-transparent focus:ring-[#f39c12]"
+            className="flex-1 rounded-none bg-white/95 px-5 py-3.5 text-sm font-medium text-foreground outline-none ring-2 ring-transparent focus:ring-[#f39c12]"
           />
           <button
             type="submit"
