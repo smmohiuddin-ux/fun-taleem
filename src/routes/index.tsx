@@ -285,7 +285,8 @@ function FeaturedProducts() {
               key={p.name}
               data-reveal
               style={{ transitionDelay: `${i * 90}ms` }}
-              className="group relative flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-border tilt-hover"
+              className="group relative flex flex-col overflow-hidden rounded-none bg-white shadow-sm ring-1 ring-border tilt-hover"
+
             >
               <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-[#eaf7fb] to-white">
                 {p.href ? (
