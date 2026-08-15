@@ -247,8 +247,7 @@ function FourThemes() {
         />
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div className="relative" data-reveal>
-            <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/25 to-[#f39c12]/20 blur-2xl" />
-            <div className="relative overflow-hidden rounded-[2.5rem] bg-white shadow-xl ring-1 ring-border tilt-hover">
+            <div className="relative overflow-hidden rounded-none bg-white shadow-xl ring-1 ring-border tilt-hover">
               <img src={themesImg.url} alt="Four busy book themes - dinosaurs, vehicles, animals and weather" className="w-full object-contain p-4" />
             </div>
           </div>
@@ -258,9 +257,9 @@ function FourThemes() {
                 key={t.label}
                 data-reveal
                 style={{ transitionDelay: `${i * 80}ms` }}
-                className="group flex items-start gap-4 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+                className="group flex items-start gap-4 rounded-none bg-white p-5 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <div className={`grid size-14 shrink-0 place-items-center rounded-2xl text-3xl ${t.color} transition group-hover:scale-110 group-hover:rotate-6`}>
+                <div className={`grid size-14 shrink-0 place-items-center rounded-none text-3xl ${t.color} transition group-hover:scale-110 group-hover:rotate-6`}>
                   {t.emoji}
                 </div>
                 <div>
@@ -269,9 +268,9 @@ function FourThemes() {
                 </div>
               </div>
             ))}
-            <div className="rounded-3xl bg-gradient-to-br from-[#0a2647] to-[#1e88e5] p-5 text-white shadow-lg sm:col-span-2" data-reveal>
+            <div className="rounded-none bg-gradient-to-br from-[#0a2647] to-[#1e88e5] p-5 text-white shadow-lg sm:col-span-2" data-reveal>
               <div className="flex items-center gap-3">
-                <div className="grid size-12 place-items-center rounded-2xl bg-white/15 text-2xl">🔢</div>
+                <div className="grid size-12 place-items-center rounded-none bg-white/15 text-2xl">🔢</div>
                 <div>
                   <div className="font-display text-lg font-bold">Bonus number pages</div>
                   <div className="text-sm text-white/80">Extra pages teach counting from 1 to 10 with friendly farm animals.</div>
@@ -307,9 +306,9 @@ function PeekInside() {
                 key={it.label}
                 data-reveal
                 style={{ transitionDelay: `${i * 100}ms` }}
-                className="group flex items-start gap-5 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+                className="group flex items-start gap-5 rounded-none bg-white p-6 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <div className="grid size-14 shrink-0 place-items-center rounded-2xl bg-[#26c6da]/15 text-[#0a2647] transition group-hover:scale-110 group-hover:rotate-6">
+                <div className="grid size-14 shrink-0 place-items-center rounded-none bg-[#26c6da]/15 text-[#0a2647] transition group-hover:scale-110 group-hover:rotate-6">
                   <it.icon className="size-6" />
                 </div>
                 <div>
@@ -320,8 +319,7 @@ function PeekInside() {
             ))}
           </div>
           <div className="relative" data-reveal>
-            <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/25 to-[#f39c12]/25 blur-2xl" />
-            <div className="relative overflow-hidden rounded-[2.5rem] bg-white shadow-xl ring-1 ring-border tilt-hover">
+            <div className="relative overflow-hidden rounded-none bg-white shadow-xl ring-1 ring-border tilt-hover">
               <img src={peekInsideImg.url} alt="Inside the busy book - matching, animal play and number pages" className="w-full object-contain p-4" />
             </div>
           </div>
@@ -330,6 +328,7 @@ function PeekInside() {
     </section>
   );
 }
+
 
 /* ---------- Interactive Play ---------- */
 function InteractivePlay() {
