@@ -316,9 +316,10 @@ function FunActivities() {
                 </div>
               </div>
             ))}
-            <div className="rounded-3xl bg-gradient-to-br from-[#0a2647] to-[#1e88e5] p-5 text-white shadow-lg sm:col-span-2" data-reveal>
+            <div className="rounded-none bg-gradient-to-br from-[#0a2647] to-[#1e88e5] p-5 text-white shadow-lg sm:col-span-2" data-reveal>
               <div className="flex items-center gap-3">
-                <div className="grid size-12 place-items-center rounded-2xl bg-white/15 text-2xl">🎯</div>
+                <div className="grid size-12 place-items-center rounded-none bg-white/15 text-2xl">🎯</div>
+
                 <div>
                   <div className="font-display text-lg font-bold">Ages 2+ ready</div>
                   <div className="text-sm text-white/80">Progressive difficulty from first strokes to full letters and numbers.</div>
