@@ -74,7 +74,7 @@ function FullWidthBanner() {
                 <PrimaryCTA label="Shop Now" size="lg" />
                 <button 
                   onClick={handleAdd}
-                  className="inline-flex items-center justify-center gap-2 rounded-none bg-[#0a2647] px-8 py-4 text-base font-bold text-white shadow-lg shadow-[#0a2647]/25 transition hover:scale-[1.03] hover:bg-[#0f3560]"
+                  className="inline-flex items-center justify-center gap-2 rounded-3xl bg-[#0a2647] px-8 py-4 text-base font-bold text-white shadow-lg shadow-[#0a2647]/25 transition hover:scale-[1.03] hover:bg-[#0f3560]"
                 >
                   <ShoppingCart className="size-5" />
                   {qty > 0 ? "Add More" : "Add to Cart"}
@@ -97,7 +97,7 @@ function PrimaryCTA({ label = "Order on WhatsApp", size = "md" }: { label?: stri
       href={waOrderLink}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group inline-flex items-center justify-center gap-2 rounded-none bg-[#f39c12] font-bold text-white shadow-lg shadow-[#f39c12]/30 transition hover:scale-[1.03] hover:bg-[#e08e0a] shine-on-hover btn-pulse ${cls}`}
+      className={`group inline-flex items-center justify-center gap-2 rounded-3xl bg-[#f39c12] font-bold text-white shadow-lg shadow-[#f39c12]/30 transition hover:scale-[1.03] hover:bg-[#e08e0a] shine-on-hover btn-pulse ${cls}`}
     >
       <MessageCircle className="size-5" strokeWidth={2.5} />
       {label}
@@ -111,7 +111,7 @@ function SecondaryCTA({ label, size = "md", onClick }: { label: string; size?: "
   return (
     <button
       onClick={onClick}
-      className={`inline-flex items-center justify-center gap-2 rounded-none bg-[#0a2647] font-bold text-white shadow-lg shadow-[#0a2647]/25 transition hover:scale-[1.03] hover:bg-[#0f3560] ${cls}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-3xl bg-[#0a2647] font-bold text-white shadow-lg shadow-[#0a2647]/25 transition hover:scale-[1.03] hover:bg-[#0f3560] ${cls}`}
     >
       <ShoppingCart className="size-5" />
       {label}
@@ -121,7 +121,7 @@ function SecondaryCTA({ label, size = "md", onClick }: { label: string; size?: "
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-block rounded-none bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
+    <span className="inline-block rounded-3xl bg-[#26c6da]/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#0a2647]">
       {children}
     </span>
   );
@@ -182,7 +182,7 @@ function FourThemes() {
         />
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div className="relative" data-reveal>
-            <div className="relative overflow-hidden rounded-none bg-white shadow-xl ring-1 ring-border tilt-hover">
+            <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl ring-1 ring-border tilt-hover">
               <img src={themesImg.url} alt="Four busy book themes - dinosaurs, vehicles, animals and weather" className="w-full object-contain p-4" />
             </div>
           </div>
@@ -192,9 +192,9 @@ function FourThemes() {
                 key={t.label}
                 data-reveal
                 style={{ transitionDelay: `${i * 80}ms` }}
-                className="group flex items-start gap-4 rounded-none bg-white p-5 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+                className="group flex items-start gap-4 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <div className={`grid size-14 shrink-0 place-items-center rounded-none text-3xl ${t.color} transition group-hover:scale-110 group-hover:rotate-6`}>
+                <div className={`grid size-14 shrink-0 place-items-center rounded-3xl text-3xl ${t.color} transition group-hover:scale-110 group-hover:rotate-6`}>
                   {t.emoji}
                 </div>
                 <div>
@@ -203,9 +203,9 @@ function FourThemes() {
                 </div>
               </div>
             ))}
-            <div className="rounded-none bg-gradient-to-br from-[#0a2647] to-[#1e88e5] p-5 text-white shadow-lg sm:col-span-2" data-reveal>
+            <div className="rounded-3xl bg-gradient-to-br from-[#0a2647] to-[#1e88e5] p-5 text-white shadow-lg sm:col-span-2" data-reveal>
               <div className="flex items-center gap-3">
-                <div className="grid size-12 place-items-center rounded-none bg-white/15 text-2xl">🔢</div>
+                <div className="grid size-12 place-items-center rounded-3xl bg-white/15 text-2xl">🔢</div>
                 <div>
                   <div className="font-display text-lg font-bold">Bonus number pages</div>
                   <div className="text-sm text-white/80">Extra pages teach counting from 1 to 10 with friendly farm animals.</div>
@@ -241,9 +241,9 @@ function PeekInside() {
                 key={it.label}
                 data-reveal
                 style={{ transitionDelay: `${i * 100}ms` }}
-                className="group flex items-start gap-5 rounded-none bg-white p-6 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+                className="group flex items-start gap-5 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <div className="grid size-14 shrink-0 place-items-center rounded-none bg-[#26c6da]/15 text-[#0a2647] transition group-hover:scale-110 group-hover:rotate-6">
+                <div className="grid size-14 shrink-0 place-items-center rounded-3xl bg-[#26c6da]/15 text-[#0a2647] transition group-hover:scale-110 group-hover:rotate-6">
                   <it.icon className="size-6" />
                 </div>
                 <div>
@@ -254,7 +254,7 @@ function PeekInside() {
             ))}
           </div>
           <div className="relative" data-reveal>
-            <div className="relative overflow-hidden rounded-none bg-white shadow-xl ring-1 ring-border tilt-hover">
+            <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl ring-1 ring-border tilt-hover">
               <img src={peekInsideImg.url} alt="Inside the busy book - matching, animal play and number pages" className="w-full object-contain p-4" />
             </div>
           </div>
@@ -282,7 +282,7 @@ function InteractivePlay() {
         />
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div className="relative" data-reveal>
-            <div className="relative overflow-hidden rounded-none bg-white shadow-xl ring-1 ring-border tilt-hover">
+            <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl ring-1 ring-border tilt-hover">
               <img src={interactiveImg.url} alt="Interactive busy book with peel and stick pieces" className="w-full object-contain p-4" />
             </div>
           </div>
@@ -292,7 +292,7 @@ function InteractivePlay() {
                 key={b.label}
                 data-reveal
                 style={{ transitionDelay: `${i * 80}ms` }}
-                className="group rounded-none bg-white p-6 text-center shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+                className="group rounded-3xl bg-white p-6 text-center shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
               >
                 <div className="text-5xl transition group-hover:scale-125 group-hover:-rotate-6">{b.emoji}</div>
                 <div className="mt-3 font-display text-base font-bold">{b.label}</div>
@@ -327,7 +327,7 @@ function LittleHands() {
         />
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div className="relative" data-reveal>
-            <div className="relative overflow-hidden rounded-none bg-white shadow-xl ring-1 ring-border tilt-hover">
+            <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl ring-1 ring-border tilt-hover">
               <img src={littleHandsImg.url} alt="Busy book with rounded corners, thick pages and easy-flip rings" className="w-full object-contain p-4" />
             </div>
           </div>
@@ -338,7 +338,7 @@ function LittleHands() {
                   key={f.label}
                   data-reveal
                   style={{ transitionDelay: `${i * 80}ms` }}
-                  className="rounded-none bg-white p-5 text-center shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+                  className="rounded-3xl bg-white p-5 text-center shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
                 >
                   <div className="font-display text-3xl font-black text-[#0a2647]">
                     {f.n}<span className="text-base font-bold text-muted-foreground">{f.u}</span>
@@ -353,9 +353,9 @@ function LittleHands() {
                   key={h.title}
                   data-reveal
                   style={{ transitionDelay: `${i * 100}ms` }}
-                  className="group flex items-start gap-4 rounded-none bg-white p-5 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+                  className="group flex items-start gap-4 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
                 >
-                  <div className="grid size-12 shrink-0 place-items-center rounded-none bg-[#26c6da]/15 text-[#0a2647] transition group-hover:scale-110 group-hover:rotate-6">
+                  <div className="grid size-12 shrink-0 place-items-center rounded-3xl bg-[#26c6da]/15 text-[#0a2647] transition group-hover:scale-110 group-hover:rotate-6">
                     <h.icon className="size-5" />
                   </div>
                   <div>
@@ -388,7 +388,7 @@ function EverydaySkills() {
       <div className="pointer-events-none absolute inset-0 opacity-30" style={{ background: "radial-gradient(circle at 20% 20%, rgba(38,198,218,0.4), transparent 50%), radial-gradient(circle at 80% 80%, rgba(243,156,18,0.35), transparent 50%)" }} />
       <div className="relative mx-auto max-w-7xl">
         <div className="mb-12 text-center" data-reveal>
-          <span className="inline-block rounded-none bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#26c6da]">
+          <span className="inline-block rounded-3xl bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#26c6da]">
             Build Everyday Skills
           </span>
           <h2 className="mt-3 font-display text-4xl font-bold sm:text-5xl">A playful path to <br className="hidden sm:block" /> early learning wins</h2>
@@ -400,9 +400,9 @@ function EverydaySkills() {
                 key={s.label}
                 data-reveal
                 style={{ transitionDelay: `${i * 70}ms` }}
-                className="group rounded-none bg-white/5 p-5 ring-1 ring-white/10 backdrop-blur transition hover:-translate-y-1 hover:bg-white/10 hover:ring-[#26c6da]/60"
+                className="group rounded-3xl bg-white/5 p-5 ring-1 ring-white/10 backdrop-blur transition hover:-translate-y-1 hover:bg-white/10 hover:ring-[#26c6da]/60"
               >
-                <div className="grid size-12 place-items-center rounded-none bg-[#26c6da]/20 text-[#26c6da] transition group-hover:scale-110 group-hover:rotate-6">
+                <div className="grid size-12 place-items-center rounded-3xl bg-[#26c6da]/20 text-[#26c6da] transition group-hover:scale-110 group-hover:rotate-6">
                   <s.icon className="size-6" />
                 </div>
                 <h3 className="mt-3 font-display text-base font-bold">{s.label}</h3>
@@ -410,7 +410,7 @@ function EverydaySkills() {
             ))}
           </div>
           <div className="relative" data-reveal>
-            <div className="relative overflow-hidden rounded-none bg-white shadow-2xl ring-1 ring-white tilt-hover">
+            <div className="relative overflow-hidden rounded-3xl bg-white shadow-2xl ring-1 ring-white tilt-hover">
               <img src={skillsImg.url} alt="Skills the busy book builds - fine motor, matching, focus, hand-eye" className="w-full object-contain p-4" />
             </div>
           </div>
@@ -437,7 +437,7 @@ function KeepEngaged() {
         />
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div className="relative" data-reveal>
-            <div className="relative overflow-hidden rounded-none bg-white shadow-xl ring-1 ring-border tilt-hover">
+            <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl ring-1 ring-border tilt-hover">
               <img src={engagedImg.url} alt="Child happily engaged with the interactive busy book" className="w-full object-contain p-4" />
             </div>
           </div>
@@ -447,9 +447,9 @@ function KeepEngaged() {
                 key={h.title}
                 data-reveal
                 style={{ transitionDelay: `${i * 100}ms` }}
-                className="group flex items-start gap-4 rounded-none bg-white p-6 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
+                className="group flex items-start gap-4 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-lg"
               >
-                <div className="grid size-14 shrink-0 place-items-center rounded-none bg-[#26c6da]/15 text-[#0a2647] transition group-hover:scale-110 group-hover:rotate-6">
+                <div className="grid size-14 shrink-0 place-items-center rounded-3xl bg-[#26c6da]/15 text-[#0a2647] transition group-hover:scale-110 group-hover:rotate-6">
                   <h.icon className="size-6" />
                 </div>
                 <div>
@@ -460,7 +460,7 @@ function KeepEngaged() {
             ))}
             <div className="flex flex-wrap gap-3 pt-2">
               <PrimaryCTA />
-              <Link to="/" hash="products" className="inline-flex items-center gap-2 rounded-none bg-white px-6 py-3.5 text-sm font-bold text-[#0a2647] ring-1 ring-border transition hover:ring-[#0a2647]">
+              <Link to="/" hash="products" className="inline-flex items-center gap-2 rounded-3xl bg-white px-6 py-3.5 text-sm font-bold text-[#0a2647] ring-1 ring-border transition hover:ring-[#0a2647]">
                 Browse all toys <ArrowRight className="size-4" />
               </Link>
             </div>
@@ -488,7 +488,7 @@ function Specs() {
     <section className="relative bg-[#eaf7fb]/40 px-4 py-20 sm:py-28">
       <div className="mx-auto max-w-5xl">
         <SectionTitle eyebrow="Product Specs" title={<>Every detail, thought through</>} />
-        <div className="overflow-hidden rounded-none bg-white shadow-sm ring-1 ring-border" data-reveal>
+        <div className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-border" data-reveal>
           <dl className="grid grid-cols-1 divide-y divide-border sm:grid-cols-2 sm:divide-x">
             {specs.map((s, i) => (
               <div key={s.k} className={`flex items-baseline justify-between gap-4 p-5 ${i >= 2 ? "sm:border-t sm:border-border" : ""}`}>
@@ -507,7 +507,7 @@ function Specs() {
 function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="overflow-hidden rounded-none bg-white shadow-sm ring-1 ring-border transition hover:shadow-md" data-reveal>
+    <div className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-border transition hover:shadow-md" data-reveal>
       <button onClick={() => setOpen((o) => !o)} className="flex w-full items-center justify-between gap-4 p-5 text-left">
         <span className="font-display text-lg font-bold text-[#0a2647]">{q}</span>
         <ChevronDown className={`size-5 shrink-0 text-[#1e88e5] transition-transform ${open ? "rotate-180" : ""}`} />
@@ -540,7 +540,7 @@ function FAQ() {
 /* ---------- Final CTA ---------- */
 function FinalCTA() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#0a2647] via-[#1e88e5] to-[#26c6da] px-4 py-20 text-center text-white sm:py-24 rounded-none">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#0a2647] via-[#1e88e5] to-[#26c6da] px-4 py-20 text-center text-white sm:py-24 rounded-3xl">
       <div className="pointer-events-none absolute -left-10 top-10 text-[8rem] opacity-10 floaty">📖</div>
       <div className="pointer-events-none absolute -right-6 bottom-10 text-[8rem] opacity-10 floaty" style={{ animationDelay: "-2s" }}>🦕</div>
       <div className="relative mx-auto max-w-3xl">
@@ -551,7 +551,7 @@ function FinalCTA() {
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <PrimaryCTA size="lg" label="Order Now on WhatsApp" />
-          <Link to="/cart" className="inline-flex items-center gap-2 rounded-none bg-white/10 px-8 py-4 text-base font-bold text-white ring-1 ring-white/40 backdrop-blur transition hover:scale-[1.03] hover:bg-white/20">
+          <Link to="/cart" className="inline-flex items-center gap-2 rounded-3xl bg-white/10 px-8 py-4 text-base font-bold text-white ring-1 ring-white/40 backdrop-blur transition hover:scale-[1.03] hover:bg-white/20">
             <ShoppingCart className="size-5" /> View Cart
           </Link>
 

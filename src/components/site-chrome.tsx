@@ -71,7 +71,7 @@ function ShopDropdown() {
       </button>
       <div
         role="menu"
-        className={`absolute left-1/2 top-full z-50 mt-2 w-80 max-w-[calc(100vw-1.5rem)] -translate-x-1/2 origin-top rounded-2xl bg-white p-2 shadow-2xl ring-1 ring-border transition ${open ? "pointer-events-auto scale-100 opacity-100" : "pointer-events-none scale-95 opacity-0"}`}
+        className={`absolute left-1/2 top-full z-50 mt-2 w-80 max-w-[calc(100vw-1.5rem)] -translate-x-1/2 origin-top rounded-3xl bg-white p-2 shadow-2xl ring-1 ring-border transition ${open ? "pointer-events-auto scale-100 opacity-100" : "pointer-events-none scale-95 opacity-0"}`}
       >
         {SHOP_PRODUCTS.map((p) => (
           <Link
@@ -254,7 +254,7 @@ export function Newsletter() {
           className="mx-auto mt-8 flex max-w-md flex-col gap-2 sm:flex-row"
         >
           <input type="email" required placeholder="your@email.com"
-            className="flex-1 rounded-none bg-white/95 px-5 py-3.5 text-sm font-medium text-foreground outline-none ring-2 ring-transparent focus:ring-[#f39c12]" />
+            className="flex-1 rounded-full bg-white/95 px-5 py-3.5 text-sm font-medium text-foreground outline-none ring-2 ring-transparent focus:ring-[#f39c12]" />
           <button type="submit"
             className="rounded-none bg-[#f39c12] px-6 py-3.5 text-sm font-bold text-white shadow-lg transition hover:scale-[1.03] hover:bg-[#e08e0a]">
             Subscribe
