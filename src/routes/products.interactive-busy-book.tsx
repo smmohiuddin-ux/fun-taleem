@@ -209,7 +209,7 @@ function ProductPage() {
     <main className="relative overflow-hidden bg-background text-foreground">
       <AnnouncementBar />
       <SiteHeader />
-      <FullWidthBanner />
+      <Hero />
       <TrustMarquee />
 
       <FourThemes />
