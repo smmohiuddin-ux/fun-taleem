@@ -191,7 +191,7 @@ function Hero() {
               "Compact travel box - perfect for home, school or gifting",
             ].map((f) => (
               <li key={f} className="flex items-start gap-2.5">
-                <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-[#26c6da] text-white text-[10px] font-black">✓</span>
+                <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-none bg-[#26c6da] text-white text-[10px] font-black">✓</span>
                 {f}
               </li>
             ))}
