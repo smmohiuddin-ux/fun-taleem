@@ -707,7 +707,7 @@ function FloatingWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
-      className="fixed bottom-5 right-5 z-50 grid size-16 place-items-center rounded-full bg-[#25D366] text-white shadow-2xl transition hover:scale-110 btn-pulse"
+      className="fixed bottom-5 right-5 z-50 grid size-16 place-items-center rounded-none bg-[#25D366] text-white shadow-2xl transition hover:scale-110 btn-pulse"
     >
       <MessageCircle className="size-8" strokeWidth={2.5} />
     </a>
