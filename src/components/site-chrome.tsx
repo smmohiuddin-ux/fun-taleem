@@ -241,7 +241,7 @@ export function TrustMarquee() {
 
 export function Newsletter() {
   return (
-    <section className="relative overflow-hidden gradient-animate bg-[linear-gradient(120deg,#0a2647,#1e88e5,#26c6da,#0a2647)] py-20 text-center text-white sm:py-28">
+    <section className="relative overflow-hidden gradient-animate bg-[linear-gradient(120deg,#0a2647,#1e88e5,#26c6da,#0a2647)] py-20 text-center text-white sm:py-28 rounded-none">
       <div className="pointer-events-none absolute -top-16 left-8 text-[10rem] opacity-10 floaty">🎁</div>
       <div className="pointer-events-none absolute -bottom-16 right-10 text-[9rem] opacity-10 floaty" style={{ animationDelay: "-2s" }}>🎈</div>
       <div className="relative mx-auto max-w-3xl px-4">
@@ -254,14 +254,15 @@ export function Newsletter() {
           className="mx-auto mt-8 flex max-w-md flex-col gap-2 sm:flex-row"
         >
           <input type="email" required placeholder="your@email.com"
-            className="flex-1 rounded-full bg-white/95 px-5 py-3.5 text-sm font-medium text-foreground outline-none ring-2 ring-transparent focus:ring-[#f39c12]" />
+            className="flex-1 rounded-none bg-white/95 px-5 py-3.5 text-sm font-medium text-foreground outline-none ring-2 ring-transparent focus:ring-[#f39c12]" />
           <button type="submit"
-            className="rounded-full bg-[#f39c12] px-6 py-3.5 text-sm font-bold text-white shadow-lg transition hover:scale-[1.03] hover:bg-[#e08e0a]">
+            className="rounded-none bg-[#f39c12] px-6 py-3.5 text-sm font-bold text-white shadow-lg transition hover:scale-[1.03] hover:bg-[#e08e0a]">
             Subscribe
           </button>
         </form>
       </div>
     </section>
+
   );
 }
 
