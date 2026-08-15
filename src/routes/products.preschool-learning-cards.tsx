@@ -414,9 +414,10 @@ function EarlySkills() {
                 key={s.label}
                 data-reveal
                 style={{ transitionDelay: `${i * 70}ms` }}
-                className="group rounded-3xl bg-white/5 p-5 ring-1 ring-white/10 backdrop-blur transition hover:-translate-y-1 hover:bg-white/10 hover:ring-[#26c6da]/60"
+                className="group rounded-none bg-white/5 p-5 ring-1 ring-white/10 backdrop-blur transition hover:-translate-y-1 hover:bg-white/10 hover:ring-[#26c6da]/60"
               >
-                <div className="grid size-12 place-items-center rounded-2xl bg-[#26c6da]/20 text-[#26c6da] transition group-hover:scale-110 group-hover:rotate-6">
+                <div className="grid size-12 place-items-center rounded-none bg-[#26c6da]/20 text-[#26c6da] transition group-hover:scale-110 group-hover:rotate-6">
+
                   <s.icon className="size-6" />
                 </div>
                 <h3 className="mt-3 font-display text-base font-bold">{s.label}</h3>
