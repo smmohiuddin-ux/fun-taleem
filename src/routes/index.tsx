@@ -205,9 +205,10 @@ function Hero() {
         {/* Hero image collage */}
         <div className="relative mx-auto w-full max-w-lg">
           <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/40 via-[#1e88e5]/20 to-[#f39c12]/25 blur-2xl" />
-          <div className="relative aspect-square overflow-hidden rounded-[2.5rem] bg-white shadow-2xl ring-1 ring-white tilt-hover">
-            <img src={busyBookHands.url} alt="Interactive busy book made for little hands" className="size-full object-contain p-4" />
-          </div>
+          <Link to="/products/interactive-busy-book" className="relative block aspect-square overflow-hidden rounded-[2.5rem] bg-white shadow-2xl ring-1 ring-white tilt-hover transition duration-300 hover:shadow-primary/20">
+            <img src={busyBookHands.url} alt="Interactive busy book made for little hands" className="size-full object-contain p-4 transition duration-700 hover:scale-105" />
+          </Link>
+
           {/* small floating cards */}
           <div className="absolute -bottom-6 -left-6 flex items-center gap-3 rounded-2xl bg-white p-3 shadow-xl ring-1 ring-border floaty">
             <div className="grid size-11 place-items-center rounded-xl bg-[#26c6da]/20 text-2xl">🎨</div>
@@ -282,12 +283,24 @@ function FeaturedProducts() {
               className="group relative flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-border tilt-hover"
             >
               <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-[#eaf7fb] to-white">
-                <img
-                  src={p.image}
-                  alt={p.name}
-                  loading="lazy"
-                  className="size-full object-contain p-4 transition duration-700 group-hover:scale-105"
-                />
+                {p.href ? (
+                  <Link to={p.href} className="block size-full group">
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      loading="lazy"
+                      className="size-full object-contain p-4 transition duration-700 group-hover:scale-105"
+                    />
+                  </Link>
+                ) : (
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    loading="lazy"
+                    className="size-full object-contain p-4 transition duration-700 group-hover:scale-105"
+                  />
+                )}
+
                 <span
                   className={`absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-bold text-white shadow ${
                     p.badgeTone === "green" ? "bg-[#0a2647]" :

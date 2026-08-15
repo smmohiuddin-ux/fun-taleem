@@ -141,9 +141,10 @@ function Hero() {
         {/* Product image */}
         <div className="relative order-1 mx-auto w-full max-w-lg md:order-none">
           <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/40 via-[#1e88e5]/20 to-[#f39c12]/25 blur-2xl" />
-          <div className="relative aspect-square overflow-hidden rounded-[2.5rem] bg-white shadow-2xl ring-1 ring-white tilt-hover">
-            <img src={mainImg.url} alt="Kids Interactive Busy Book with 4 themes and peel-and-stick pieces" className="size-full object-contain p-4" />
+          <div className="relative aspect-square overflow-hidden rounded-[2.5rem] bg-white shadow-2xl ring-1 ring-white tilt-hover group cursor-default">
+            <img src={mainImg.url} alt="Kids Interactive Busy Book with 4 themes and peel-and-stick pieces" className="size-full object-contain p-4 transition duration-700 hover:scale-105" />
           </div>
+
           <div className="absolute -top-4 -left-4 flex items-center gap-3 rounded-2xl bg-white p-3 shadow-xl ring-1 ring-border floaty">
             <div className="grid size-11 place-items-center rounded-xl bg-[#26c6da]/20 text-2xl">📚</div>
             <div>
