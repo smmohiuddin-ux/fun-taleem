@@ -270,7 +270,7 @@ export function SiteFooter() {
     <footer className="relative bg-white px-4 pt-16 pb-8 text-foreground">
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-4">
         <div>
-          <img src={logo.url} alt="Funtaleem" className="h-16 w-auto" />
+          <img src={logo.url} alt="Funtaleem" className="h-12 w-auto" />
           <p className="mt-4 text-sm text-muted-foreground">
             Premium screen-free learning toys for Pakistani kids. Made with love. Delivered nationwide.
           </p>
