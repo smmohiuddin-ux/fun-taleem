@@ -429,19 +429,20 @@ function SpotlightBanner() {
             <ul className="mt-5 space-y-2 text-sm">
               {["Non-toxic washable inks","30 cute themed art cards","Perfect for gifts","Ages 3+"].map((f) => (
                 <li key={f} className="flex items-center gap-2 font-medium">
-                  <span className="grid size-5 place-items-center rounded-full bg-[#26c6da] text-white text-[10px] font-black">✓</span>
+                  <span className="grid size-5 place-items-center rounded-none bg-[#26c6da] text-white text-[10px] font-black">✓</span>
                   {f}
                 </li>
               ))}
             </ul>
             <div className="mt-7 flex flex-wrap gap-3">
-              <a href={waLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#f39c12] px-6 py-3.5 font-bold text-white shadow-lg transition hover:scale-[1.03] hover:bg-[#e08e0a] shine-on-hover">
+              <a href={waLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-none bg-[#f39c12] px-6 py-3.5 font-bold text-white shadow-lg transition hover:scale-[1.03] hover:bg-[#e08e0a] shine-on-hover">
                 <MessageCircle className="size-4" /> Pre-order on WhatsApp
               </a>
-              <Link to="/" hash="products" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 font-bold text-foreground ring-1 ring-border transition hover:ring-[#0a2647]">
+              <Link to="/" hash="products" className="inline-flex items-center gap-2 rounded-none bg-white px-6 py-3.5 font-bold text-foreground ring-1 ring-border transition hover:ring-[#0a2647]">
                 Browse all toys
               </Link>
             </div>
+
           </div>
         </div>
       </div>
