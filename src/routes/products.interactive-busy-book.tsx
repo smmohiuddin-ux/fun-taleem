@@ -540,7 +540,7 @@ function FAQ() {
 /* ---------- Final CTA ---------- */
 function FinalCTA() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#0a2647] via-[#1e88e5] to-[#26c6da] px-4 py-20 text-center text-white sm:py-24">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#0a2647] via-[#1e88e5] to-[#26c6da] px-4 py-20 text-center text-white sm:py-24 rounded-none">
       <div className="pointer-events-none absolute -left-10 top-10 text-[8rem] opacity-10 floaty">📖</div>
       <div className="pointer-events-none absolute -right-6 bottom-10 text-[8rem] opacity-10 floaty" style={{ animationDelay: "-2s" }}>🦕</div>
       <div className="relative mx-auto max-w-3xl">
