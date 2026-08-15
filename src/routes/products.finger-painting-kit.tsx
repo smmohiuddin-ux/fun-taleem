@@ -396,7 +396,7 @@ function CreativePlay() {
         <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_1fr]">
           <div className="relative" data-reveal>
             <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-[#26c6da]/40 to-[#f39c12]/25 blur-2xl" />
-            <div className="relative overflow-hidden rounded-[2.5rem] bg-white shadow-2xl ring-1 ring-white tilt-hover">
+            <div className="relative overflow-hidden rounded-none bg-white shadow-2xl ring-1 ring-white tilt-hover">
               <img src={creativePlayImg.url} alt="Child enjoying creative finger painting play" className="w-full object-contain p-4" />
             </div>
           </div>
